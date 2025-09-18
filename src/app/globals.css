@@ -1,1 +1,25 @@
 @import "tailwindcss";
+@import "@fontsource/pretendard/400.css";
+@import "@fontsource/pretendard/500.css";
+@import "@fontsource/pretendard/600.css";
+@import "@fontsource/pretendard/700.css";
+
+@theme {
+  --font-sans: "SF Pro", "SF Pro Text", "SF Pro Display", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, Pretendard,
+    "Noto Sans", system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+  --font-sans-ko: "SF Pro", "SF Pro Text", "SF Pro Display", -apple-system,
+    BlinkMacSystemFont, "Apple SD Gothic Neo", Pretendard, "Noto Sans KR",
+    "Malgun Gothic", "Nanum Gothic", "Segoe UI", Roboto, Arial, system-ui,
+    sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+  html:lang(ko) {
+    font-family: var(--font-sans-ko);
+  }
+}
