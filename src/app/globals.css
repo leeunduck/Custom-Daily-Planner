@@ -29,143 +29,278 @@
   --color-black: #000000; /* 메인 텍스트 */
   --color-white: #ffffff;
 
+  /* === Brand Colors === */
+  --primary-blue: #06c;
+  --primary-gray: #111827;
+  --primary-red: #dc2626;
+
   /* === Gray Scale === */
-  --color-gray-900: #111827; /* 버튼 텍스트 */
-  --color-gray-800: #1f1f1f; /* 버튼 호버 */
-  --color-gray-700: #2e2e2e;
-  --color-gray-600: #525252; /* 보조 텍스트, nav텍스트 */
-  --color-gray-500: #737373; /* 플레이스홀더, 비활성 텍스트, 푸터 텍스트 */
-  --color-gray-400: #a3a3a3;
-  --color-gray-300: #d4d4d4; /* 버튼 테두리, 입력 필드 테두리, 체크박스 테두리 */
-  --color-gray-200: #e5e5e5; /* 카드 테두리, 모달 테두리, 푸터 상단 테두리, 컨테이너 구분선 */
+  --color-gray-900: #111827; /* 랜딩페이지 제목, CTA 버튼 텍스트, 기능소개 컴포넌트 제목, 
+                                특별한 기능 카드 제목, 로그인페이지 메인텍스트, 로그인버튼 배경, 
+                                비밀번호 찾기 링크, 회원가입하기 링크 */
+  --color-gray-800: #1f1f1f; /* 모든 버튼 호버 */
+  --color-gray-700: #2e2e2e; /* input-label 텍스트 (로그인, 비밀번호 등) */
+  --color-gray-600: #525252; /* 랜딩페이지 보조 텍스트, nav 텍스트, 기능소개 컴포넌트 보조 텍스트, 
+                                특별한 기능 카드 보조 텍스트, 푸터 텍스트, 
+                                비밀번호를 잊으셨나요?, 회원이 아니신가요? */
+  --color-gray-500: #737373; /* 플레이스홀더, 비활성 텍스트, 푸터 텍스트, 간편 로그인 제목 */
+  --color-gray-400: #a3a3a3; /* 서브 경계선, 보조 아이콘, 비활성 버튼 배경 */
+  --color-gray-300: #d4d4d4; /* 버튼 테두리, 입력 필드 테두리 */
+  --color-gray-200: #e5e5e5; /* 카드/모달 테두리, 구분선 */
   --color-gray-100: #f5f5f5; /* 버튼 배경 */
   --color-gray-50: #fafafa; /* 푸터 배경 */
 
   /* === Error / Danger Scale === */
-  --color-danger-700: #b91c1c; /* red-700 */
-  --color-danger-600: #dc2626; /* red-600 (기본) */
-  --color-danger-500: #ef4444; /* red-500 */
-  --color-danger-400: #f87171; /* red-400 */
+  --color-danger-700: #b91c1c; /* 에러 텍스트(진한 경고), 심각 오류 버튼 호버 */
+  --color-danger-600: #dc2626; /* 기본 에러/경고 상태, 경고 버튼 */
+  --color-danger-500: #ef4444; /* 경고 텍스트, 라벨 */
+  --color-danger-400: #f87171; /* 경고 강조 배경, 라이트 알림 */
 
   /* === Blue Scale === */
-  --color-blue-600: #2563eb; /* 진한 블루 (모달, 주요 CTA) */
-  --color-blue-500: #3b82f6; /* 기본 블루 (버튼, 포인트) */
-  --color-blue-400: #60a5fa; /* 밝은 블루 (호버, 보조) */
-  --color-blue-100: #3b82f61a; /* 연한 블루 배경  */
+  --color-blue-600: #2563eb; /* 진한 블루: 모달 헤더, 주요 CTA 강조 */
+  --color-blue-500: #3b82f6; /* 기본 블루: 일반 버튼, 포인트 */
+  --color-blue-400: #60a5fa; /* 밝은 블루: hover 효과, 보조 강조 */
+  --color-blue-100: #3b82f61a; /* 연한 블루 배경 (10% 투명도 느낌) */
 
   /* === Border Radius === */
-  --radius-2xl: 1rem; /* rounded-2xl */
+  --radius-2xl: 1rem;
 
   /* === Shadow Presets === */
-  --shadow-soft: 0 6px 16px rgba(0, 0, 0, 0.08); /* soft shadow */
+  --shadow-soft: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
 
-  /* === Typography Scale === */
-  /* Extra Small */
-  --text-8-m: 0.8rem;
-  --font-8-m: 500;
-  --text-9-m: 0.9rem;
-  --font-9-m: 500;
-  --text-10-m: 1rem;
-  --font-10-m: 500;
+@layer utilities {
+  /* === Typography Utilities  === */
+  /* 8~32px */
+  .t-8-m {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .t-8-b {
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
 
-  --text-8-b: 0.8rem;
-  --font-8-b: 700;
-  --text-9-b: 0.9rem;
-  --font-9-b: 700;
-  --text-10-b: 1rem;
-  --font-10-b: 700;
+  .t-10-m {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .t-10-b {
+    font-size: 1rem;
+    font-weight: 700;
+  }
 
-  /* Medium (11~32px) */
-  --text-11-m: 1.1rem;
-  --font-11-m: 500;
-  --text-12-m: 1.2rem;
-  --font-12-m: 500;
-  --text-13-m: 1.3rem;
-  --font-13-m: 500;
-  --text-14-m: 1.4rem;
-  --font-14-m: 500;
-  --text-16-m: 1.6rem;
-  --font-16-m: 500;
-  --text-18-m: 1.8rem;
-  --font-18-m: 500;
-  --text-20-m: 2rem;
-  --font-20-m: 500;
-  --text-24-m: 2.4rem;
-  --font-24-m: 500;
-  --text-32-m: 3.2rem;
-  --font-32-m: 500;
+  .t-12-m {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  .t-12-b {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
 
-  /* Bold (11~32px) */
-  --text-11-b: 1.1rem;
-  --font-11-b: 700;
-  --text-12-b: 1.2rem;
-  --font-12-b: 700;
-  --text-13-b: 1.3rem;
-  --font-13-b: 700;
-  --text-14-b: 1.4rem;
-  --font-14-b: 700;
-  --text-16-b: 1.6rem;
-  --font-16-b: 700;
-  --text-18-b: 1.8rem;
-  --font-18-b: 700;
-  --text-20-b: 2rem;
-  --font-20-b: 700;
-  --text-24-b: 2.4rem;
-  --font-24-b: 700;
-  --text-32-b: 3.2rem;
-  --font-32-b: 700;
+  .t-14-m {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+  .t-14-b {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
 
-  /* Large (36~64px) */
-  --text-36-m: 3.6rem;
-  --font-36-m: 500;
-  --text-40-m: 4rem;
-  --font-40-m: 500;
-  --text-48-m: 4.8rem;
-  --font-48-m: 500;
-  --text-56-m: 5.6rem;
-  --font-56-m: 500;
-  --text-64-m: 6.4rem;
-  --font-64-m: 500;
+  .t-16-m {
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+  .t-16-b {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
 
-  --text-36-b: 3.6rem;
-  --font-36-b: 700;
-  --text-40-b: 4rem;
-  --font-40-b: 700;
-  --text-48-b: 4.8rem;
-  --font-48-b: 700;
-  --text-56-b: 5.6rem;
-  --font-56-b: 700;
-  --text-64-b: 6.4rem;
-  --font-64-b: 700;
+  .t-18-m {
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+  .t-18-b {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
 
-  /* Body (line-height 포함) */
-  --text-12-body-m: 1.2rem;
-  --leading-12-body-m: 160%;
-  --font-12-body-m: 500;
-  --text-14-body-m: 1.4rem;
-  --leading-14-body-m: 180%;
-  --font-14-body-m: 500;
-  --text-16-body-m: 1.6rem;
-  --leading-16-body-m: 180%;
-  --font-16-body-m: 500;
-  --text-18-body-b: 1.8rem;
-  --leading-18-body-b: 140%;
-  --font-18-body-b: 700;
-  --text-20-body-b: 2rem;
-  --leading-20-body-b: 160%;
-  --font-20-body-b: 700;
-  --text-24-body-m: 2.4rem;
-  --leading-24-body-m: 160%;
-  --font-24-body-m: 500;
-  --text-32-body-b: 3.2rem;
-  --leading-32-body-b: 140%;
-  --font-32-body-b: 700;
+  .t-20-m {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  .t-20-b {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .t-22-m {
+    font-size: 2.2rem;
+    font-weight: 500;
+  }
+  .t-22-b {
+    font-size: 2.2rem;
+    font-weight: 700;
+  }
+
+  .t-24-m {
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+  .t-24-b {
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+
+  .t-26-m {
+    font-size: 2.6rem;
+    font-weight: 500;
+  }
+  .t-26-b {
+    font-size: 2.6rem;
+    font-weight: 700;
+  }
+
+  .t-28-m {
+    font-size: 2.8rem;
+    font-weight: 500;
+  }
+  .t-28-b {
+    font-size: 2.8rem;
+    font-weight: 700;
+  }
+
+  .t-30-m {
+    font-size: 3rem;
+    font-weight: 500;
+  }
+  .t-30-b {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  .t-32-m {
+    font-size: 3.2rem;
+    font-weight: 500;
+  }
+  .t-32-b {
+    font-size: 3.2rem;
+    font-weight: 700;
+  }
+
+  /* 40~60px */
+  .t-40-m {
+    font-size: 4rem;
+    font-weight: 500;
+  }
+  .t-40-b {
+    font-size: 4rem;
+    font-weight: 700;
+  }
+
+  .t-44-m {
+    font-size: 4.4rem;
+    font-weight: 500;
+  }
+  .t-44-b {
+    font-size: 4.4rem;
+    font-weight: 700;
+  }
+
+  .t-48-m {
+    font-size: 4.8rem;
+    font-weight: 500;
+  }
+  .t-48-b {
+    font-size: 4.8rem;
+    font-weight: 700;
+  }
+
+  .t-50-m {
+    font-size: 5rem;
+    font-weight: 500;
+  }
+  .t-50-b {
+    font-size: 5rem;
+    font-weight: 700;
+  }
+
+  .t-54-m {
+    font-size: 5.4rem;
+    font-weight: 500;
+  }
+  .t-54-b {
+    font-size: 5.4rem;
+    font-weight: 700;
+  }
+
+  .t-58-m {
+    font-size: 5.8rem;
+    font-weight: 500;
+  }
+  .t-58-b {
+    font-size: 5.8rem;
+    font-weight: 700;
+  }
+
+  .t-60-m {
+    font-size: 6rem;
+    font-weight: 500;
+  }
+  .t-60-b {
+    font-size: 6rem;
+    font-weight: 700;
+  }
+
+  /* === Body Utilities (line-height 포함) === */
+  .tb-12-m {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 160%;
+  }
+  .tb-14-m {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 180%;
+  }
+  .tb-16-m {
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 180%;
+  }
+  .tb-18-b {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 140%;
+  }
+  .tb-20-b {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 160%;
+  }
+  .tb-24-m {
+    font-size: 2.4rem;
+    font-weight: 500;
+    line-height: 160%;
+  }
+  .tb-32-b {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 140%;
+  }
 }
 
 @layer base {
   html {
-    font-size: 62.5%; /* 16px * 62.5% = 10px */
+    font-size: 62.5%; /* 1rem = 10px */
     font-family: var(--font-sans);
+
+    /* 가독성 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    color-scheme: light;
   }
 
   html:lang(ko) {
@@ -175,5 +310,76 @@
   body {
     background-color: var(--color-background);
     color: var(--color-gray-900);
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+
+  /* 포커스 접근성 */
+  :focus-visible {
+    outline: 2px solid var(--color-gray-900); /* 기본: 검정 */
+    outline-offset: 2px;
+  }
+  @media (forced-colors: active) {
+    :focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+
+  /* 텍스트 선택 */
+  ::selection {
+    background: var(--color-blue-500);
+    color: var(--color-white);
+  }
+
+  /* 폼 요소 */
+  input,
+  select,
+  textarea {
+    font-size: 1.6rem; /* iOS 줌 방지 */
+    color: var(--color-gray-900);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-2xl);
+    caret-color: var(--color-blue-600);
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-gray-500);
+  }
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    border: 0.2rem solid var(--color-gray-900);
+    outline: 0;
+  }
+  input:disabled,
+  select:disabled,
+  textarea:disabled {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-500);
+  }
+  input:invalid,
+  textarea:invalid {
+    border-color: var(--color-danger-600);
+  }
+
+  /* 링크 */
+  a {
+    color: var(--color-blue-600);
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+  }
+  a:hover {
+    color: var(--color-blue-500);
+  }
+
+  /* 모션 최소화 */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
