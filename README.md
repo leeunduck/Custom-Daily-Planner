@@ -77,7 +77,7 @@ develop에 머지된 기능이 잘 작동하는지 점검한 이후에 main 브�
    - 로컬에서 `develop` 브랜치를 기준으로 Feature 브랜치를 생성합니다.
 
    ```bash
-   git checkout -b feature/[브랜치명]
+   git checkout -b Feature/[브랜치명]
    ```
 
    - 기능 개발이 끝났다면 반드시 커밋을 완료합니다. (아래 [커밋 컨벤션](#6-커밋-컨벤션)을 꼭 확인해 주세요!)
@@ -87,7 +87,7 @@ develop에 머지된 기능이 잘 작동하는지 점검한 이후에 main 브�
    - 기능 개발이 끝난 Feature 브랜치를 원격 저장소에 푸쉬합니다.
 
    ```bash
-   git push origin feature/[브랜치명]
+   git push origin Feature/[브랜치명]
    ```
 
    - Github에서 PR을 생성하고 아래 템플릿을 채워주세요.
@@ -136,7 +136,7 @@ develop에 머지된 기능이 잘 작동하는지 점검한 이후에 main 브�
    - 더 이상 필요 없는 기존 Feature 브랜치는 삭제합니다.
 
    ```bash
-   git branch -d feature/[브랜치명]
+   git branch -d Feature/[브랜치명]
    ```
 
 ---
