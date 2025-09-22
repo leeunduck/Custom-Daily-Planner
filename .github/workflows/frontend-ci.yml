@@ -1,8 +1,12 @@
 name: Frontend-CI
 
 on:
+  # 배포 게이트: main으로 가는 PR에서만 CI 실행
   pull_request:
-    branches: [main, develop]
+    branches: [main]
+    types: [opened, reopened, synchronize, ready_for_review]
+
+  # 빠른 피드백: 기능/작업 브랜치에 push될 때 CI 실행
   push:
     branches:
       - "Feature/*"
@@ -11,6 +15,9 @@ on:
       - "Docs/*"
       - "Test/*"
       - "Refactor/*"
+
+  # (선택) Actions 탭에서 수동 실행 버튼
+  workflow_dispatch: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
