@@ -1,1 +1,67 @@
+<<<<<<< HEAD
 pnpm lint-staged
+=======
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔎 pre-commit: lint-staged 실행 및 최종 점검 시작"
+
+# 0) 커밋에 포함된 파일 목록 (추가/복사/수정)
+STAGED_FILES="$(git diff --name-only --cached --diff-filter=ACMR)"
+if [ -z "$STAGED_FILES" ]; then
+  echo "ℹ️  스테이징된 파일이 없습니다. 건너뜁니다."
+  exit 0
+fi
+
+# 1) 변경 파일만 자동 수정 (eslint --fix, prettier --write)
+if ! pnpm lint-staged; then
+  echo
+  echo "❌ lint-staged 단계에서 오류가 발생했습니다."
+  echo "   - 자동수정 불가한 린트 에러가 있을 수 있어요."
+  echo "   - 로컬에서 'pnpm lint'로 에러를 확인하고 수정한 뒤 다시 커밋하세요."
+  exit 1
+fi
+
+# 2) 최종 점검: 스테이징된 파일만 대상으로 검사(수정 없이 실패만 감지)
+PRETTIER_FAIL=0
+ESLINT_FAIL=0
+
+# 개행만 구분자로 사용 (공백 포함 파일명 안전)
+IFS="$(printf '\n')"
+for f in $STAGED_FILES; do
+  case "$f" in
+    *.js|*.jsx|*.ts|*.tsx|*.json|*.css|*.md)
+      # Prettier 포맷 준수 확인 (수정 없이 검사)
+      pnpm -s prettier --check "$f" || PRETTIER_FAIL=1
+      ;;
+  esac
+done
+
+for f in $STAGED_FILES; do
+  case "$f" in
+    *.js|*.jsx|*.ts|*.tsx)
+      # ESLint 최종 확인 (수정 없이 검사)
+      pnpm -s eslint --max-warnings=0 "$f" || ESLINT_FAIL=1
+      ;;
+  esac
+done
+unset IFS
+
+if [ "$PRETTIER_FAIL" -ne 0 ]; then
+  echo
+  echo "❌ Prettier 포맷 위반이 남아 있습니다."
+  echo "   - 'pnpm format' 후 다시 커밋하세요."
+  exit 1
+fi
+
+if [ "$ESLINT_FAIL" -ne 0 ]; then
+  echo
+  echo "❌ ESLint 위반이 남아 있습니다."
+  echo "   - 'pnpm lint:fix' 또는 수동 수정 후 다시 커밋하세요."
+  exit 1
+fi
+
+COUNT="$(printf '%s\n' "$STAGED_FILES" | wc -l | tr -d ' ')"
+echo "✅ pre-commit 통과: ${COUNT}개 파일 점검 완료"
+exit 0
+>>>>>>> 382ffc3 (Chore/code style commit convention)
