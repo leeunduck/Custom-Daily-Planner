@@ -5,8 +5,8 @@ export default function Home() {
       <header className="space-y-2">
         <h1 className="t-32-b">globals.css 유틸 종합 테스트</h1>
         <p className="tb-14-m text-gray-600">
-          폰트 스택, 폰트 사이즈, 색상 팔레트, 섀도우/라운드, 폼 포커스,
-          링크/선택, 반응형까지 전부 점검합니다.
+          폰트 스택, 폰트 사이즈, 색상 팔레트, 섀도우/라운드, 폼 포커스, 링크/선택, 반응형까지 전부
+          점검합니다.
         </p>
       </header>
 
@@ -14,9 +14,7 @@ export default function Home() {
       <section className="space-y-4">
         <h2 className="t-24-b">1) 폰트 스택</h2>
         <div className="grid gap-2">
-          <p className="t-16-m">
-            기본 스택 (var(--font-sans)) → 영문/숫자에 SF 계열
-          </p>
+          <p className="t-16-m">기본 스택 (var(--font-sans)) → 영문/숫자에 SF 계열</p>
           <p lang="ko" className="t-16-m">
             한글 스택 (var(--font-sans-ko)) → 한글에 Apple SD Gothic Neo
           </p>
@@ -132,7 +130,8 @@ export default function Home() {
           ].map(([cls, label]) => (
             <div
               key={cls}
-              className={`h-12 rounded-2xl shadow-soft flex items-center justify-center ${cls}`}>
+              className={`h-12 rounded-2xl shadow-soft flex items-center justify-center ${cls}`}
+            >
               <span className="t-12-m bg-white/70 px-2 rounded">{label}</span>
             </div>
           ))}
@@ -170,11 +169,7 @@ export default function Home() {
           {/* danger input 섹션 제거됨 */}
           <div className="space-y-3">
             <label className="t-14-m text-gray-700">Textarea</label>
-            <textarea
-              rows={3}
-              placeholder="내용을 입력하세요"
-              className="p-3"
-            />
+            <textarea rows={3} placeholder="내용을 입력하세요" className="p-3" />
           </div>
         </div>
 
@@ -186,7 +181,8 @@ export default function Home() {
                        bg-[var(--color-white)] text-[var(--color-gray-900)]
                        border border-[var(--color-gray-300)]
                        transition
-                       hover:bg-[var(--color-gray-800)] hover:text-[var(--color-white)]">
+                       hover:bg-[var(--color-gray-800)] hover:text-[var(--color-white)]"
+          >
             기본 버튼
           </button>
 
@@ -195,15 +191,16 @@ export default function Home() {
             className="px-4 py-2 rounded-2xl shadow-soft t-14-m
                        bg-[var(--color-gray-400)] text-[var(--color-gray-500)]
                        cursor-not-allowed border border-[var(--color-gray-400)]"
-            disabled>
+            disabled
+          >
             비활성 버튼
           </button>
         </div>
 
         <p className="t-12-m">
           포커스 테스트: 탭(Tab)으로 이동 시{" "}
-          <span className="text-gray-900">outline(포커스 강조)</span>가 보여야
-          합니다. (글로벌 설정은 그레이 계열)
+          <span className="text-gray-900">outline(포커스 강조)</span>가 보여야 합니다. (글로벌
+          설정은 그레이 계열)
         </p>
       </section>
 
@@ -214,12 +211,10 @@ export default function Home() {
           <a href="#link">링크 예시</a> — hover 시 색이 더 밝게 바뀌어야 합니다.
         </p>
         <p className="tb-14-m">
-          아래 문장을 드래그해서 선택해 보세요. 선택 영역은 파란 배경/흰
-          글자여야 합니다.
+          아래 문장을 드래그해서 선택해 보세요. 선택 영역은 파란 배경/흰 글자여야 합니다.
         </p>
         <p className="tb-14-m">
-          The quick brown fox jumps over the lazy dog. 가나다라마바사
-          아자차카타파하 0123456789
+          The quick brown fox jumps over the lazy dog. 가나다라마바사 아자차카타파하 0123456789
         </p>
       </section>
 
@@ -269,8 +264,7 @@ export default function Home() {
       <section className="space-y-2">
         <h2 className="t-24-b">9) 전역 배경/텍스트</h2>
         <p className="tb-14-m">
-          body 배경: <code>--color-background</code>, 기본 텍스트:{" "}
-          <code>--color-gray-900</code>
+          body 배경: <code>--color-background</code>, 기본 텍스트: <code>--color-gray-900</code>
         </p>
         <div className="p-4 bg-white rounded-2xl shadow-soft border border-gray-200">
           <p className="t-14-m">흰 카드 위의 대비 체크</p>
