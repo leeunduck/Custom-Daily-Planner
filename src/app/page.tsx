@@ -1,3 +1,5 @@
+import { Icon, ICON_KEYS } from "@/shared/ui/Icon";
+
 export default function Home() {
   return (
     <main className="p-8 space-y-12">
@@ -270,6 +272,16 @@ export default function Home() {
           <p className="t-14-m">흰 카드 위의 대비 체크</p>
         </div>
       </section>
+
+      <h1 className="mb-6 text-2xl font-bold">📦 Icon Showcase</h1>
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
+        {ICON_KEYS.map((name) => (
+          <div key={name} className="flex flex-col items-center gap-2">
+            <Icon name={name} size={28} />
+            <span className="text-xs text-gray-600">{name}</span>
+          </div>
+        ))}
+      </div>
     </main>
   );
 }
