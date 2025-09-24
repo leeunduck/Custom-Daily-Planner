@@ -1,4 +1,5 @@
-import { Icon, ICON_KEYS } from "@/shared/ui/Icon";
+import { Icon } from "@/shared/ui/Icon";
+import { ICON_KEYS } from "@/shared/ui/Icon.registry";
 import clsx from "clsx";
 
 export default function Home() {
