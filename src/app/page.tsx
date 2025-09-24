@@ -1,8 +1,12 @@
 import { Icon, ICON_KEYS } from "@/shared/ui/Icon";
+import clsx from "clsx";
 
 export default function Home() {
+  // 데모용 플래그 (상황에 따라 토글)
+  const compact = false; // true면 여백/그리드 조금 더 촘촘히
+
   return (
-    <main className="p-8 space-y-12">
+    <main className={clsx("p-8 space-y-12", compact && "p-6 space-y-8")}>
       {/* === 0. 페이지 안내 === */}
       <header className="space-y-2">
         <h1 className="t-32-b">globals.css 유틸 종합 테스트</h1>
@@ -273,8 +277,16 @@ export default function Home() {
         </div>
       </section>
 
+      {/* === 아이콘 쇼케이스 === */}
       <h1 className="mb-6 text-2xl font-bold">📦 Icon Showcase</h1>
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
+      <div
+        className={clsx(
+          "grid gap-6",
+          compact
+            ? "grid-cols-3 sm:grid-cols-4 md:grid-cols-5"
+            : "grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8",
+        )}
+      >
         {ICON_KEYS.map((name) => (
           <div key={name} className="flex flex-col items-center gap-2">
             <Icon name={name} size={28} />

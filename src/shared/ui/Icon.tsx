@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import {
   ArrowLeft,
   ArrowRight,
@@ -94,7 +95,7 @@ export function Icon({
       size={size}
       strokeWidth={strokeWidth}
       color={color}
-      className={`text-gray-900 ${className ?? ""}`}
+      className={clsx("text-gray-900", className)}
       aria-label={label}
       aria-hidden={label ? undefined : true}
       {...rest}
