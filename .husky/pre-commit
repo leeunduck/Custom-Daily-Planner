@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 pnpm lint-staged
 =======
 #!/usr/bin/env sh
@@ -65,3 +66,6 @@ COUNT="$(printf '%s\n' "$STAGED_FILES" | wc -l | tr -d ' ')"
 echo "✅ pre-commit 통과: ${COUNT}개 파일 점검 완료"
 exit 0
 >>>>>>> 382ffc3 (Chore/code style commit convention)
+=======
+pnpm lint-staged
+>>>>>>> 103f47c (Chore/lucide react)
