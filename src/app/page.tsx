@@ -1,13 +1,13 @@
+import { cn } from "@/lib/utils";
 import { Icon } from "@/shared/ui/Icon";
 import { ICON_KEYS } from "@/shared/ui/Icon.registry";
-import clsx from "clsx";
 
 export default function Home() {
   // 데모용 플래그 (상황에 따라 토글)
   const compact = false; // true면 여백/그리드 조금 더 촘촘히
 
   return (
-    <main className={clsx("p-8 space-y-12", compact && "p-6 space-y-8")}>
+    <main className={cn("p-8 space-y-12", compact && "p-6 space-y-8")}>
       {/* === 0. 페이지 안내 === */}
       <header className="space-y-2">
         <h1 className="t-32-b">globals.css 유틸 종합 테스트</h1>
@@ -281,7 +281,7 @@ export default function Home() {
       {/* === 아이콘 쇼케이스 === */}
       <h1 className="mb-6 text-2xl font-bold">📦 Icon Showcase</h1>
       <div
-        className={clsx(
+        className={cn(
           "grid gap-6",
           compact
             ? "grid-cols-3 sm:grid-cols-4 md:grid-cols-5"
