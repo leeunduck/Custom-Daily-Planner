@@ -5,6 +5,9 @@
 @import "@fontsource/pretendard/500.css";
 @import "@fontsource/pretendard/600.css";
 @import "@fontsource/pretendard/700.css";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 @theme {
   /* === Font stacks === */
@@ -26,7 +29,6 @@
   --breakpoint-2xl: 1536px; /* 2xl */
 
   /* === Colors === */
-  --color-background: #ffffff;
   --color-black: #000000; /* 메인 텍스트 */
   --color-white: #ffffff;
 
@@ -52,10 +54,7 @@
   --color-gray-50: #fafafa; /* 푸터 배경 */
 
   /* === Error / Danger Scale === */
-  --color-danger-700: #b91c1c; /* 에러 텍스트(진한 경고), 심각 오류 버튼 호버 */
   --color-danger-600: #dc2626; /* 기본 에러/경고 상태, 경고 버튼 */
-  --color-danger-500: #ef4444; /* 경고 텍스트, 라벨 */
-  --color-danger-400: #f87171; /* 경고 강조 배경, 라이트 알림 */
 
   /* === Blue Scale === */
   --color-blue-600: #2563eb; /* 진한 블루: 모달 헤더, 주요 CTA 강조 */
@@ -69,9 +68,128 @@
   /* === Shadow Presets === */
   --shadow-soft: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
+/* =========================
+   2) Tailwind 유틸 매핑 (@theme inline)
+   - shadcn/ui가 기대하는 이름만 + 안전 폴백
+   ========================= */
+@theme inline {
+  /* Radius sizes (2xl 기준 파생) */
+  --radius-sm: calc(var(--radius-2xl) - 8px);
+  --radius-md: calc(var(--radius-2xl) - 4px);
+  --radius-lg: var(--radius-2xl);
+  --radius-xl: calc(var(--radius-2xl) + 4px);
 
+  /* Core tokens (Light) */
+  --color-background: var(--color-gray-50);
+  --color-foreground: var(--color-gray-900);
+
+  --color-primary: var(--primary-blue);
+  --color-primary-foreground: var(--color-white);
+
+  --color-muted: var(--color-gray-100);
+  --color-muted-foreground: var(--color-gray-600);
+
+  --color-border: var(--color-gray-200);
+  --color-input: var(--color-gray-300);
+  --color-ring: var(--color-blue-400);
+
+  --color-destructive: var(--color-danger-600);
+  --color-destructive-foreground: var(--color-white);
+
+  /* 안전 폴백(일부 컴포넌트에서 참조) */
+  --color-card: var(--color-background);
+  --color-card-foreground: var(--color-foreground);
+
+  --color-popover: var(--color-background);
+  --color-popover-foreground: var(--color-foreground);
+
+  --color-secondary: var(--color-gray-100);
+  --color-secondary-foreground: var(--color-gray-900);
+
+  --color-accent: var(--color-gray-100);
+  --color-accent-foreground: var(--color-gray-900);
+}
+
+/* 다크 모드: 꼭 필요한 것만 오버라이드 */
+.dark {
+  --color-background: var(--color-gray-900);
+  --color-foreground: var(--color-white);
+
+  --color-primary: var(--color-blue-400);
+  --color-primary-foreground: var(--color-black);
+
+  --color-muted: var(--color-gray-800);
+  --color-muted-foreground: var(--color-gray-300);
+
+  --color-border: var(--color-gray-700);
+  --color-input: var(--color-gray-700);
+  --color-ring: var(--color-blue-400);
+
+  /* 폴백 세트 */
+  --color-card: var(--color-gray-900);
+  --color-card-foreground: var(--color-white);
+
+  --color-popover: var(--color-gray-900);
+  --color-popover-foreground: var(--color-white);
+
+  --color-secondary: var(--color-gray-800);
+  --color-secondary-foreground: var(--color-gray-300);
+
+  --color-accent: var(--color-gray-800);
+  --color-accent-foreground: var(--color-gray-300);
+}
+
+/* =========================
+   3) Base resets & a11y
+   ========================= */
+@layer base {
+  html {
+    font-size: 62.5%; /* 1rem = 10px */
+    font-family: var(--font-sans);
+    color-scheme: light;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  html:lang(ko) {
+    font-family: var(--font-sans-ko);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+  @media (forced-colors: active) {
+    :focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+
+  /* Text selection */
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+}
+
+/* 경계 & 기본 outline */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+}
+
+/* =========================
+   4) Typography Utilities (팀 공통 스케일)
+   ========================= */
 @layer utilities {
-  /* === Typography Utilities  === */
   /* 8~32px */
   .t-8-m {
     font-size: 0.8rem;
@@ -81,7 +199,6 @@
     font-size: 0.8rem;
     font-weight: 700;
   }
-
   .t-10-m {
     font-size: 1rem;
     font-weight: 500;
@@ -90,7 +207,6 @@
     font-size: 1rem;
     font-weight: 700;
   }
-
   .t-12-m {
     font-size: 1.2rem;
     font-weight: 500;
@@ -99,7 +215,6 @@
     font-size: 1.2rem;
     font-weight: 700;
   }
-
   .t-14-m {
     font-size: 1.4rem;
     font-weight: 500;
@@ -108,7 +223,6 @@
     font-size: 1.4rem;
     font-weight: 700;
   }
-
   .t-16-m {
     font-size: 1.6rem;
     font-weight: 500;
@@ -117,7 +231,6 @@
     font-size: 1.6rem;
     font-weight: 700;
   }
-
   .t-18-m {
     font-size: 1.8rem;
     font-weight: 500;
@@ -126,7 +239,6 @@
     font-size: 1.8rem;
     font-weight: 700;
   }
-
   .t-20-m {
     font-size: 2rem;
     font-weight: 500;
@@ -135,7 +247,6 @@
     font-size: 2rem;
     font-weight: 700;
   }
-
   .t-22-m {
     font-size: 2.2rem;
     font-weight: 500;
@@ -144,7 +255,6 @@
     font-size: 2.2rem;
     font-weight: 700;
   }
-
   .t-24-m {
     font-size: 2.4rem;
     font-weight: 500;
@@ -153,7 +263,6 @@
     font-size: 2.4rem;
     font-weight: 700;
   }
-
   .t-26-m {
     font-size: 2.6rem;
     font-weight: 500;
@@ -162,7 +271,6 @@
     font-size: 2.6rem;
     font-weight: 700;
   }
-
   .t-28-m {
     font-size: 2.8rem;
     font-weight: 500;
@@ -171,7 +279,6 @@
     font-size: 2.8rem;
     font-weight: 700;
   }
-
   .t-30-m {
     font-size: 3rem;
     font-weight: 500;
@@ -180,7 +287,6 @@
     font-size: 3rem;
     font-weight: 700;
   }
-
   .t-32-m {
     font-size: 3.2rem;
     font-weight: 500;
@@ -199,7 +305,6 @@
     font-size: 4rem;
     font-weight: 700;
   }
-
   .t-44-m {
     font-size: 4.4rem;
     font-weight: 500;
@@ -208,7 +313,6 @@
     font-size: 4.4rem;
     font-weight: 700;
   }
-
   .t-48-m {
     font-size: 4.8rem;
     font-weight: 500;
@@ -217,7 +321,6 @@
     font-size: 4.8rem;
     font-weight: 700;
   }
-
   .t-50-m {
     font-size: 5rem;
     font-weight: 500;
@@ -226,7 +329,6 @@
     font-size: 5rem;
     font-weight: 700;
   }
-
   .t-54-m {
     font-size: 5.4rem;
     font-weight: 500;
@@ -235,7 +337,6 @@
     font-size: 5.4rem;
     font-weight: 700;
   }
-
   .t-58-m {
     font-size: 5.8rem;
     font-weight: 500;
@@ -244,7 +345,6 @@
     font-size: 5.8rem;
     font-weight: 700;
   }
-
   .t-60-m {
     font-size: 6rem;
     font-weight: 500;
@@ -254,7 +354,7 @@
     font-weight: 700;
   }
 
-  /* === Body Utilities (line-height 포함) === */
+  /* Body + line-height */
   .tb-12-m {
     font-size: 1.2rem;
     font-weight: 500;
@@ -289,98 +389,5 @@
     font-size: 3.2rem;
     font-weight: 700;
     line-height: 140%;
-  }
-}
-
-@layer base {
-  html {
-    font-size: 62.5%; /* 1rem = 10px */
-    font-family: var(--font-sans);
-
-    /* 가독성 */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    color-scheme: light;
-  }
-
-  html:lang(ko) {
-    font-family: var(--font-sans-ko);
-  }
-
-  body {
-    background-color: var(--color-background);
-    color: var(--color-gray-900);
-    line-height: 1.6;
-    letter-spacing: -0.01em;
-  }
-
-  /* 포커스 접근성 */
-  :focus-visible {
-    outline: 2px solid var(--color-gray-900); /* 기본: 검정 */
-    outline-offset: 2px;
-  }
-  @media (forced-colors: active) {
-    :focus-visible {
-      outline: 2px solid CanvasText;
-    }
-  }
-
-  /* 텍스트 선택 */
-  ::selection {
-    background: var(--color-blue-500);
-    color: var(--color-white);
-  }
-
-  /* 폼 요소 */
-  input,
-  select,
-  textarea {
-    font-size: 1.6rem; /* iOS 줌 방지 */
-    color: var(--color-gray-900);
-    background-color: var(--color-white);
-    border: 1px solid var(--color-gray-300);
-    border-radius: var(--radius-2xl);
-    caret-color: var(--color-blue-600);
-  }
-  input::placeholder,
-  textarea::placeholder {
-    color: var(--color-gray-500);
-  }
-  input:focus-visible,
-  select:focus-visible,
-  textarea:focus-visible {
-    border: 0.2rem solid var(--color-gray-900);
-    outline: 0;
-  }
-  input:disabled,
-  select:disabled,
-  textarea:disabled {
-    background-color: var(--color-gray-100);
-    color: var(--color-gray-500);
-  }
-  input:invalid,
-  textarea:invalid {
-    border-color: var(--color-danger-600);
-  }
-
-  /* 링크 */
-  a {
-    color: var(--color-blue-600);
-    text-underline-offset: 2px;
-    transition: color 0.2s ease;
-  }
-  a:hover {
-    color: var(--color-blue-500);
-  }
-
-  /* 모션 최소화 */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.001ms !important;
-      scroll-behavior: auto !important;
-    }
   }
 }
