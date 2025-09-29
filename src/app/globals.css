@@ -29,7 +29,6 @@
   --breakpoint-2xl: 1536px; /* 2xl */
 
   /* === Colors === */
-  --color-background: #ffffff;
   --color-black: #000000; /* 메인 텍스트 */
   --color-white: #ffffff;
 
@@ -55,10 +54,7 @@
   --color-gray-50: #fafafa; /* 푸터 배경 */
 
   /* === Error / Danger Scale === */
-  --color-danger-700: #b91c1c; /* 에러 텍스트(진한 경고), 심각 오류 버튼 호버 */
   --color-danger-600: #dc2626; /* 기본 에러/경고 상태, 경고 버튼 */
-  --color-danger-500: #ef4444; /* 경고 텍스트, 라벨 */
-  --color-danger-400: #f87171; /* 경고 강조 배경, 라이트 알림 */
 
   /* === Blue Scale === */
   --color-blue-600: #2563eb; /* 진한 블루: 모달 헤더, 주요 CTA 강조 */
@@ -72,9 +68,128 @@
   /* === Shadow Presets === */
   --shadow-soft: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
+/* =========================
+   2) Tailwind 유틸 매핑 (@theme inline)
+   - shadcn/ui가 기대하는 이름만 + 안전 폴백
+   ========================= */
+@theme inline {
+  /* Radius sizes (2xl 기준 파생) */
+  --radius-sm: calc(var(--radius-2xl) - 8px);
+  --radius-md: calc(var(--radius-2xl) - 4px);
+  --radius-lg: var(--radius-2xl);
+  --radius-xl: calc(var(--radius-2xl) + 4px);
 
+  /* Core tokens (Light) */
+  --color-background: var(--color-gray-50);
+  --color-foreground: var(--color-gray-900);
+
+  --color-primary: var(--primary-blue);
+  --color-primary-foreground: var(--color-white);
+
+  --color-muted: var(--color-gray-100);
+  --color-muted-foreground: var(--color-gray-600);
+
+  --color-border: var(--color-gray-200);
+  --color-input: var(--color-gray-300);
+  --color-ring: var(--color-blue-400);
+
+  --color-destructive: var(--color-danger-600);
+  --color-destructive-foreground: var(--color-white);
+
+  /* 안전 폴백(일부 컴포넌트에서 참조) */
+  --color-card: var(--color-background);
+  --color-card-foreground: var(--color-foreground);
+
+  --color-popover: var(--color-background);
+  --color-popover-foreground: var(--color-foreground);
+
+  --color-secondary: var(--color-gray-100);
+  --color-secondary-foreground: var(--color-gray-900);
+
+  --color-accent: var(--color-gray-100);
+  --color-accent-foreground: var(--color-gray-900);
+}
+
+/* 다크 모드: 꼭 필요한 것만 오버라이드 */
+.dark {
+  --color-background: var(--color-gray-900);
+  --color-foreground: var(--color-white);
+
+  --color-primary: var(--color-blue-400);
+  --color-primary-foreground: var(--color-black);
+
+  --color-muted: var(--color-gray-800);
+  --color-muted-foreground: var(--color-gray-300);
+
+  --color-border: var(--color-gray-700);
+  --color-input: var(--color-gray-700);
+  --color-ring: var(--color-blue-400);
+
+  /* 폴백 세트 */
+  --color-card: var(--color-gray-900);
+  --color-card-foreground: var(--color-white);
+
+  --color-popover: var(--color-gray-900);
+  --color-popover-foreground: var(--color-white);
+
+  --color-secondary: var(--color-gray-800);
+  --color-secondary-foreground: var(--color-gray-300);
+
+  --color-accent: var(--color-gray-800);
+  --color-accent-foreground: var(--color-gray-300);
+}
+
+/* =========================
+   3) Base resets & a11y
+   ========================= */
+@layer base {
+  html {
+    font-size: 62.5%; /* 1rem = 10px */
+    font-family: var(--font-sans);
+    color-scheme: light;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  html:lang(ko) {
+    font-family: var(--font-sans-ko);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+  @media (forced-colors: active) {
+    :focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+
+  /* Text selection */
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+}
+
+/* 경계 & 기본 outline */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+}
+
+/* =========================
+   4) Typography Utilities (팀 공통 스케일)
+   ========================= */
 @layer utilities {
-  /* === Typography Utilities  === */
   /* 8~32px */
   .t-8-m {
     font-size: 0.8rem;
@@ -84,7 +199,6 @@
     font-size: 0.8rem;
     font-weight: 700;
   }
-
   .t-10-m {
     font-size: 1rem;
     font-weight: 500;
@@ -93,7 +207,6 @@
     font-size: 1rem;
     font-weight: 700;
   }
-
   .t-12-m {
     font-size: 1.2rem;
     font-weight: 500;
@@ -102,7 +215,6 @@
     font-size: 1.2rem;
     font-weight: 700;
   }
-
   .t-14-m {
     font-size: 1.4rem;
     font-weight: 500;
@@ -111,7 +223,6 @@
     font-size: 1.4rem;
     font-weight: 700;
   }
-
   .t-16-m {
     font-size: 1.6rem;
     font-weight: 500;
@@ -120,7 +231,6 @@
     font-size: 1.6rem;
     font-weight: 700;
   }
-
   .t-18-m {
     font-size: 1.8rem;
     font-weight: 500;
@@ -129,7 +239,6 @@
     font-size: 1.8rem;
     font-weight: 700;
   }
-
   .t-20-m {
     font-size: 2rem;
     font-weight: 500;
@@ -138,7 +247,6 @@
     font-size: 2rem;
     font-weight: 700;
   }
-
   .t-22-m {
     font-size: 2.2rem;
     font-weight: 500;
@@ -147,7 +255,6 @@
     font-size: 2.2rem;
     font-weight: 700;
   }
-
   .t-24-m {
     font-size: 2.4rem;
     font-weight: 500;
@@ -156,7 +263,6 @@
     font-size: 2.4rem;
     font-weight: 700;
   }
-
   .t-26-m {
     font-size: 2.6rem;
     font-weight: 500;
@@ -165,7 +271,6 @@
     font-size: 2.6rem;
     font-weight: 700;
   }
-
   .t-28-m {
     font-size: 2.8rem;
     font-weight: 500;
@@ -174,7 +279,6 @@
     font-size: 2.8rem;
     font-weight: 700;
   }
-
   .t-30-m {
     font-size: 3rem;
     font-weight: 500;
@@ -183,7 +287,6 @@
     font-size: 3rem;
     font-weight: 700;
   }
-
   .t-32-m {
     font-size: 3.2rem;
     font-weight: 500;
@@ -202,7 +305,6 @@
     font-size: 4rem;
     font-weight: 700;
   }
-
   .t-44-m {
     font-size: 4.4rem;
     font-weight: 500;
@@ -211,7 +313,6 @@
     font-size: 4.4rem;
     font-weight: 700;
   }
-
   .t-48-m {
     font-size: 4.8rem;
     font-weight: 500;
@@ -220,7 +321,6 @@
     font-size: 4.8rem;
     font-weight: 700;
   }
-
   .t-50-m {
     font-size: 5rem;
     font-weight: 500;
@@ -229,7 +329,6 @@
     font-size: 5rem;
     font-weight: 700;
   }
-
   .t-54-m {
     font-size: 5.4rem;
     font-weight: 500;
@@ -238,7 +337,6 @@
     font-size: 5.4rem;
     font-weight: 700;
   }
-
   .t-58-m {
     font-size: 5.8rem;
     font-weight: 500;
@@ -247,7 +345,6 @@
     font-size: 5.8rem;
     font-weight: 700;
   }
-
   .t-60-m {
     font-size: 6rem;
     font-weight: 500;
@@ -257,7 +354,7 @@
     font-weight: 700;
   }
 
-  /* === Body Utilities (line-height 포함) === */
+  /* Body + line-height */
   .tb-12-m {
     font-size: 1.2rem;
     font-weight: 500;
@@ -292,251 +389,5 @@
     font-size: 3.2rem;
     font-weight: 700;
     line-height: 140%;
-  }
-}
-
-/* === shadcn/ui color tokens (OKLCH) === */
-:root {
-  --radius: 0.625rem;
-
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
-
-  /* Charts & Sidebar (optional) */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
-}
-
-.dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.985 0 0);
-
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.985 0 0);
-
-  --primary: oklch(0.92 0.004 286.32);
-  --primary-foreground: oklch(0.21 0.006 285.885);
-
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground: oklch(0.985 0 0);
-
-  --destructive: oklch(0.704 0.191 22.216);
-
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.552 0.016 285.938);
-
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.552 0.016 285.938);
-}
-
-/* === Tailwind color tokens mapping for v4 === */
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-
-  --color-destructive: var(--destructive);
-
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
-
-/* === Base resets & a11y aligned to shadcn === */
-@layer base {
-  html {
-    font-size: 62.5%; /* 1rem = 10px */
-    font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    color-scheme: light;
-  }
-
-  html:lang(ko) {
-    font-family: var(--font-sans-ko);
-  }
-
-  body {
-    /* 핵심: shadcn 토큰 기반으로 통일 */
-    background-color: var(--background);
-    color: var(--foreground);
-    line-height: 1.6;
-    letter-spacing: -0.01em;
-  }
-
-  /* 포커스 a11y: ring 변수 사용 */
-  :focus-visible {
-    outline: 2px solid var(--ring);
-    outline-offset: 2px;
-  }
-  @media (forced-colors: active) {
-    :focus-visible {
-      outline: 2px solid CanvasText;
-    }
-  }
-
-  /* 텍스트 선택: primary 기준 */
-  ::selection {
-    background: var(--primary);
-    color: var(--primary-foreground);
-  }
-
-  /* 폼 요소 (프로젝트 톤 유지) */
-  input,
-  select,
-  textarea {
-    font-size: 1.6rem; /* iOS 줌 방지 */
-    color: var(--foreground);
-    background-color: #ffffff;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-2xl);
-    caret-color: var(--primary);
-  }
-  input::placeholder,
-  textarea::placeholder {
-    color: var(--color-muted-foreground);
-  }
-  input:focus-visible,
-  select:focus-visible,
-  textarea:focus-visible {
-    border: 0.2rem solid var(--ring);
-    outline: 0;
-  }
-  input:disabled,
-  select:disabled,
-  textarea:disabled {
-    background-color: var(--color-muted);
-    color: var(--color-muted-foreground);
-  }
-  input:invalid,
-  textarea:invalid {
-    border-color: var(--destructive);
-  }
-
-  /* 링크 */
-  a {
-    color: var(--primary);
-    text-underline-offset: 2px;
-    transition: color 0.2s ease;
-  }
-  a:hover {
-    color: var(--accent-foreground);
-  }
-
-  /* 모션 최소화 */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.001ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
-}
-
-/* === Ensure base Tailwind tokens applied === */
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }
