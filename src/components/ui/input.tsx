@@ -9,7 +9,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
       data-slot="input"
       className={cn(
         // 크기/레이아웃
-        "h-10 w-full min-w-0 rounded-md px-3 py-2 text-sm outline-none transition-colors",
+        "h-12 w-full min-w-0 rounded-md px-3 py-2 text-sm outline-none transition-colors",
         // 기본 텍스트/배경
         "bg-white text-[#111827]",
         // 기본 테두리(1px, 회색)
