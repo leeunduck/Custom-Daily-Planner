@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <main className="p-8">내부 테스트 페이지(검색 제외) 브랜치 테스트</main>;
+  return <main className="p-8">내부 테스트 페이지(검색 제외)</main>;
 }
