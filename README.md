@@ -67,15 +67,18 @@ pnpm test    # 테스트 실행
 
 ### 1. Branching Strategy
 
-기능 개발을 완료했으면 기능 개발 브랜치로 푸쉬하고, PR을 통해 Feature 브랜치들을 develop에 머지하고,
-develop에 머지된 기능이 잘 작동하는지 점검한 이후에 main 브랜치로 머지하여 배포하는 구조를 따릅니다.
+기능 개발이 완료되면 해당 Feature 브랜치를 원격 저장소에 푸쉬하고,
+PR(Pull Request)을 통해 `main` 브랜치로 병합합니다.
+모든 검증(CI 통과, 코드 리뷰, 테스트)이 완료된 이후 `main`에 머지되면 자동으로 배포가 진행됩니다.
 
 ### 2. 협업 과정
 
 1. **Feature 브랜치 생성 및 개발**
-   - 로컬에서 `develop` 브랜치를 기준으로 Feature 브랜치를 생성합니다.
+   - 로컬에서 `main` 브랜치를 기준으로 Feature 브랜치를 생성합니다.
 
    ```bash
+   git checkout main
+   git pull origin main
    git checkout -b Feature/[브랜치명]
    ```
 
@@ -108,14 +111,9 @@ develop에 머지된 기능이 잘 작동하는지 점검한 이후에 main 브�
 <!-- 관련 이슈 번호가 있다면 적어주세요 (예: #123 또는 JIRA 키) -->
 ```
 
-3. **Squash Merge**
-   - PR을 본인이 직접 **Squash Merge** 합니다.
-   - 머지된 Feature 브랜치는 자동 삭제됩니다.
-
-4. **develop 점검 → main 배포 (배포 점검용)**
-   - `develop`에 머지된 기능이 정상 동작하는지 점검합니다.
-   - 문제가 없다면 `main` 브랜치로 머지하여 배포합니다.
-   - 이때 PR을 생성하고 아래 템플릿을 채워주세요.
+3. **기능 점검**
+   - 템플릿에 작성한 내용을 바탕으로 로컬 환경에서 **기능 테스트**를 진행합니다.
+   - **기능 테스트**가 끝난 후 아래 템플릿을 이어서 작성합니다.
 
 ```markdown
 ## 🛠️ 최종 배포 점검 리스트
@@ -131,12 +129,16 @@ develop에 머지된 기능이 잘 작동하는지 점검한 이후에 main 브�
 <!-- 점검 결과 및 특이사항을 적어주세요 -->
 ```
 
+4. **Squash Merge**
+   - PR 리뷰 및 CI 통과 후, 본인이 직접 **Squash Merge** 합니다.
+   - 머지된 Feature 브랜치는 자동으로 삭제됩니다.
+
 5. **배포 후 로컬 최신화 & 브랜치 정리**
-   - 배포 점검이 완료되면 로컬 `develop`을 최신화합니다.
+   - `main` 머지(배포)가 완료되면 로컬 환경을 최신화합니다.
 
    ```bash
-   git checkout develop
-   git pull origin develop
+   git checkout main
+   git pull origin main
    ```
 
    - 이후 새로운 작업을 위해 브랜치를 분기합니다.
