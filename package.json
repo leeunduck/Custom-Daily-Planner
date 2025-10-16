@@ -12,6 +12,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
+    "openapi:pull": "curl --fail --show-error --location -s \"$SUPABASE_URL/rest/v1/\" -H \"apikey: $SUPABASE_ANON_KEY\" -H \"Authorization: Bearer $SUPABASE_ANON_KEY\" -H \"Accept: application/openapi+json\" -o openapi.json",
     "openapi:fix": "jq 'del(.components.parameters.preferParams.schema.enum?, .parameters.preferParams.enum?) | def walk(f): . as $in | if type==\"object\" then reduce keys[] as $k ({}; . + { ($k): ($in[$k] | walk(f)) }) | f elif type==\"array\" then map(walk(f)) | f else f end; walk(if (type==\"object\" and has(\"enum\") and (.enum|type)==\"array\" and (.enum|length)==0) then del(.enum) else . end)' openapi.json > openapi.json.tmp && mv openapi.json.tmp openapi.json",
     "openapi:watch": "npx swagger-ui-watcher ./openapi.json"
   },
