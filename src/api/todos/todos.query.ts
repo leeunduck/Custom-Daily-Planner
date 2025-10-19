@@ -4,8 +4,8 @@ import type {
   PatchTodoPayloadType,
   PostTodoPayloadType,
   ToggleTodoPayloadType,
-} from "./todo.schema";
-import { TodoService } from "./todo.service";
+} from "./todos.schema";
+import { TodoService } from "./todos.service";
 
 const todoService = new TodoService();
 

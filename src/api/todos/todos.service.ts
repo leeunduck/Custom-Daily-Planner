@@ -8,7 +8,7 @@ import type {
   PostTodoPayloadType,
   PostTodoResultType,
   ToggleTodoPayloadType,
-} from "./todo.schema";
+} from "./todos.schema";
 
 export class TodoService {
   /** 목록 조회: GET /todos?select=*&order=created_at.desc */
