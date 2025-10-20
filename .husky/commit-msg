@@ -3,7 +3,7 @@
 pnpm commitlint --edit "$1" || {
   echo
   echo "❌ 커밋 메시지 규칙 위반!"
-  echo "   형식: CDP-숫자 type이모지(scope): subject"
+  echo "   형식: CDP-숫자 type이모지 (scope): subject"
   echo "   예시: CDP-31 fix🐛(ci): CI error resolution"
   echo "   허용: feat✨, fix🐛, refactor🔨, style🎨, chore⚙️, docs📝, test🧪"
   exit 1
