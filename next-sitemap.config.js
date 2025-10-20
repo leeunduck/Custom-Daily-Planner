@@ -1,4 +1,4 @@
-const siteUrl = process.env.SITE_URL || "https://YOUR-DOMAIN.com";
+const siteUrl = process.env.SITE_URL ?? "https://myplanmate.vercel.app";
 
 const config = {
   siteUrl,
@@ -14,7 +14,10 @@ const config = {
       changefreq: "daily",
       priority,
       lastmod: new Date().toISOString(),
-      alternateRefs: [],
+      alternateRefs: [
+        { href: `${siteUrl}/ko`, hreflang: "ko" },
+        { href: `${siteUrl}/en`, hreflang: "en" },
+      ],
     };
   },
   robotsTxtOptions: {
