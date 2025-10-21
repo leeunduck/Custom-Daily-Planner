@@ -14,3 +14,4 @@ Host: https://myplanmate.vercel.app
 
 # Sitemaps
 Sitemap: https://myplanmate.vercel.app/sitemap.xml
+Sitemap: https://myplanmate.vercel.app/server-sitemap.xml
