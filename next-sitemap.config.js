@@ -25,7 +25,10 @@ const config = {
       { userAgent: "*", allow: "/" },
       { userAgent: "*", disallow: ["/api/", "/admin/", "/debug", "/lab/"] },
     ],
-    additionalSitemaps: [],
+
+    additionalSitemaps: [
+      `${siteUrl}/server-sitemap.xml`, // 동적 sitemap
+    ],
   },
 };
 
