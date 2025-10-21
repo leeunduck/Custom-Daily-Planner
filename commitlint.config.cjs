@@ -1,11 +1,10 @@
-/** commitlint.config.cjs */
 module.exports = {
   extends: ["@commitlint/config-conventional"],
   parserPreset: {
     parserOpts: {
-      // CDP-123 chore⚙️(scope): subject
+      // CDP-123 chore⚙️ (scope): subject
       headerPattern:
-        /^(CDP-\d+)\s(feat✨|fix🐛|refactor🔨|style🎨|chore⚙️|docs📝|test🧪)\(([^)]+)\):\s(.+)$/,
+        /^(CDP-\d+)\s(feat✨|fix🐛|refactor🔨|style🎨|chore⚙️|docs📝|test🧪)\s\(([^)]+)\):\s(.+)$/,
       headerCorrespondence: ["ticket", "type", "scope", "subject"],
     },
   },

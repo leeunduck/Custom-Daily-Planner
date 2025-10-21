@@ -1,5 +1,5 @@
 export const getBaseUrl = () => {
-  const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+  const fromEnv = process.env.SITE_URL?.replace(/\/$/, "");
   return fromEnv ?? "http://localhost:3000";
 };
 

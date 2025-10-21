@@ -9,12 +9,12 @@ import {
   LOCALE,
   OG_DEFAULT_IMAGE,
   SITE_NAME,
-  SITE_URL,
+  SITE_URL, // ✅ constants에서 SITE_URL 사용
   TITLE_TEMPLATE,
 } from "@/seo/constants";
 
 export const metadata: Metadata = {
-  // 절대 URL 기준점 (canonical/OG 절대경로 변환에 사용)
+  // ✅ 절대 URL 기준점 (canonical / OG 절대경로 변환용)
   metadataBase: new URL(SITE_URL),
 
   // 전역 타이틀 규칙
@@ -48,6 +48,15 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
+
+  // canonical 및 언어별 hreflang
+  alternates: {
+    canonical: "/", // => https://myplanmate.vercel.app/
+    languages: {
+      ko: "/ko", // => https://myplanmate.vercel.app/ko
+      en: "/en", // => https://myplanmate.vercel.app/en
+    },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -60,15 +69,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           - 모든 하위 컴포넌트가 동일한 client & cache 공유
           - useQuery, useMutation 훅이 어디서든 정상 동작
         */}
-        {/* 
-          ✅ 추후 확장 예시:
-          <AuthProvider>
-            <ThemeProvider>
-              <Providers>{children}</Providers>
-            </ThemeProvider>
-          </AuthProvider>
-        */}
-
         <Providers>{children}</Providers>
       </body>
     </html>
