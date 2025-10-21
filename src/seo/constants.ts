@@ -1,7 +1,7 @@
 export const SITE_NAME = "MyPlanMate";
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "http://localhost:3000";
+  process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL ?? "https://myplanmate.vercel.app";
 
 export const DEFAULT_TITLE = `${SITE_NAME} - 나만의 맞춤형 플래너`;
 export const TITLE_TEMPLATE = `%s | ${SITE_NAME}`;

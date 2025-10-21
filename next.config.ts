@@ -2,11 +2,12 @@
 import type { NextConfig } from "next";
 
 /** 대표 도메인 (없으면 Vercel 프리뷰 기본값) */
-const RAW_SITE_URL = process.env.SITE_URL ?? "https://myplanmate.vercel.app";
-const url = new URL(RAW_SITE_URL);
-const NON_WWW_HOST = url.hostname.replace(/^www\./, "");
-const WWW_HOST = url.hostname.startsWith("www.") ? url.hostname : `www.${NON_WWW_HOST}`;
-const DEST_ORIGIN = `${url.protocol}//${NON_WWW_HOST}`;
+const isProd = process.env.NODE_ENV === "production";
+const RAW = process.env.SITE_URL ?? "https://myplanmate.vercel.app";
+const ORIGIN = new URL(RAW);
+const NON_WWW_HOST = ORIGIN.hostname.replace(/^www\./, "");
+const WWW_HOST = ORIGIN.hostname.startsWith("www.") ? ORIGIN.hostname : `www.${NON_WWW_HOST}`;
+const DEST_ORIGIN = `${ORIGIN.protocol}//${NON_WWW_HOST}`;
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -52,18 +53,19 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // ✅ 3) 중복 주소 정규화 (추가)
-  async redirects() {
-    return [
-      // A) 트레일링 슬래시 제거: /path/ → /path
-      { source: "/:path*/", destination: "/:path*", permanent: true },
+  // ✅ 슬래시 정책: 무슬래시
+  trailingSlash: false,
 
-      // B) www → non-www: https://www.<host>/* → https://<host>/*
+  async redirects() {
+    // ⚠️ dev 모드(HMR)에서는 비활성화 (루프 방지)
+    if (!isProd) return [];
+
+    return [
       {
         source: "/:path*",
         has: [{ type: "host", value: WWW_HOST }],
         destination: `${DEST_ORIGIN}/:path*`,
-        permanent: true,
+        permanent: false, // 검증 후 true로 승격
       },
     ];
   },

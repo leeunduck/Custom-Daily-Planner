@@ -17,7 +17,7 @@ const config = {
   transform: async (cfg, path) => {
     const loc = strip(path);
 
-    // 우선순위 규칙(네 로직 보존)
+    // 우선순위 규칙
     const priority = loc === "/" ? 1.0 : loc.startsWith("/blog") ? 0.8 : (cfg.priority ?? 0.7);
 
     return {
@@ -35,7 +35,7 @@ const config = {
     };
   },
 
-  // robots.txt (네 로직 보존)
+  // robots.txt
   robotsTxtOptions: {
     policies: [
       { userAgent: "*", allow: "/" },
