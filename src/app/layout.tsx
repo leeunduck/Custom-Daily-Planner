@@ -57,20 +57,26 @@ export const metadata: Metadata = {
       en: "/en", // => https://myplanmate.vercel.app/en
     },
   },
+
+  verification: {
+    google: "HwFH-3lcPM6",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body>
-        {/*
+      <head>
+        <body>
+          {/*
           Providers로 감싸는 이유:
           - React Query의 QueryClientProvider를 전역 적용
           - 모든 하위 컴포넌트가 동일한 client & cache 공유
           - useQuery, useMutation 훅이 어디서든 정상 동작
         */}
-        <Providers>{children}</Providers>
-      </body>
+          <Providers>{children}</Providers>
+        </body>
+      </head>
     </html>
   );
 }
