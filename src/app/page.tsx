@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { Button } from "@/shared/button";
+import { Input } from "@/shared/input";
 
 export default function Home() {
   const compact = false;

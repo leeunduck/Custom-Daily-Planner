@@ -1,4 +1,4 @@
-import type { IconName } from "@/shared/ui/Icon.registry";
+import type { IconName } from "@/shared/Icon.registry";
 import type { Calendar } from "lucide-react";
 import type { ComponentProps } from "react";
 
