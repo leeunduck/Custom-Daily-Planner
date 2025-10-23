@@ -1,4 +1,3 @@
-// src/api/http.ts
 import type { AxiosRequestConfig, AxiosResponse } from "axios";
 import { api } from "./client";
 

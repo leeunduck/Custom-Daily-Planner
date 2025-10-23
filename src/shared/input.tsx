@@ -1,4 +1,3 @@
-// src/components/ui/input.tsx
 import { cn } from "@/lib/utils";
 import * as React from "react";
 
