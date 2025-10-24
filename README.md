@@ -71,24 +71,32 @@ pnpm test    # 테스트 실행
 PR(Pull Request)을 통해 `main` 브랜치로 병합합니다.
 모든 검증(CI 통과, 코드 리뷰, 테스트)이 완료된 이후 `main`에 머지되면 자동으로 배포가 진행됩니다.
 
-### 2. 협업 과정
+## 2. 협업 과정
 
-1. **Feature 브랜치 생성 및 개발**
-   - 로컬에서 `main` 브랜치를 기준으로 Feature 브랜치를 생성합니다.
+0. Jira에 작업 목록 작성
+   - 해야 할 업무를 Jira 이슈로 등록합니다.
+   - 각 이슈에는 명확한 제목, 설명, 우선순위, 담당자를 포함합니다.
 
-   ```bash
-   git checkout main
-   git pull origin main
-   git checkout -b Feature/[브랜치명]
-   ```
+0-1. 브랜치 생성 (Jira 연동)
 
-   - 기능 개발이 끝났다면 반드시 커밋을 완료합니다. (아래 [커밋 컨벤션](#6-커밋-컨벤션)을 꼭 확인해 주세요!)
+- Jira 이슈에서 ‘브랜치 생성(Create branch)’ 기능을 사용하여 깃허브에 브랜치를 만듭니다.
+- 브랜치명은 자동으로 Jira Key가 포함된 형태로 생성됩니다.
+  예: Feature/CDP-123-add-login-page
+
+1. Feature 브랜치 생성 및 개발
+   - 로컬 환경에서 main 브랜치를 기준으로 Jira에서 생성한 브랜치명 그대로 새 브랜치를 만듭니다.
+     ```
+     git checkout main
+     git pull origin main
+     git checkout -b Feature/[Jirakey][브랜치명]
+     ```
+   * 기능 개발이 끝났다면 반드시 커밋을 완료합니다. (아래 [커밋 컨벤션](#6-커밋-컨벤션)을 꼭 확인해 주세요!)
 
 2. **푸쉬 & PR 생성 (기능 개발 점검용)**
    - 기능 개발이 끝난 Feature 브랜치를 원격 저장소에 푸쉬합니다.
 
    ```bash
-   git push origin Feature/[브랜치명]
+   git push origin Feature/[JiraKey][브랜치명]
    ```
 
    - Github에서 PR을 생성하고 아래 템플릿을 채워주세요.
