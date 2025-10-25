@@ -16,8 +16,8 @@
 
 /* -------------------------------------------------
    1) Design Tokens — 브랜드/테마 (Light only)
-   - @theme: 원본 브랜드 토큰
-   - @theme inline: Tailwind/shadcn이 쓰는 이름에 매핑
+   - @theme: 원본 브랜드/팔레트
+   - @theme inline: Tailwind/shadcn이 쓰는 이름으로 매핑
    ------------------------------------------------- */
 @theme {
   /* === Font stacks === */
@@ -47,28 +47,24 @@
   --primary-red: #dc2626;
 
   /* === Gray Scale === */
-  --color-gray-900: #111827; /* 랜딩페이지 제목, CTA 버튼 텍스트, 기능소개 컴포넌트 제목, 
-                                특별한 기능 카드 제목, 로그인페이지 메인텍스트, 로그인버튼 배경, 
-                                비밀번호 찾기 링크, 회원가입하기 링크 */
-  --color-gray-800: #1f1f1f; /* 모든 버튼 호버 */
-  --color-gray-700: #2e2e2e; /* input-label 텍스트 (로그인, 비밀번호 등) */
-  --color-gray-600: #525252; /* 랜딩페이지 보조 텍스트, nav 텍스트, 기능소개 컴포넌트 보조 텍스트, 
-                                특별한 기능 카드 보조 텍스트, 푸터 텍스트, 
-                                비밀번호를 잊으셨나요?, 회원이 아니신가요? */
-  --color-gray-500: #737373; /* 플레이스홀더, 비활성 텍스트, 푸터 텍스트, 간편 로그인 제목 */
+  --color-gray-900: #111827; /* 랜딩/로그인 메인 텍스트, 제목, CTA 텍스트, 로그인버튼 배경, 링크 */
+  --color-gray-800: #1f1f1f; /* 모든 버튼 :hover */
+  --color-gray-700: #2e2e2e; /* 인풋 라벨 텍스트 */
+  --color-gray-600: #525252; /* 보조 텍스트, Nav 텍스트, 설명문, 푸터 텍스트, 안내문구 */
+  --color-gray-500: #737373; /* 플레이스홀더, 비활성 텍스트, 간편 로그인 제목 */
   --color-gray-400: #a3a3a3; /* 서브 경계선, 보조 아이콘, 비활성 버튼 배경 */
   --color-gray-300: #d4d4d4; /* 버튼 테두리, 입력 필드 테두리 */
   --color-gray-200: #e5e5e5; /* 카드/모달 테두리, 구분선 */
   --color-gray-100: #f5f5f5; /* 버튼 배경 */
-  --color-gray-50: #fafafa; /* 푸터 배경 */
+  --color-gray-50: #fafafa; /* 푸터/페이지 기본 배경 */
 
   /* === Error / Danger Scale === */
-  --color-danger-600: #dc2626; /* 기본 에러/경고 상태, 경고 버튼 */
+  --color-danger-600: #dc2626; /* 에러/경고 상태, 경고 버튼 */
 
   /* === Blue Scale === */
   --color-blue-600: #2563eb; /* 진한 블루: 모달 헤더, 주요 CTA 강조 */
   --color-blue-500: #3b82f6; /* 기본 블루: 일반 버튼, 포인트 */
-  --color-blue-400: #60a5fa; /* 밝은 블루: hover 효과, 보조 강조 */
+  --color-blue-400: #60a5fa; /* 밝은 블루: hover 보조 강조 */
   --color-blue-100: #3b82f61a; /* 연한 블루 배경 (10% 투명도 느낌) */
 
   /* === Radius & Shadow === */
@@ -77,45 +73,58 @@
 }
 
 /* === Tailwind/shadcn 매핑 (Light) ============================
-   - bg-background → var(--background)
-   - text-foreground → var(--foreground)
-   - border-border → var(--border)
-   - rounded-[var(--radius)] 대응 위해 --radius 제공
+   - bg-background → var(--color-background)
+   - text-foreground → var(--color-foreground)
+   - border-border → var(--color-border)
+   - ring, input, muted 등 컴포넌트 공통 토큰
+   - 버튼/플레이스홀더/비활성/링크/호버 등 "주석 용도"에 맞춘 커스텀 토큰 추가
    ============================================================ */
 @theme inline {
-  /* radius scale */
+  /* radius scale (shadcn 컴포넌트 대응) */
   --radius-sm: calc(var(--radius-2xl) - 8px);
   --radius-md: calc(var(--radius-2xl) - 4px);
   --radius-lg: var(--radius-2xl);
   --radius-xl: calc(var(--radius-2xl) + 4px);
-  --radius: var(--radius-lg); /* shadcn 컴포넌트에서 직접 참조 */
+  --radius: var(--radius-lg);
 
-  /* core palette (light only) */
-  --background: var(--color-gray-50);
-  --foreground: var(--color-gray-900);
+  /* === shadcn 코어 토큰 (필수) === */
+  --color-background: var(--color-gray-50); /* 페이지/푸터 배경 */
+  --color-foreground: var(--color-gray-900); /* 메인 텍스트/제목/CTA 텍스트 */
 
-  --primary: var(--primary-blue);
-  --primary-foreground: #ffffff;
+  --color-primary: var(--primary-blue); /* 브랜드 프라이머리 (CTA, 액션) */
+  --color-primary-foreground: #ffffff; /* 프라이머리 위 텍스트 */
 
-  --muted: var(--color-gray-100);
-  --muted-foreground: var(--color-gray-600);
+  --color-muted: var(--color-gray-100); /* 버튼/보조 영역 배경 */
+  --color-muted-foreground: var(--color-gray-600); /* 보조 텍스트/Nav/설명문 */
 
-  --border: var(--color-gray-200);
-  --input: var(--color-gray-300);
-  --ring: var(--color-blue-400);
+  --color-border: var(--color-gray-200); /* 카드/모달 테두리, 구분선 */
+  --color-input: var(--color-gray-300); /* 입력 필드 테두리 */
+  --color-ring: var(--color-blue-400); /* 포커스 링 */
 
-  --destructive: var(--color-danger-600);
-  --destructive-foreground: #ffffff;
+  --color-destructive: var(--color-danger-600); /* 위험/에러 */
+  --color-destructive-foreground: #ffffff;
 
-  /* 폴백 세트 (컴포넌트 내부에서 참조 가능) */
-  --card: var(--background);
-  --card-foreground: var(--foreground);
-  --popover: var(--background);
-  --popover-foreground: var(--foreground);
-  --secondary: var(--color-gray-100);
-  --secondary-foreground: var(--color-gray-900);
-  --accent: var(--color-gray-100);
-  --accent-foreground: var(--color-gray-900);
+  /* === 주석 기반 "사용처 특화" 커스텀 토큰 === */
+  --color-button-solid: var(--color-gray-900); /* 로그인 버튼 배경(고정 다크) */
+  --color-button-solid-foreground: #ffffff; /* 로그인 버튼 텍스트 */
+  --color-button-hover: var(--color-gray-800); /* 모든 버튼 :hover(다크계열) */
+
+  --color-placeholder: var(--color-gray-500); /* 인풋 플레이스홀더 */
+  --color-label: var(--color-gray-700); /* 인풋 라벨 텍스트 */
+
+  --color-disabled-foreground: var(--color-gray-500); /* 비활성 텍스트 */
+  --color-disabled-background: var(--color-gray-400); /* 비활성 버튼 배경 */
+
+  --color-subtle-border: var(--color-gray-400); /* 서브 경계선 */
+  --color-link: var(--color-gray-900); /* 텍스트 링크 (비밀번호/회원가입) */
+
+  /* === 블루 계열 특화 (선택적으로 사용) === */
+  --color-cta: var(--color-blue-600); /* 주요 CTA 강조 */
+  --color-cta-foreground: #ffffff;
+  --color-button: var(--color-blue-500); /* 일반 버튼 */
+  --color-button-foreground: #ffffff;
+  --color-hover-accent: var(--color-blue-400); /* 보조 hover 강조 */
+  --color-subtle-accent-bg: var(--color-blue-100); /* 연한 블루 배경 */
 }
 
 /* -------------------------------------------------
@@ -124,7 +133,7 @@
 @layer base {
   :root {
     color-scheme: light;
-  } /* 다크모드 미사용 고정 */
+  } /* 라이트 고정 */
 
   html {
     font-size: 62.5%; /* 1rem = 10px */
@@ -141,8 +150,8 @@
   }
 
   body {
-    background: var(--background);
-    color: var(--foreground);
+    background: var(--color-background);
+    color: var(--color-foreground);
     line-height: 1.6;
     letter-spacing: -0.01em;
     min-height: 100dvh;
@@ -157,7 +166,7 @@
 
   /* 접근성: 키보드 포커스 링 */
   :focus-visible {
-    outline: 2px solid var(--ring);
+    outline: 2px solid var(--color-ring);
     outline-offset: 2px;
   }
   @media (forced-colors: active) {
@@ -168,8 +177,8 @@
 
   /* 텍스트 선택 */
   ::selection {
-    background: var(--primary);
-    color: var(--primary-foreground);
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
   }
 
   /* 과도한 모션 방지 */
@@ -186,7 +195,8 @@
 /* 모든 요소에 기본 border 색/outline 색만 지정 (폭은 건드리지 않음) */
 @layer base {
   * {
-    @apply border-border outline-[color:oklch(from var(--ring) l c h / 0.5)];
+    @apply border-border;
+    outline-color: oklch(from var(--color-ring) l c h / 0.5);
   }
 }
 
