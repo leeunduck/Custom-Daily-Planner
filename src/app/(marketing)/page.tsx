@@ -1,6 +1,7 @@
 import { makePageMetadata } from "@/seo/metadata";
 import { Button } from "@/shared/button";
-import { Laptop, Monitor, Smartphone } from "lucide-react";
+import { FeatureGroupButton } from "@/shared/feature-group-button";
+import { Calendar, Laptop, Monitor, Smartphone } from "lucide-react";
 
 export const metadata = makePageMetadata({
   title: "PlanMate — 맞춤형 데일리 플래너",
@@ -10,29 +11,34 @@ export const metadata = makePageMetadata({
 
 export default function Home() {
   return (
-    <div className="flex justify-center m-50">
-      <div className="flex gap-13">
-        <Button intent="primary" pill>
+    <div className="flex flex-col justify-center items-center gap-8">
+      {/* Hero CTA */}
+      <div className="flex gap-3">
+        <Button preset="hero" pill>
           <span className="inline-flex items-center gap-2">
             <Monitor className="h-7 w-7" />
             <span>Desktop</span>
           </span>
         </Button>
-
-        <Button intent="primary" pill>
+        <Button preset="hero" pill>
           <span className="inline-flex items-center gap-2">
             <Laptop className="h-7 w-7" />
             <span>Mac</span>
           </span>
         </Button>
-
-        <Button intent="primary" pill>
+        <Button preset="hero" pill>
           <span className="inline-flex items-center gap-2">
             <Smartphone className="h-7 w-7" />
             <span>iOS</span>
           </span>
         </Button>
       </div>
+
+      <FeatureGroupButton
+        icon={<Calendar className="h-7 w-7" />}
+        title="일간"
+        description="오늘의 일정과 할 일을 한눈에"
+      />
     </div>
   );
 }
