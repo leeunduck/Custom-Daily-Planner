@@ -16,10 +16,10 @@ export const heroButtonVariants = cva(
     "active:translate-y-[1px]",
 
     // Base (white/gray)
-    "bg-[theme(colors.white)] text-[theme(colors.gray.900)] border border-input",
+    "bg-[var(--color-white)] text-[var(--color-gray-900)] border border-input",
 
     // Hover invert (black/white/black)
-    "hover:bg-[theme(colors.black)] hover:text-[theme(colors.white)] hover:border-[theme(colors.black)]",
+    "hover:bg-[var(--color-black)] hover:text-[var(--color-white)] hover:border-[var(--color-black)]]",
   ].join(" "),
   {
     variants: {

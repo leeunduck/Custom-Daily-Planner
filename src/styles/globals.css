@@ -103,28 +103,6 @@
 
   --color-destructive: var(--color-danger-600); /* 위험/에러 */
   --color-destructive-foreground: #ffffff;
-
-  /* === 주석 기반 "사용처 특화" 커스텀 토큰 === */
-  --color-button-solid: var(--color-gray-900); /* 로그인 버튼 배경(고정 다크) */
-  --color-button-solid-foreground: #ffffff; /* 로그인 버튼 텍스트 */
-  --color-button-hover: var(--color-gray-800); /* 모든 버튼 :hover(다크계열) */
-
-  --color-placeholder: var(--color-gray-500); /* 인풋 플레이스홀더 */
-  --color-label: var(--color-gray-700); /* 인풋 라벨 텍스트 */
-
-  --color-disabled-foreground: var(--color-gray-500); /* 비활성 텍스트 */
-  --color-disabled-background: var(--color-gray-400); /* 비활성 버튼 배경 */
-
-  --color-subtle-border: var(--color-gray-400); /* 서브 경계선 */
-  --color-link: var(--color-gray-900); /* 텍스트 링크 (비밀번호/회원가입) */
-
-  /* === 블루 계열 특화 (선택적으로 사용) === */
-  --color-cta: var(--color-blue-600); /* 주요 CTA 강조 */
-  --color-cta-foreground: #ffffff;
-  --color-button: var(--color-blue-500); /* 일반 버튼 */
-  --color-button-foreground: #ffffff;
-  --color-hover-accent: var(--color-blue-400); /* 보조 hover 강조 */
-  --color-subtle-accent-bg: var(--color-blue-100); /* 연한 블루 배경 */
 }
 
 /* -------------------------------------------------
