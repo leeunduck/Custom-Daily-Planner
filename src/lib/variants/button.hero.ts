@@ -11,8 +11,6 @@ export const heroButtonVariants = cva(
 
     // Transitions & a11y
     "transition-[color,background-color,border-color,transform] duration-200",
-    "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-    "disabled:opacity-50 disabled:pointer-events-none",
     "active:translate-y-[1px]",
 
     // Base (white/gray)
