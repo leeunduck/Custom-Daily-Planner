@@ -153,7 +153,7 @@ PR(Pull Request)을 통해 `main` 브랜치로 병합합니다.
    - 더 이상 필요 없는 기존 Feature 브랜치는 삭제합니다.
 
    ```bash
-   git branch -d Feature/[브랜치명]
+   git branch -d Feature/[Jriakey][브랜치명]
    ```
 
 ---
