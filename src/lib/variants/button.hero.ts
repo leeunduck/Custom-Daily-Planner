@@ -11,15 +11,13 @@ export const heroButtonVariants = cva(
 
     // Transitions & a11y
     "transition-[color,background-color,border-color,transform] duration-200",
-    "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-    "disabled:opacity-50 disabled:pointer-events-none",
     "active:translate-y-[1px]",
 
     // Base (white/gray)
-    "bg-[theme(colors.white)] text-[theme(colors.gray.900)] border border-input",
+    "bg-[var(--color-white)] text-[var(--color-gray-900)] border border-[var(--color-gray-300)]",
 
     // Hover invert (black/white/black)
-    "hover:bg-[theme(colors.black)] hover:text-[theme(colors.white)] hover:border-[theme(colors.black)]",
+    "hover:bg-[var(--color-black)] hover:text-[var(--color-white)] hover:border-[var(--color-black)]]",
   ].join(" "),
   {
     variants: {
