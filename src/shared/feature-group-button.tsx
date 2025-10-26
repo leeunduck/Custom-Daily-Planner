@@ -16,7 +16,6 @@ const iconRadiusClass: Record<NonNullable<FeatureGroupButtonProps["iconRadius"]>
 
 export const FeatureGroupButton = React.forwardRef<HTMLButtonElement, FeatureGroupButtonProps>(
   ({ icon, title, description, radius = "2xl", iconRadius = "lg", className, ...rest }, ref) => {
-    // 접근성: aria-label 없으면 title로 보완
     const ariaLabel = (rest["aria-label"] as string | undefined) ?? title;
 
     return (
@@ -35,7 +34,7 @@ export const FeatureGroupButton = React.forwardRef<HTMLButtonElement, FeatureGro
                 "inline-flex h-[4.5rem] w-[4.5rem] shrink-0 items-center justify-center",
                 iconRadiusClass[iconRadius],
                 "bg-[var(--color-white)]",
-                "border border-[var(--color-gray-300)]", // ← border-1 → border 로 교정
+                "border border-[var(--color-gray-300)]",
                 "shadow-[var(--shadow-soft)]",
               )}
             >

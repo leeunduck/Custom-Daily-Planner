@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { getButtonClasses } from "@/lib/variants/button.presets"; // ⬅️ hero/feature 등 프리셋 스위치
+import { getButtonClasses } from "@/lib/variants/button.presets";
 import type { ButtonProps } from "@/types/button";
 import { Slot } from "@radix-ui/react-slot";
 import * as React from "react";
@@ -33,9 +33,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const classes = getButtonClasses(preset, {
       intent,
       glow,
-      pill, // hero 옵션
+      pill,
+
       size,
-      radius, // feature 옵션
+      radius,
     });
 
     return (
