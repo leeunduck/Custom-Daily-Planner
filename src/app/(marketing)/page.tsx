@@ -1,6 +1,7 @@
 import { makePageMetadata } from "@/seo/metadata";
 import { Button } from "@/shared/button";
 import { FeatureGroupButton } from "@/shared/feature-group-button";
+import { SpecialFeatureCard } from "@/shared/SpecialFeatureCard";
 import { Calendar, Laptop, Monitor, Smartphone } from "lucide-react";
 
 export const metadata = makePageMetadata({
@@ -38,6 +39,12 @@ export default function Home() {
         icon={<Calendar className="h-7 w-7" />}
         title="일간"
         description="오늘의 일정과 할 일을 한눈에"
+      />
+
+      <SpecialFeatureCard
+        icon={<Calendar className="h-9 w-9" />}
+        title="스마트 스케줄링"
+        description="AI가 추천하는 최적의 일정 배치로 효율성을 극대화하세요."
       />
     </div>
   );
