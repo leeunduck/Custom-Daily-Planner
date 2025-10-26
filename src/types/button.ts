@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from "react";
 
 export type ButtonPreset = "hero" | "feature";
-export type ButtonIntent = "primary"; // hero 전용(필요 시 확장 가능)
+export type ButtonIntent = "primary";
 
 export interface BaseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
