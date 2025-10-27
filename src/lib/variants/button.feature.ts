@@ -28,21 +28,11 @@ export const featureButtonVariants = cva(
         xl: "rounded-[var(--radius-xl)]",
         "2xl": "rounded-[var(--radius-2xl)]",
       },
-
-      // Size (feature용 높이/패딩 프리셋)
-      size: {
-        sm: "",
-        md: "",
-        lg: "h-[4.8rem] px-[2.2rem] t-18-m",
-        xl: "",
-        "2xl": "",
-      },
     },
 
     // Defaults
     defaultVariants: {
       radius: "2xl",
-      size: "md",
     },
   },
 );
