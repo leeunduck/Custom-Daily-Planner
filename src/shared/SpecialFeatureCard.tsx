@@ -5,11 +5,13 @@ import type { SpecialFeatureCardProps } from "@/types/special-feature-card";
 import * as React from "react";
 
 export const SpecialFeatureCard = React.forwardRef<HTMLDivElement, SpecialFeatureCardProps>(
-  ({ className, icon, title, description, children, ...rest }, ref) => {
+  (props, ref) => {
+    const { className, icon, title, description, children, ...native } = props;
+
     const classes = specialFeatureCardVariants({});
 
     return (
-      <div ref={ref} className={cn(classes, className)} {...rest}>
+      <div ref={ref} className={cn(classes, className)} {...native}>
         {icon && (
           <div className="mx-auto mb-4 flex h-25 w-25 items-center justify-center rounded-lg bg-[var(--color-gray-100)]">
             {icon}

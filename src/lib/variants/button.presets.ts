@@ -1,25 +1,40 @@
 import type { ButtonPreset } from "@/types/button";
 import type { VariantProps } from "class-variance-authority";
+import { loginButtonVariants } from "./button.auth";
 import { featureButtonVariants } from "./button.feature";
 import { heroButtonVariants } from "./button.hero";
 
-// 각 cva가 허용하는 옵션 타입
-export type HeroVariantProps = VariantProps<typeof heroButtonVariants>;
-export type FeatureVariantProps = VariantProps<typeof featureButtonVariants>;
+// 각 cva의 VariantProps에서 우리가 노출할 키만 추려서 옵션 타입 정의
+type HeroVariantProps = VariantProps<typeof heroButtonVariants>;
+type FeatureVariantProps = VariantProps<typeof featureButtonVariants>;
+type AuthVariantProps = VariantProps<typeof loginButtonVariants>;
 
-// 두 옵션 타입의 교차(공통 superset). 필요한 키만 뽑아 쓸 거라 안전함.
-type PresetSupersetOpts = Partial<HeroVariantProps & FeatureVariantProps>;
+type HeroOpts = Partial<Pick<HeroVariantProps, "intent" | "glow" | "pill">>;
+type FeatureOpts = Partial<Pick<FeatureVariantProps, "radius">>; // size 등 추가하면 여기서 확장
+type AuthOpts = Partial<Pick<AuthVariantProps, "color">>;
 
-/**
- * preset에 맞춰 내부에서 알맞은 cva를 선택해 className을 만든다.
- * - 호출부는 기존처럼 하나의 객체를 넘기면 됨 (여분 키는 내부에서 무시)
- */
-export function getButtonClasses(preset: ButtonPreset, opts: PresetSupersetOpts = {}): string {
-  if (preset === "hero") {
-    const { intent, glow, pill } = opts as Partial<HeroVariantProps>;
-    return heroButtonVariants({ intent, glow, pill });
+// ✅ 프리셋별 오버로드 (자동완성/타입가드 정확)
+export function getButtonClasses(preset: "hero", opts?: HeroOpts): string;
+export function getButtonClasses(preset: "feature", opts?: FeatureOpts): string;
+export function getButtonClasses(preset: "auth", opts?: AuthOpts): string;
+// 구현체
+export function getButtonClasses(
+  preset: ButtonPreset,
+  opts: HeroOpts | FeatureOpts | AuthOpts = {},
+): string {
+  switch (preset) {
+    case "hero": {
+      const { intent, glow, pill } = opts as HeroOpts;
+      // 필요한 키만 전달 (불필요 키 유입 차단)
+      return heroButtonVariants({ intent, glow, pill });
+    }
+    case "feature": {
+      const { radius } = opts as FeatureOpts;
+      return featureButtonVariants({ radius });
+    }
+    case "auth": {
+      const { color } = opts as AuthOpts;
+      return loginButtonVariants({ color });
+    }
   }
-  // preset === "feature"
-  const { radius, size } = opts as Partial<FeatureVariantProps>;
-  return featureButtonVariants({ radius, size });
 }

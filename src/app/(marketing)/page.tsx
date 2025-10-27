@@ -46,6 +46,10 @@ export default function Home() {
         title="스마트 스케줄링"
         description="AI가 추천하는 최적의 일정 배치로 효율성을 극대화하세요."
       />
+
+      <Button preset="auth" color="black">
+        로그인 하기
+      </Button>
     </div>
   );
 }

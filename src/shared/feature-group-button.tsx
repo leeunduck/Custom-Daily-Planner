@@ -15,14 +15,32 @@ const iconRadiusClass: Record<NonNullable<FeatureGroupButtonProps["iconRadius"]>
 };
 
 export const FeatureGroupButton = React.forwardRef<HTMLButtonElement, FeatureGroupButtonProps>(
-  ({ icon, title, description, radius = "2xl", iconRadius = "lg", className, ...rest }, ref) => {
-    const ariaLabel = (rest["aria-label"] as string | undefined) ?? title;
+  (
+    {
+      icon,
+      title,
+      description,
+      radius = "2xl",
+      iconRadius = "lg",
+      className,
+      // 안전 가드: 외부에서 type을 바꿔도 기본은 "button"
+      type,
+      // 접근성 폴백: 없으면 title을 사용
+      "aria-label": ariaLabelProp,
+      // ✅ 확장 대비: 나머지 네이티브 속성
+      ...rest
+    },
+    ref,
+  ) => {
+    const ariaLabel = ariaLabelProp ?? title;
+    const iconBoxRadius = iconRadiusClass[iconRadius];
 
     return (
       <Button
         ref={ref}
         preset="feature"
         radius={radius}
+        type={type ?? "button"}
         className={cn("h-[6.4rem] w-[29.6rem] justify-start px-[2.0rem]", className)}
         aria-label={ariaLabel}
         {...rest}
@@ -30,9 +48,10 @@ export const FeatureGroupButton = React.forwardRef<HTMLButtonElement, FeatureGro
         <span className="inline-flex w-full items-center gap-6">
           {icon ? (
             <span
+              aria-hidden="true"
               className={cn(
                 "inline-flex h-[4.5rem] w-[4.5rem] shrink-0 items-center justify-center",
-                iconRadiusClass[iconRadius],
+                iconBoxRadius,
                 "bg-[var(--color-white)]",
                 "border border-[var(--color-gray-300)]",
                 "shadow-[var(--shadow-soft)]",

@@ -1,21 +1,33 @@
 "use client";
+
 import { cn } from "@/lib/utils";
 import { getCardClasses } from "@/lib/variants/card.presets";
 import type { CardProps } from "@/types/card";
 import * as React from "react";
 
-export const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, preset = "specialFeature", size = "lg", children, ...rest }, ref) => {
-    // ⬇️ preset에 따라 알맞은 cva를 내부에서 선택해 클래스 생성
-    const classes = getCardClasses(preset, { size });
+export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
+  const { className, preset, size = "lg", children, ...native } = props;
 
+  if (preset === "specialFeature") {
+    const classes = getCardClasses("specialFeature", { size });
     return (
-      <div ref={ref} className={cn(classes, className)} {...rest}>
+      <div ref={ref} className={cn(classes, className)} {...native}>
         {children}
       </div>
     );
-  },
-);
+  }
+
+  // 기본 카드 (fallback)
+  return (
+    <div
+      ref={ref}
+      className={cn("bg-white rounded-xl border border-gray-200 shadow-sm p-6", className)}
+      {...native}
+    >
+      {children}
+    </div>
+  );
+});
 Card.displayName = "Card";
 
 // 카드 내부 컴포넌트들
