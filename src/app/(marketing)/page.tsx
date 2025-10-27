@@ -1,16 +1,17 @@
-import { makePageMetadata } from "@/seo/metadata";
+"use client";
+
 import { Button } from "@/shared/button";
 import { FeatureGroupButton } from "@/shared/feature-group-button";
+import { Input } from "@/shared/input";
 import { SpecialFeatureCard } from "@/shared/SpecialFeatureCard";
+import { InputStatus } from "@/types/input";
 import { Calendar, Laptop, Monitor, Smartphone } from "lucide-react";
-
-export const metadata = makePageMetadata({
-  title: "PlanMate — 맞춤형 데일리 플래너",
-  description: "원하는 모듈을 조합해 나만의 플래너를 만드는 PlanMate 랜딩 페이지",
-  canonical: "/",
-});
+import { useState } from "react";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<InputStatus>("default");
+
   return (
     <div className="flex flex-col justify-center items-center gap-8">
       {/* Hero CTA */}
@@ -50,6 +51,53 @@ export default function Home() {
       <Button preset="auth" color="black">
         로그인 하기
       </Button>
+
+      <section className="space-y-2">
+        <h2 className="t-18-b">에러 상태</h2>
+        <div className="space-y-1">
+          <label htmlFor="email" className="t-14-m text-muted-foreground">
+            이메일
+          </label>
+
+          {/** status: "default" | "error" */}
+          <Input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            status={status} // ✅ cva와 1:1
+            placeholder="이메일을 입력하세요"
+            aria-describedby={status === "error" ? "email-error" : undefined}
+            onFocus={() => setStatus("default")}
+          />
+
+          {status === "error" && (
+            <p id="email-error" className="t-12-m text-destructive">
+              이메일 형식을 확인하세요.
+            </p>
+          )}
+
+          <div className="flex gap-2 pt-2">
+            <button
+              type="button"
+              onClick={() => setStatus((v: InputStatus) => (v === "error" ? "default" : "error"))}
+              className="rounded-md border px-3 py-1 text-sm"
+            >
+              에러 토글
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setEmail("");
+                setStatus("default");
+              }}
+              className="rounded-md border px-3 py-1 text-sm"
+            >
+              값 초기화
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

@@ -1,33 +1,47 @@
+"use client";
+
 import { cn } from "@/lib/utils";
+import { authInputVariants } from "@/lib/variants/input.auth";
+import type { InputProps } from "@/types/input";
 import * as React from "react";
 
-function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+/**
+ * AuthInput — 기본/포커스/에러 상태
+ * - status: "default" | "error"
+ * - 에러 상태에서 포커스 시 자동으로 기본 상태로 복귀
+ */
+export const Input = React.forwardRef<
+  HTMLInputElement,
+  React.ComponentPropsWithoutRef<"input"> & InputProps
+>(({ className, status = "default", ...rest }, ref) => {
+  const [currentStatus, setCurrentStatus] = React.useState<InputProps["status"]>(status);
+
+  // 외부에서 status가 바뀌면 동기화
+  React.useEffect(() => {
+    setCurrentStatus(status);
+  }, [status]);
+
+  // 포커스 시 에러 상태면 기본으로 복귀
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (currentStatus === "error") setCurrentStatus("default");
+    rest.onFocus?.(e);
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    rest.onBlur?.(e);
+  };
+
   return (
     <input
-      type={type}
-      data-slot="input"
-      className={cn(
-        // 크기/레이아웃
-        "h-12 w-full min-w-0 rounded-md px-3 py-2 text-sm outline-none transition-colors",
-        // 기본 텍스트/배경
-        "bg-white text-[#111827]",
-        // 기본 테두리(1px, 회색)
-        "border border-[var(--color-gray-300)]",
-        // 플레이스홀더
-        "placeholder:text-[#737373]",
-        // ✅ 포커스(활성화): 테두리 두께↑(2px) + 색상 #111827
-        "focus-visible:border-2 focus-visible:border-[#111827]",
-        // 에러(접근성): aria-invalid=true → 테두리 #dc2626
-        "aria-invalid:border-[#dc2626]",
-        // 비활성
-        "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
-        // file input 기본값(필요 시)
-        "file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground",
-        className,
-      )}
-      {...props}
+      ref={ref}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      className={cn(authInputVariants({ status: currentStatus }), className)}
+      aria-invalid={currentStatus === "error" ? "true" : "false"}
+      data-invalid={currentStatus === "error" ? "true" : "false"}
+      {...rest}
     />
   );
-}
+});
 
-export { Input };
+Input.displayName = "Input";
