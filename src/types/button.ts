@@ -1,24 +1,46 @@
 import type { ButtonHTMLAttributes } from "react";
 
-export type ButtonPreset = "hero" | "feature";
+export type ButtonPreset = "hero" | "feature" | "auth";
 export type ButtonIntent = "primary";
+export type Radius = "sm" | "md" | "lg" | "xl" | "2xl";
+export type AuthColor = "black" | "white";
 
 export interface BaseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
   className?: string;
 }
 
-/** 공용 Button 프롭 */
-export interface ButtonProps extends BaseButtonProps {
-  /** 어떤 cva를 쓸지 결정 (hero | feature) */
-  preset?: ButtonPreset;
-
-  /** hero 전용 옵션 */
+/** hero 전용 */
+export type HeroProps = BaseButtonProps & {
+  preset: "hero";
   intent?: ButtonIntent;
   glow?: boolean;
   pill?: boolean;
+  // 금지
+  radius?: never;
+  color?: never;
+};
 
-  /** feature 전용 옵션 */
-  size?: "sm" | "md" | "lg" | "xl" | "2xl";
-  radius?: "sm" | "md" | "lg" | "xl" | "2xl";
-}
+/** feature 전용 */
+export type FeatureProps = BaseButtonProps & {
+  preset: "feature";
+  radius?: Radius;
+  // 금지
+  intent?: never;
+  glow?: never;
+  pill?: never;
+  color?: never;
+};
+
+/** auth 전용 */
+export type AuthProps = BaseButtonProps & {
+  preset: "auth";
+  color?: AuthColor;
+  // 금지
+  intent?: never;
+  glow?: never;
+  pill?: never;
+  radius?: never;
+};
+
+export type ButtonProps = HeroProps | FeatureProps | AuthProps;
