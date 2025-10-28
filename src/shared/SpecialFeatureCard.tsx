@@ -1,14 +1,14 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { specialFeatureCardVariants } from "@/lib/variants/card.specialFeatureCard";
-import type { SpecialFeatureCardProps } from "@/types/special-feature-card";
+import type { SpecialFeatureCardProps } from "@/types/card";
 import * as React from "react";
 
 export const SpecialFeatureCard = React.forwardRef<HTMLDivElement, SpecialFeatureCardProps>(
   (props, ref) => {
     const { className, icon, title, description, children, ...native } = props;
 
-    const classes = specialFeatureCardVariants({});
+    const classes = specialFeatureCardVariants({ size: "lg" });
 
     return (
       <div ref={ref} className={cn(classes, className)} {...native}>
