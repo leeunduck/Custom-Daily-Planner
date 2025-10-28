@@ -74,6 +74,7 @@
   /* === Radius & Shadow === */
   --radius-2xl: 1rem;
   --shadow-soft: 0 6px 16px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 4px 24px rgba(0, 0, 0, 0.12);
 }
 
 /* === Tailwind/shadcn 매핑 (Light) ============================

@@ -5,6 +5,7 @@ import { Button } from "@/shared/button";
 import { FeatureButton } from "@/shared/FeatureButton";
 import { Icon } from "@/shared/Icon";
 import { Input } from "@/shared/input";
+import { SelectModuleCard } from "@/shared/SelectModuleCard";
 import { SpecialFeatureCard } from "@/shared/SpecialFeatureCard";
 import { InputStatus } from "@/types/input";
 import { useState } from "react";
@@ -101,6 +102,25 @@ export default function Home() {
       </section>
 
       <SignupGroupButton />
+
+      <SelectModuleCard
+        kind="module" // "module" | "design"
+        title="일간 플래너"
+        subtitle="Daily Intelligence"
+        description="하루를 체계적으로 관리하세요"
+        imageSrc="/images/daily-planner.png"
+        onClick={() => console.log("일간 플래너 클릭")}
+      />
+
+      <SelectModuleCard
+        kind="design" // "module" | "design"
+        title="일간 플래너"
+        subtitle="Daily Intelligence"
+        subtitleState="noSelect"
+        description="하루를 체계적으로 관리하세요"
+        imageSrc="/images/daily-planner.png"
+        onClick={() => console.log("일간 플래너 클릭")}
+      />
     </div>
   );
 }
