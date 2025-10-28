@@ -29,6 +29,7 @@ import {
   Smartphone,
   StickyNote,
   UserPlus,
+  UserPlus2,
   Users,
   X,
 } from "lucide-react";
@@ -48,6 +49,7 @@ export const icons = {
   arrowRight: ArrowRight,
   search: Search,
   userPlus: UserPlus,
+  userPlus2: UserPlus2,
   monitor: Monitor,
   laptop: Laptop,
   smartphone: Smartphone,
