@@ -8,13 +8,11 @@ import * as React from "react";
 
 type NativeBtn = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-/** 객체에서 지정 키를 제거(복사본 반환). any 금지 버전 */
 function omitKeys<T extends object, K extends readonly (keyof T)[]>(
   obj: T,
   keys: K,
 ): Omit<T, K[number]> {
   const out: Partial<T> = {};
-
   for (const k in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, k)) {
       const key = k as keyof T;
@@ -37,7 +35,6 @@ function computePlan(props: ButtonProps) {
     const pill = props.pill ?? true;
 
     const classes = getButtonClasses("hero", { intent, glow, pill });
-
     const native = omitKeys(props, [
       "preset",
       "intent",
@@ -47,7 +44,6 @@ function computePlan(props: ButtonProps) {
       "asChild",
       "children",
     ] as const);
-
     return { asChild, className, children, classes, native };
   }
 
@@ -55,7 +51,6 @@ function computePlan(props: ButtonProps) {
     const radius = props.radius ?? "2xl";
 
     const classes = getButtonClasses("feature", { radius });
-
     const native = omitKeys(props, [
       "preset",
       "radius",
@@ -63,17 +58,21 @@ function computePlan(props: ButtonProps) {
       "asChild",
       "children",
     ] as const);
+    return { asChild, className, children, classes, native };
+  }
 
+  if (props.preset === "signup") {
+    const bg = props.bg ?? "basic";
+
+    const classes = getButtonClasses("signup", { bg });
+    const native = omitKeys(props, ["preset", "bg", "className", "asChild", "children"] as const);
     return { asChild, className, children, classes, native };
   }
 
   // auth
   const color = props.color ?? "black";
-
   const classes = getButtonClasses("auth", { color });
-
   const native = omitKeys(props, ["preset", "color", "className", "asChild", "children"] as const);
-
   return { asChild, className, children, classes, native };
 }
 
@@ -84,8 +83,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
   return (
     <Comp
       ref={ref}
-      // 폼 내 예기치 않은 submit 방지
-      type={plan.asChild ? undefined : "button"}
+      type={plan.asChild ? undefined : "button"} // 폼 내 예기치 않은 submit 방지
       className={cn(plan.classes, plan.className)}
       {...(plan.native as NativeBtn)}
     >

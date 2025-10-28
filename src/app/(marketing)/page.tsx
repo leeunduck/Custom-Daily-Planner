@@ -1,11 +1,12 @@
 "use client";
 
+import { SignupGroupButton } from "@/components/SiginupGroupButton";
 import { Button } from "@/shared/button";
-import { FeatureGroupButton } from "@/shared/feature-group-button";
+import { FeatureButton } from "@/shared/FeatureButton";
+import { Icon } from "@/shared/Icon";
 import { Input } from "@/shared/input";
 import { SpecialFeatureCard } from "@/shared/SpecialFeatureCard";
 import { InputStatus } from "@/types/input";
-import { Calendar, Laptop, Monitor, Smartphone } from "lucide-react";
 import { useState } from "react";
 
 export default function Home() {
@@ -17,33 +18,33 @@ export default function Home() {
       {/* Hero CTA */}
       <div className="flex gap-3">
         <Button preset="hero" pill>
-          <span className="inline-flex items-center gap-2">
-            <Monitor className="h-7 w-7" />
+          <span className="inline-flex items-center gap-4">
+            <Icon name="monitor" />
             <span>Desktop</span>
           </span>
         </Button>
         <Button preset="hero" pill>
-          <span className="inline-flex items-center gap-2">
-            <Laptop className="h-7 w-7" />
+          <span className="inline-flex items-center gap-4">
+            <Icon name="laptop" />
             <span>Mac</span>
           </span>
         </Button>
         <Button preset="hero" pill>
-          <span className="inline-flex items-center gap-2">
-            <Smartphone className="h-7 w-7" />
+          <span className="inline-flex items-center gap-4">
+            <Icon name="smartphone" />
             <span>iOS</span>
           </span>
         </Button>
       </div>
 
-      <FeatureGroupButton
-        icon={<Calendar className="h-7 w-7" />}
+      <FeatureButton
+        icon={<Icon name="calendar" size={19} />}
         title="일간"
         description="오늘의 일정과 할 일을 한눈에"
       />
 
       <SpecialFeatureCard
-        icon={<Calendar className="h-9 w-9" />}
+        icon={<Icon name="calendar" size={23} />}
         title="스마트 스케줄링"
         description="AI가 추천하는 최적의 일정 배치로 효율성을 극대화하세요."
       />
@@ -98,6 +99,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SignupGroupButton />
     </div>
   );
 }

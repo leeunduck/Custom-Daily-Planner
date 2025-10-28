@@ -14,7 +14,7 @@ const iconRadiusClass: Record<NonNullable<FeatureGroupButtonProps["iconRadius"]>
   "2xl": "rounded-[var(--radius-2xl)]",
 };
 
-export const FeatureGroupButton = React.forwardRef<HTMLButtonElement, FeatureGroupButtonProps>(
+export const FeatureButton = React.forwardRef<HTMLButtonElement, FeatureGroupButtonProps>(
   (
     {
       icon,
@@ -73,4 +73,4 @@ export const FeatureGroupButton = React.forwardRef<HTMLButtonElement, FeatureGro
   },
 );
 
-FeatureGroupButton.displayName = "FeatureGroupButton";
+FeatureButton.displayName = "FeatureGroupButton";

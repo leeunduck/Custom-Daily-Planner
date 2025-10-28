@@ -4,7 +4,7 @@ export const heroButtonVariants = cva(
   [
     // Layout
     "inline-flex items-center justify-center",
-    "h-[5.4rem] px-[3rem]",
+    "h-[5.4rem] px-[3rem] cursor-pointer",
 
     // Typography (from globals.css)
     "t-18-m",

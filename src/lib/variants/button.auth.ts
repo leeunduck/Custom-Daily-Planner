@@ -9,7 +9,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 export const loginButtonVariants = cva(
   [
     // === 기본 레이아웃 ===
-    "inline-flex items-center justify-center w-[36.6rem] h-[4.6rem]",
+    "inline-flex items-center justify-center w-[36.6rem] h-[4.6rem] cursor-pointer",
 
     // === 폰트 스타일 ===
     "t-14-m",
@@ -22,9 +22,6 @@ export const loginButtonVariants = cva(
 
     // === 전환 효과 ===
     "transition-all duration-200",
-
-    // === 포커스 효과 ===
-    "focus:outline-none focus:ring-2 focus:ring-[var(--color-blue-400)] focus:ring-offset-2",
   ].join(" "),
   {
     variants: {
