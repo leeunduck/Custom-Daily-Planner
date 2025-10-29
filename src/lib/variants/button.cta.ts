@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 export const ctaButtonVariants = cva(
   // 공통 베이스
   [
-    "inline-flex items-center justify-center select-none",
+    "inline-flex items-center justify-center select-none cursor-pointer",
     "rounded-full px-14 py-4 t-16-m",
     "transition-[background-color,color,box-shadow] duration-200 ease-out",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)]",

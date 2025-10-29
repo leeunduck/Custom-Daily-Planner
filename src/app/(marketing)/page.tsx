@@ -1,6 +1,7 @@
 "use client";
 
 import { SignupGroupButton } from "@/components/SiginupGroupButton";
+import { BackButton } from "@/shared/BackButton";
 import { Button } from "@/shared/button";
 import { FeatureButton } from "@/shared/FeatureButton";
 import { Icon } from "@/shared/Icon";
@@ -103,6 +104,8 @@ export default function Home() {
       </section>
 
       <SignupGroupButton />
+
+      <BackButton>이전</BackButton>
 
       <Button
         preset="cta"

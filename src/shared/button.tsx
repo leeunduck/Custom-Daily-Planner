@@ -82,7 +82,6 @@ function computePlan(props: ButtonProps) {
     const native = omitKeys(props, [
       "preset",
       "disabled",
-      "fullWidth",
       "className",
       "asChild",
       "children",
@@ -90,7 +89,26 @@ function computePlan(props: ButtonProps) {
     return { asChild, className, children, classes, native };
   }
 
-  // 5️⃣ Auth (기본)
+  // 5️⃣ Back
+  if (props.preset === "back") {
+    const size = props.size ?? "md";
+    const tone = props.tone ?? "default";
+    const underline = props.underline ?? false;
+
+    const classes = getButtonClasses("back", { size, tone, underline });
+    const native = omitKeys(props, [
+      "preset",
+      "size",
+      "tone",
+      "underline",
+      "className",
+      "asChild",
+      "children",
+    ] as const);
+    return { asChild, className, children, classes, native };
+  }
+
+  // 6️⃣ Auth (기본)
   const color = props.color ?? "black";
   const classes = getButtonClasses("auth", { color });
   const native = omitKeys(props, ["preset", "color", "className", "asChild", "children"] as const);
