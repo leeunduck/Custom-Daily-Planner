@@ -13,6 +13,7 @@ import { useState } from "react";
 export default function Home() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<InputStatus>("default");
+  const [isReady, setIsReady] = useState(false);
 
   return (
     <div className="flex flex-col justify-center items-center gap-8">
@@ -102,6 +103,18 @@ export default function Home() {
       </section>
 
       <SignupGroupButton />
+
+      <Button
+        preset="cta"
+        disabled={!isReady} // false면 활성, true면 비활성
+        onClick={() => alert("다음 단계로 이동")}
+      >
+        선택 완료
+      </Button>
+
+      <Button preset="cta" disabled={false} onClick={() => setIsReady((prev) => !prev)}>
+        {isReady ? "선택 해제" : "활성화 토글"}
+      </Button>
 
       <SelectModuleCard
         kind="module" // "module" | "design"

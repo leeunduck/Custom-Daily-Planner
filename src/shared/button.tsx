@@ -8,6 +8,7 @@ import * as React from "react";
 
 type NativeBtn = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
+/** 일부 키를 제외한 props 반환 (타입 안전) */
 function omitKeys<T extends object, K extends readonly (keyof T)[]>(
   obj: T,
   keys: K,
@@ -24,11 +25,13 @@ function omitKeys<T extends object, K extends readonly (keyof T)[]>(
   return out as Omit<T, K[number]>;
 }
 
+/** preset별 처리 계획 수립 */
 function computePlan(props: ButtonProps) {
   const asChild = props.asChild ?? false;
   const className = props.className;
   const children = (props as React.PropsWithChildren).children;
 
+  // 1️⃣ Hero
   if (props.preset === "hero") {
     const intent = props.intent ?? "primary";
     const glow = props.glow ?? false;
@@ -47,6 +50,7 @@ function computePlan(props: ButtonProps) {
     return { asChild, className, children, classes, native };
   }
 
+  // 2️⃣ Feature
   if (props.preset === "feature") {
     const radius = props.radius ?? "2xl";
 
@@ -61,6 +65,7 @@ function computePlan(props: ButtonProps) {
     return { asChild, className, children, classes, native };
   }
 
+  // 3️⃣ Signup
   if (props.preset === "signup") {
     const bg = props.bg ?? "basic";
 
@@ -69,13 +74,30 @@ function computePlan(props: ButtonProps) {
     return { asChild, className, children, classes, native };
   }
 
-  // auth
+  // 4️⃣ CTA
+  if (props.preset === "cta") {
+    const state = props.disabled ? "disabled" : "active";
+    const classes = cn(getButtonClasses("cta", { state }));
+
+    const native = omitKeys(props, [
+      "preset",
+      "disabled",
+      "fullWidth",
+      "className",
+      "asChild",
+      "children",
+    ] as const);
+    return { asChild, className, children, classes, native };
+  }
+
+  // 5️⃣ Auth (기본)
   const color = props.color ?? "black";
   const classes = getButtonClasses("auth", { color });
   const native = omitKeys(props, ["preset", "color", "className", "asChild", "children"] as const);
   return { asChild, className, children, classes, native };
 }
 
+/** 공용 Button 컴포넌트 */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const plan = computePlan(props);
   const Comp = plan.asChild ? Slot : "button";

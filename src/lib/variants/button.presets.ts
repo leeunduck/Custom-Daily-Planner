@@ -1,6 +1,7 @@
 import type { ButtonPreset } from "@/types/button";
 import type { VariantProps } from "class-variance-authority";
 import { loginButtonVariants } from "./button.auth";
+import { ctaButtonVariants } from "./button.cta";
 import { featureButtonVariants } from "./button.feature";
 import { heroButtonVariants } from "./button.hero";
 import { signupButtonVariants } from "./button.signup";
@@ -10,26 +11,29 @@ type HeroVariantProps = VariantProps<typeof heroButtonVariants>;
 type FeatureVariantProps = VariantProps<typeof featureButtonVariants>;
 type AuthVariantProps = VariantProps<typeof loginButtonVariants>;
 type SignupVariantProps = VariantProps<typeof signupButtonVariants>;
+type CtaVariantProps = VariantProps<typeof ctaButtonVariants>;
 
 type HeroOpts = Partial<Pick<HeroVariantProps, "intent" | "glow" | "pill">>;
 type FeatureOpts = Partial<Pick<FeatureVariantProps, "radius">>;
 type AuthOpts = Partial<Pick<AuthVariantProps, "color">>;
 type SignupOpts = Partial<Pick<SignupVariantProps, "bg">>;
+type CtaOpts = Partial<Pick<CtaVariantProps, "state">>;
 
-// ✅ 프리셋별 오버로드 (자동완성/타입가드 정확)
+// ✅ 프리셋별 오버로드
 export function getButtonClasses(preset: "hero", opts?: HeroOpts): string;
 export function getButtonClasses(preset: "feature", opts?: FeatureOpts): string;
 export function getButtonClasses(preset: "auth", opts?: AuthOpts): string;
 export function getButtonClasses(preset: "signup", opts?: SignupOpts): string;
+export function getButtonClasses(preset: "cta", opts?: CtaOpts): string;
+
 // 구현체
 export function getButtonClasses(
   preset: ButtonPreset,
-  opts: HeroOpts | FeatureOpts | AuthOpts | SignupOpts = {},
+  opts: HeroOpts | FeatureOpts | AuthOpts | SignupOpts | CtaOpts = {},
 ): string {
   switch (preset) {
     case "hero": {
       const { intent, glow, pill } = opts as HeroOpts;
-      // 필요한 키만 전달 (불필요 키 유입 차단)
       return heroButtonVariants({ intent, glow, pill });
     }
     case "feature": {
@@ -43,6 +47,10 @@ export function getButtonClasses(
     case "signup": {
       const { bg } = opts as SignupOpts;
       return signupButtonVariants({ bg });
+    }
+    case "cta": {
+      const { state } = opts as CtaOpts;
+      return ctaButtonVariants({ state });
     }
   }
 }

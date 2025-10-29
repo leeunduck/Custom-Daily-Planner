@@ -1,11 +1,12 @@
 import type { ButtonHTMLAttributes } from "react";
 
-export type ButtonPreset = "hero" | "feature" | "auth" | "signup";
+export type ButtonPreset = "hero" | "feature" | "auth" | "signup" | "cta";
 export type ButtonIntent = "primary";
 export type Radius = "sm" | "md" | "lg" | "xl" | "2xl";
 export type AuthColor = "black" | "white";
 export type SignupBg = "basic" | "google" | "kakao";
 
+/** 공통 기본 타입 */
 export interface BaseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
   className?: string;
@@ -44,7 +45,7 @@ export type AuthProps = BaseButtonProps & {
   radius?: never;
 };
 
-/** signup 전용 **/
+/** signup 전용 */
 export type SignupProps = BaseButtonProps & {
   preset: "signup";
   bg?: SignupBg;
@@ -56,4 +57,21 @@ export type SignupProps = BaseButtonProps & {
   color?: never;
 };
 
-export type ButtonProps = HeroProps | FeatureProps | AuthProps | SignupProps;
+/**  cta 전용 */
+export type CtaProps = BaseButtonProps & {
+  preset: "cta";
+  /** 전체 폭 확장 여부 */
+  fullWidth?: boolean;
+  /** 기본적으로 `disabled`로 비활성화 → active일 때 hover 등 동작 */
+  disabled?: boolean;
+  // 금지
+  intent?: never;
+  glow?: never;
+  pill?: never;
+  radius?: never;
+  color?: never;
+  bg?: never;
+};
+
+/** 전체 버튼 타입 유니온 */
+export type ButtonProps = HeroProps | FeatureProps | AuthProps | SignupProps | CtaProps;
