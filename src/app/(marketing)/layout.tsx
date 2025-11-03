@@ -1,3 +1,4 @@
+import { LandingFooter } from "@/components/landing/LandingFooter";
 import { LandingHeader } from "@/components/landing/LandingHeader";
 import { LandingWrapper } from "@/components/landing/LandingWrapper";
 import { makePageMetadata } from "@/seo/metadata";
@@ -15,6 +16,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         <LandingWrapper>
           <LandingHeader />
           <main className="flex-1">{children}</main>
+          <LandingFooter />
         </LandingWrapper>
       </body>
     </html>
