@@ -1,14 +1,5 @@
+import { LandingFooterColumnProps } from "@/types/landing";
 import Link from "next/link";
-
-type FooterLink = {
-  label: string;
-  href: string;
-};
-
-type LandingFooterColumnProps = {
-  title: string;
-  links: FooterLink[];
-};
 
 export function LandingFooterColumn({ title, links }: LandingFooterColumnProps) {
   return (

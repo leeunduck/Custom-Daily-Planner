@@ -1,12 +1,8 @@
+import { FooterLink } from "@/types/landing";
 import Image from "next/image";
 import Link from "next/link";
 import { LandingCopyright } from "./LandingCopyright";
 import { LandingFooterColumn } from "./LandingFooterColumn";
-
-type FooterLink = {
-  label: string;
-  href: string;
-};
 
 export function LandingFooter() {
   const productLinks: FooterLink[] = [
