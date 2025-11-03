@@ -6,7 +6,7 @@ import Link from "next/link";
 export function LandingNavBar() {
   return (
     <nav
-      className={cn("mx-auto flex h-[9.6rem] max-w-[128rem] items-center justify-between px-6")}
+      className={cn("mx-auto flex h-[9.6rem] max-w-[128rem] items-center justify-between px-12")}
       aria-label="Global navigation"
     >
       {/* 좌측: 로고 (이미지) */}
