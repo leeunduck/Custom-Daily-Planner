@@ -1,8 +1,10 @@
+import { LandingFooter } from "@/components/landing/LandingFooter";
+import { LandingHeader } from "@/components/landing/LandingHeader";
 import { LandingWrapper } from "@/components/landing/LandingWrapper";
 import { makePageMetadata } from "@/seo/metadata";
 
 export const metadata = makePageMetadata({
-  title: "PlanMate — 맞춤형 데일리 플래너",
+  title: "MyPlanMate — 맞춤형 데일리 플래너",
   description: "원하는 모듈을 조합해 나만의 플래너를 만드는 PlanMate 랜딩 페이지",
   canonical: "/",
 });
@@ -12,7 +14,9 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
     <html lang="ko">
       <body>
         <LandingWrapper>
+          <LandingHeader />
           <main className="flex-1">{children}</main>
+          <LandingFooter />
         </LandingWrapper>
       </body>
     </html>

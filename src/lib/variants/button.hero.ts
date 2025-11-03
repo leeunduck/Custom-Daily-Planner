@@ -17,7 +17,7 @@ export const heroButtonVariants = cva(
     "bg-[var(--color-white)] text-[var(--color-gray-900)] border border-[var(--color-gray-300)]",
 
     // Hover invert (black/white/black)
-    "hover:bg-[var(--color-black)] hover:text-[var(--color-white)] hover:border-[var(--color-black)]]",
+    "hover:bg-[var(--color-black)] hover:text-[var(--color-white)] hover:border-[var(--color-black)]",
   ].join(" "),
   {
     variants: {
