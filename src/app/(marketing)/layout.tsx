@@ -1,3 +1,4 @@
+import { LandingWrapper } from "@/components/landing/LandingWrapper";
 import { makePageMetadata } from "@/seo/metadata";
 
 export const metadata = makePageMetadata({
@@ -7,5 +8,13 @@ export const metadata = makePageMetadata({
 });
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <html lang="ko">
+      <body>
+        <LandingWrapper>
+          <main className="flex-1">{children}</main>
+        </LandingWrapper>
+      </body>
+    </html>
+  );
 }
