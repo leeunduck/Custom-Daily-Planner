@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { FooterLink } from "@/types/landing";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,21 +23,36 @@ export function LandingFooter() {
       role="contentinfo"
       className="border-t border-[var(--color-gray-100)] bg-[var(--color-gray-50)] text-[var(--color-gray-600)]"
     >
-      <div className="mx-auto flex max-w-[128rem] flex-col gap-10 px-12 py-12">
-        {/* 상단: 좌우 컬럼 + 중앙 로고 */}
-        <div className="flex flex-row items-center gap-10   justify-between">
-          {/* 좌측: 제품 관련 링크 */}
-          <LandingFooterColumn title="제품" links={productLinks} />
+      <div
+        className={cn(
+          "mx-auto flex max-w-[128rem] flex-col gap-10 px-6 py-10",
+          "md:px-12 md:py-12",
+        )}
+      >
+        <div
+          className={cn(
+            "grid grid-cols-[14rem_14rem] grid-rows-[auto_auto] justify-center items-start gap-10 text-center",
+            "md:grid-cols-3 md:grid-rows-1 md:justify-between md:text-left",
+          )}
+        >
+          {/* 제품 컬럼 */}
+          <div className="col-span-1 row-start-2 justify-self-center md:row-auto md:justify-self-start">
+            <LandingFooterColumn title="제품" links={productLinks} />
+          </div>
 
-          {/* 중앙: 브랜드 로고/문구 */}
-          <div className="flex flex-col items-center gap-5">
-            <Link href="/" aria-label="MyPlanMate 홈으로 이동" className="flex items-center gap-2">
+          {/* 로고 블록*/}
+          <div className="col-span-2 row-start-1 flex flex-col items-center gap-4 justify-self-center md:col-span-1 md:row-auto">
+            <Link
+              href="/"
+              aria-label="MyPlanMate 홈으로 이동"
+              className="flex items-center justify-center"
+            >
               <Image
                 src="/images/logo.png"
                 alt="MyPlanMate 로고"
                 width={150}
                 height={150}
-                className="object-contain select-none"
+                className="object-contain select-none h-[4rem] md:h-[6rem]"
                 draggable={false}
               />
             </Link>
@@ -45,13 +61,20 @@ export function LandingFooter() {
             </p>
           </div>
 
-          {/* 우측: 지원/정책 링크 */}
-          <LandingFooterColumn title="지원" links={supportLinks} />
+          {/* 지원 컬럼 */}
+          <div className="col-span-1 row-start-2 justify-self-center md:row-auto md:justify-self-end">
+            <LandingFooterColumn title="지원" links={supportLinks} />
+          </div>
         </div>
 
         {/* 하단: 구분선 + 저작권 */}
-        <div className="mt-4 border-t border-[var(--color-gray-100)] pt-6">
-          <div className="flex flex-row items-center justify-between gap-4 ">
+        <div className={cn("mt-4 border-t border-[var(--color-gray-100)] pt-6")}>
+          <div
+            className={cn(
+              "flex flex-col items-center gap-4 text-center",
+              "md:flex-row md:items-center md:justify-between md:text-left",
+            )}
+          >
             <LandingCopyright />
             <p className="t-12-r text-[var(--color-gray-400)]">
               서비스 관련 안내 및 공지사항은 홈페이지를 통해 제공됩니다.
