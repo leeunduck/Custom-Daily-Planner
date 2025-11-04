@@ -12,3 +12,8 @@ export type LandingFooterColumnProps = {
   title: string;
   links: FooterLink[];
 };
+
+export type LandingMainSectionProps = {
+  children: React.ReactNode;
+  className?: string;
+};
