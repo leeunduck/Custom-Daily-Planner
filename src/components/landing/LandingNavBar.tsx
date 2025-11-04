@@ -1,4 +1,3 @@
-// src/components/landing/LandingNavBar.tsx
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,7 +5,10 @@ import Link from "next/link";
 export function LandingNavBar() {
   return (
     <nav
-      className={cn("mx-auto flex h-[9.6rem] max-w-[128rem] items-center justify-between px-12")}
+      className={cn(
+        "mx-auto flex h-[6.4rem] max-w-[128rem] items-center justify-between px-6",
+        "md:h-[9.6rem] md:px-12",
+      )}
       aria-label="Global navigation"
     >
       {/* 좌측: 로고 (이미지) */}
@@ -16,23 +18,29 @@ export function LandingNavBar() {
           alt="MyPlanMate 로고"
           width={150}
           height={150}
-          className="object-contain select-none"
+          className={cn("object-contain select-none")}
           draggable={false}
         />
       </Link>
 
       {/* 우측: 언어 토글 + 로그인 */}
-      <div className="flex items-center gap-12">
+      <div className={cn("flex items-center gap-6", "md:gap-12")}>
         <button
           type="button"
-          className="t-16-m text-[var(--color-gray-600)] hover:text-[var(--color-gray-900)] cursor-pointer"
+          className={cn(
+            "cursor-pointer t-14-m text-[var(--color-gray-600)] hover:text-[var(--color-gray-900)]",
+            "md: t-16-m",
+          )}
           aria-label="언어 전환"
         >
           한국어
         </button>
         <Link
           href="/login"
-          className="t-16-m text-[var(--color-gray-600)] hover:text-[var(--color-gray-900)]"
+          className={cn(
+            "t-14-m text-[var(--color-gray-600)] hover:text-[var(--color-gray-900)]",
+            "md: t-16-m",
+          )}
           aria-label="로그인페이지로 이동"
         >
           로그인
