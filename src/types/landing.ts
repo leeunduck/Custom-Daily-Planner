@@ -17,3 +17,7 @@ export type LandingMainSectionProps = {
   children: React.ReactNode;
   className?: string;
 };
+
+export type LandingHeroSectionProps = {
+  className?: string;
+};
