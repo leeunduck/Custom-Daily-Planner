@@ -1,3 +1,5 @@
+import { FeatureItem } from "@/types/landing";
+
 /* -------------------------------------------------
    📦 프로젝트 공통 상수 (Global Constants)
    - SEO / OG / 사이트 메타 정보
@@ -30,12 +32,13 @@ export const LOCALE = "ko_KR";
    - SignupGroupButton에서 사용
    - bg: cva variant key와 1:1 매핑
    ------------------------------------------------- */
+
 export const SIGNUP_BTNS = [
   {
     key: "email",
     bg: "basic" as const,
     label: "일반 회원가입",
-    icon: { kind: "lucide" as const, name: "user-plus2" as const, size: 28 }, // 28px ≈ w-7 h-7
+    icon: { kind: "lucide" as const, name: "user-plus2" as const, size: 28 }, // 28px ≒ w-7 h-7
   },
   {
     key: "google",
@@ -52,3 +55,48 @@ export const SIGNUP_BTNS = [
 ] as const;
 
 export type SignupButtonKey = (typeof SIGNUP_BTNS)[number]["key"];
+
+/* -------------------------------------------------
+   🧩 랜딩 페이지 — 기능 소개 섹션 1
+   - LandingFeatureGrid / LandingFeaturesSection1에서 사용
+   - “일간 / 주간 / 월간 / To-Do / 습관 / 메모” 6개 모듈 메타데이터
+   ------------------------------------------------- */
+
+export const FEATURES: FeatureItem[] = [
+  {
+    title: "일간",
+    description: "오늘의 일정과 할 일을 한눈에",
+    iconName: "calendar",
+    previewImageSrc: "/images/feature-daily.png",
+  },
+  {
+    title: "주간",
+    description: "일주일 단위로 계획을 세우고 관리",
+    iconName: "calendarDays",
+    previewImageSrc: "/images/feature-weekly.png",
+  },
+  {
+    title: "월간",
+    description: "한 달 전체 일정을 조망하고 계획",
+    iconName: "calendarRange",
+    previewImageSrc: "/images/feature-monthly.png",
+  },
+  {
+    title: "To-Do",
+    description: "해야 할 일을 체계적으로 정리",
+    iconName: "checkSquare",
+    previewImageSrc: "/images/feature-todo.png",
+  },
+  {
+    title: "습관",
+    description: "좋은 습관을 만들고 지속적으로 추적",
+    iconName: "rotateCcw",
+    previewImageSrc: "/images/feature-habit.png",
+  },
+  {
+    title: "메모",
+    description: "중요한 생각과 아이디어를 기록",
+    iconName: "stickyNote",
+    previewImageSrc: "/images/feature-memo.png",
+  },
+];
