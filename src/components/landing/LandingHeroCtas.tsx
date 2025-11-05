@@ -5,9 +5,7 @@ import Link from "next/link";
 
 export function LandingHeroCtas() {
   return (
-    <div
-      className={cn("flex flex-col gap-12 mt-20", "md:flex-row md:items-center md:gap-8 md:mt-10")}
-    >
+    <div className={cn("flex items-center flex-col gap-8 mt-10", "md:flex-row md:gap-12 md:mt-20")}>
       <Link href="/login">
         <Button preset="hero" pill>
           <span className="inline-flex items-center gap-4">
