@@ -29,7 +29,7 @@ export function LandingNavBar() {
           type="button"
           className={cn(
             "cursor-pointer t-14-m text-[var(--color-gray-600)] hover:text-[var(--color-gray-900)]",
-            "md: t-16-m",
+            "md:t-16-m",
           )}
           aria-label="언어 전환"
         >
@@ -39,7 +39,7 @@ export function LandingNavBar() {
           href="/login"
           className={cn(
             "t-14-m text-[var(--color-gray-600)] hover:text-[var(--color-gray-900)]",
-            "md: t-16-m",
+            "md:t-16-m",
           )}
           aria-label="로그인페이지로 이동"
         >

@@ -32,16 +32,26 @@ export function LandingFooter() {
         <div
           className={cn(
             "grid grid-cols-[14rem_14rem] grid-rows-[auto_auto] justify-center items-start gap-10 text-center",
-            "md:grid-cols-3 md:grid-rows-1 md:justify-between md:text-left",
+            "md:grid-cols-3 md:grid-rows-1 md:justify-between",
           )}
         >
           {/* 제품 컬럼 */}
-          <div className="col-span-1 row-start-2 justify-self-center md:row-auto md:justify-self-start">
+          <div
+            className={cn(
+              "col-span-1 row-start-2 justify-self-center",
+              "md:row-auto md:justify-self-start",
+            )}
+          >
             <LandingFooterColumn title="제품" links={productLinks} />
           </div>
 
           {/* 로고 블록*/}
-          <div className="col-span-2 row-start-1 flex flex-col items-center gap-4 justify-self-center md:col-span-1 md:row-auto">
+          <div
+            className={cn(
+              "col-span-2 row-start-1 flex flex-col items-center gap-4 justify-self-center",
+              "md:col-span-1 md:row-auto",
+            )}
+          >
             <Link
               href="/"
               aria-label="MyPlanMate 홈으로 이동"
@@ -62,7 +72,12 @@ export function LandingFooter() {
           </div>
 
           {/* 지원 컬럼 */}
-          <div className="col-span-1 row-start-2 justify-self-center md:row-auto md:justify-self-end">
+          <div
+            className={cn(
+              "col-span-1 row-start-2 justify-self-center",
+              "md:row-auto md:justify-self-end",
+            )}
+          >
             <LandingFooterColumn title="지원" links={supportLinks} />
           </div>
         </div>
