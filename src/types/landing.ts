@@ -74,3 +74,22 @@ export type LandingFeaturesSection2Props = WithClassName;
 export type LandingLayoutPreviewProps = WithClassName;
 
 export type LandingFeatureTextProps = WithClassName;
+
+/* -------------------------------------------------
+   특별한 기능 섹션
+   ------------------------------------------------- */
+export type LandingSpecialFeaturesSectionProps = WithClassName;
+
+export type LandingSpecialFeatureGridProps = WithClassName;
+
+/* -------------------------------------------------
+   특별한 기능 섹션 — Feature 리스트
+   ------------------------------------------------- */
+
+export type SpecialFeatureIconName = "calendar" | "users" | "bellRing";
+
+export interface SpecialFeatureItem {
+  title: string;
+  description: string;
+  iconName: SpecialFeatureIconName;
+}
