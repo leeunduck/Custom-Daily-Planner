@@ -1,6 +1,7 @@
 "use client";
 
 import { LandingFeatureGrid } from "@/components/landing/LandingFeatureGrid";
+import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import { useFeaturePreviewStore } from "@/stores/featurePreviewStore";
 import type { LandingFeaturesSection1Props } from "@/types/landing";
@@ -8,14 +9,21 @@ import Image from "next/image";
 
 export function LandingFeaturesSection1({ className }: LandingFeaturesSection1Props) {
   const activeFeature = useFeaturePreviewStore((state) => state.activeFeature);
+  const { ref, isInView } = useInView({
+    threshold: 0.5,
+    once: true,
+  });
 
   return (
     <section
       id="landing-features1"
       aria-labelledby="landing-features1-title"
+      ref={ref}
       className={cn(
         "grid gap-18",
         "md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-center",
+        "transition-all duration-800 ease-out",
+        isInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10",
         className,
       )}
     >
