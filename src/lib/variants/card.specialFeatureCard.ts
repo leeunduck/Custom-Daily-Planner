@@ -20,7 +20,7 @@ export const specialFeatureCardVariants = cva(
       size: {
         sm: "w-[30rem] h-[20rem] p-5 gap-4",
         md: "w-[35rem] h-[22rem] p-6 gap-4",
-        lg: "w-[40rem] h-[25rem] p-7 gap-5",
+        lg: "max-w-[40rem] h-[25rem] p-7 gap-5",
         xl: "w-[45rem] h-[28rem] p-8 gap-6",
       },
     },
