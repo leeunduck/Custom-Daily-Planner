@@ -21,7 +21,7 @@ export const SpecialFeatureCard = React.forwardRef<HTMLDivElement, SpecialFeatur
         {title && <h3 className="mb-3 t-20-b text-[var(--color-gray-900)]">{title}</h3>}
 
         {description && (
-          <p className="t-16-m text-[var(--color-gray-600)] text-center">{description}</p>
+          <p className="t-12-m text-[var(--color-gray-600)] text-center md:t-16-m">{description}</p>
         )}
 
         {children}
