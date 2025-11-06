@@ -11,7 +11,7 @@ export function LandingSpecialFeatureGrid({ className }: LandingSpecialFeatureGr
     <div
       className={cn(
         "flex flex-col items-center gap-10",
-        "md:flex md:flex-row md:justify-center md:gap-8",
+        "md:flex-row md:justify-center md:gap-8",
         className,
       )}
     >
