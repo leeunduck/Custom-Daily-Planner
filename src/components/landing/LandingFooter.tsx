@@ -9,7 +9,7 @@ export function LandingFooter() {
   return (
     <footer
       role="contentinfo"
-      className="border-t border-[var(--color-gray-100)] bg-[var(--color-gray-50)] text-[var(--color-gray-600)]"
+      className="border-t border-[var(--color-gray-100)] bg-[var(--color-gray-50)] text-[var(--color-gray-600)] mt-30"
     >
       <div
         className={cn(
