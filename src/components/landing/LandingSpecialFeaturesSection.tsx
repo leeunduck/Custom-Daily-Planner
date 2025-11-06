@@ -16,7 +16,7 @@ export function LandingSpecialFeaturesSection({ className }: LandingSpecialFeatu
         <header className="space-y-4 text-center">
           <h2
             id="landing-special-features-title"
-            className="t-30-b md:t-40-b text-[var(--color-gray-900)]"
+            className="t-28-b md:t-40-b text-[var(--color-gray-900)]"
           >
             PlanMate의 특별한 기능들
           </h2>

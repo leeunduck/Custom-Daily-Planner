@@ -6,14 +6,6 @@ export const featureButtonVariants = cva(
     "inline-flex items-center justify-start w-full gap-3",
     "h-[4.4rem] px-[1.8rem]",
 
-    // Typography
-    "t-16-m",
-
-    // Base (no border / transparent / token-based color)
-    "bg-transparent",
-    "text-[var(--color-gray-900)]",
-    "shadow-none",
-
     // Hover & Interaction (soft bg only)
     "transition-[background-color,transform] duration-310",
     "hover:bg-[var(--color-gray-200)]",
