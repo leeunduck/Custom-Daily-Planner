@@ -80,7 +80,9 @@ export type LandingFeatureTextProps = WithClassName;
    ------------------------------------------------- */
 export type LandingSpecialFeaturesSectionProps = WithClassName;
 
-export type LandingSpecialFeatureGridProps = WithClassName;
+export type LandingSpecialFeatureGridProps = WithClassName & {
+  isInView?: boolean;
+};
 
 /* -------------------------------------------------
    특별한 기능 섹션 — Feature 리스트

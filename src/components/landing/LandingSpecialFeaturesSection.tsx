@@ -1,22 +1,37 @@
+// src/components/landing/LandingSpecialFeaturesSection.tsx
 "use client";
 
 import { LandingSpecialFeatureGrid } from "@/components/landing/LandingSpecialFeatureGrid";
+import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import type { LandingSpecialFeaturesSectionProps } from "@/types/landing";
 
+/**
+ * LandingSpecialFeaturesSection
+ * - PlanMate의 '특별한 기능' 3가지를 소개하는 섹션
+ * - 상단 제목(H2) + 부제 + 하단 카드 그리드
+ * - 스크롤 진입 시 제목 블록이 아래에서 위로 슬라이드
+ */
 export function LandingSpecialFeaturesSection({ className }: LandingSpecialFeaturesSectionProps) {
+  const { ref, isInView } = useInView({ threshold: 0.5 });
+
   return (
     <section
       id="landing-special-features"
       aria-labelledby="landing-special-features-title"
       className={cn("bg-[var(--color-gray-50)] py-24 md:py-32", className)}
     >
-      <div className="container space-y-12 md:space-y-16">
-        {/* 섹션 인트로: 제목 + 부제 */}
-        <header className="space-y-4 text-center">
+      <div ref={ref} className="container space-y-12 md:space-y-16">
+        {/* 섹션 인트로: 제목 + 부제 (아래 → 위 슬라이드) */}
+        <header
+          className={cn(
+            "space-y-4 text-center transition-all duration-700 ease-out",
+            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+          )}
+        >
           <h2
             id="landing-special-features-title"
-            className="t-28-b md:t-40-b text-[var(--color-gray-900)]"
+            className="t-30-b md:t-40-b text-[var(--color-gray-900)]"
           >
             PlanMate의 특별한 기능들
           </h2>
@@ -25,8 +40,8 @@ export function LandingSpecialFeaturesSection({ className }: LandingSpecialFeatu
           </p>
         </header>
 
-        {/* 하단 카드 그리드 */}
-        <LandingSpecialFeatureGrid />
+        {/* 하단 카드 그리드 (isInView 전달) */}
+        <LandingSpecialFeatureGrid isInView={isInView} />
       </div>
     </section>
   );
