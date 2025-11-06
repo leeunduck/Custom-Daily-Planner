@@ -11,7 +11,7 @@ export function LandingFeatureGrid({ className }: LandingFeatureGridProps) {
   const setActiveFeature = useFeaturePreviewStore((state) => state.setActiveFeature);
 
   return (
-    <div className={cn("grid grid-cols-1 gap-3", "md:grid-cols-2 md:gap-8", className)}>
+    <div className={cn("grid grid-cols-1 gap-3", "md:grid-cols-2 md:gap-4", className)}>
       {FEATURES.map((feature) => (
         <FeatureButton
           key={feature.title}

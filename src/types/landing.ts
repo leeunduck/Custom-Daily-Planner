@@ -64,3 +64,13 @@ export interface FeatureItem {
   iconName: FeatureIconName;
   previewImageSrc: string;
 }
+
+/* -------------------------------------------------
+   기능 소개 섹션 2
+   ------------------------------------------------- */
+
+export type LandingFeaturesSection2Props = WithClassName;
+
+export type LandingLayoutPreviewProps = WithClassName;
+
+export type LandingFeatureTextProps = WithClassName;
