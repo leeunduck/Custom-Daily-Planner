@@ -1,4 +1,3 @@
-// src/components/landing/LandingSpecialFeaturesSection.tsx
 "use client";
 
 import { LandingSpecialFeatureGrid } from "@/components/landing/LandingSpecialFeatureGrid";
@@ -6,12 +5,6 @@ import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import type { LandingSpecialFeaturesSectionProps } from "@/types/landing";
 
-/**
- * LandingSpecialFeaturesSection
- * - PlanMate의 '특별한 기능' 3가지를 소개하는 섹션
- * - 상단 제목(H2) + 부제 + 하단 카드 그리드
- * - 스크롤 진입 시 제목 블록이 아래에서 위로 슬라이드
- */
 export function LandingSpecialFeaturesSection({ className }: LandingSpecialFeaturesSectionProps) {
   const { ref, isInView } = useInView({ threshold: 0.5 });
 
