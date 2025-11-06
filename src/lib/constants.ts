@@ -1,4 +1,4 @@
-import { FeatureItem } from "@/types/landing";
+import { FeatureItem, FooterLink, SpecialFeatureItem } from "@/types/landing";
 
 /* -------------------------------------------------
    📦 프로젝트 공통 상수 (Global Constants)
@@ -57,6 +57,23 @@ export const SIGNUP_BTNS = [
 export type SignupButtonKey = (typeof SIGNUP_BTNS)[number]["key"];
 
 /* -------------------------------------------------
+   🧩 Layout - Footer
+   - LandingFooter에서 사용
+   ------------------------------------------------- */
+
+export const PRODUCTLINKS: FooterLink[] = [
+  { label: "기능 소개", href: "/features" },
+  { label: "요금제", href: "/pricing" },
+  { label: "업데이트", href: "/changelog" },
+];
+
+export const SUPPORTLINKS: FooterLink[] = [
+  { label: "FAQ", href: "/faq" },
+  { label: "문의하기", href: "/support" },
+  { label: "개인정보처리방침", href: "/privacy" },
+];
+
+/* -------------------------------------------------
    🧩 랜딩 페이지 — 기능 소개 섹션 1
    - LandingFeatureGrid / LandingFeaturesSection1에서 사용
    - “일간 / 주간 / 월간 / To-Do / 습관 / 메모” 6개 모듈 메타데이터
@@ -98,5 +115,28 @@ export const FEATURES: FeatureItem[] = [
     description: "중요한 생각과 아이디어를 기록",
     iconName: "stickyNote",
     previewImageSrc: "/images/feature-memo.png",
+  },
+];
+
+/* -------------------------------------------------
+   🧩 랜딩 페이지 — 특별한 기능 소개 섹션
+   - LandingSpecialFeatureGrid 사용
+   ------------------------------------------------- */
+
+export const SPECIAL_FEATURES: SpecialFeatureItem[] = [
+  {
+    title: "스마트 스케줄링",
+    description: "AI가 추천하는 최적의 일정 배치로 효율성을 극대화하세요.",
+    iconName: "calendar",
+  },
+  {
+    title: "팀 협업",
+    description: "팀원들과 실시간으로 일정을 공유하고 함께 작업하세요.",
+    iconName: "users",
+  },
+  {
+    title: "스마트 알림",
+    description: "중요한 일정을 놓치지 않도록 맞춤형 알림을 받아보세요.",
+    iconName: "bellRing",
   },
 ];

@@ -1,27 +1,15 @@
+import { PRODUCTLINKS, SUPPORTLINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { FooterLink } from "@/types/landing";
 import Image from "next/image";
 import Link from "next/link";
 import { LandingCopyright } from "./LandingCopyright";
 import { LandingFooterColumn } from "./LandingFooterColumn";
 
 export function LandingFooter() {
-  const productLinks: FooterLink[] = [
-    { label: "기능 소개", href: "/features" },
-    { label: "요금제", href: "/pricing" },
-    { label: "업데이트", href: "/changelog" },
-  ];
-
-  const supportLinks: FooterLink[] = [
-    { label: "FAQ", href: "/faq" },
-    { label: "문의하기", href: "/support" },
-    { label: "개인정보처리방침", href: "/privacy" },
-  ];
-
   return (
     <footer
       role="contentinfo"
-      className="border-t border-[var(--color-gray-100)] bg-[var(--color-gray-50)] text-[var(--color-gray-600)]"
+      className="border-t border-[var(--color-gray-100)] bg-[var(--color-gray-50)] text-[var(--color-gray-600)] mt-30"
     >
       <div
         className={cn(
@@ -42,7 +30,7 @@ export function LandingFooter() {
               "md:row-auto md:justify-self-start",
             )}
           >
-            <LandingFooterColumn title="제품" links={productLinks} />
+            <LandingFooterColumn title="제품" links={PRODUCTLINKS} />
           </div>
 
           {/* 로고 블록*/}
@@ -78,7 +66,7 @@ export function LandingFooter() {
               "md:row-auto md:justify-self-end",
             )}
           >
-            <LandingFooterColumn title="지원" links={supportLinks} />
+            <LandingFooterColumn title="지원" links={SUPPORTLINKS} />
           </div>
         </div>
 
