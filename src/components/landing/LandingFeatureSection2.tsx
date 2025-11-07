@@ -9,7 +9,7 @@ import type { LandingFeaturesSection2Props } from "@/types/landing";
 export function LandingFeaturesSection2({ className }: LandingFeaturesSection2Props) {
   const { ref, isInView } = useInView({
     threshold: 0.5,
-    once: true,
+    once: false,
   });
   return (
     <section
@@ -19,7 +19,7 @@ export function LandingFeaturesSection2({ className }: LandingFeaturesSection2Pr
       className={cn(
         "grid gap-20",
         "md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-center md:gap-35",
-        "transition-all duration-700 ease-out",
+        "transition-all duration-1000 ease-out",
         isInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10",
         className,
       )}

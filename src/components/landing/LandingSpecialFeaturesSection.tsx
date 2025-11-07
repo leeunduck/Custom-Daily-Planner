@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import type { LandingSpecialFeaturesSectionProps } from "@/types/landing";
 
 export function LandingSpecialFeaturesSection({ className }: LandingSpecialFeaturesSectionProps) {
-  const { ref, isInView } = useInView({ threshold: 0.5 });
+  const { ref, isInView } = useInView({ threshold: 0.5, once: false });
 
   return (
     <section
@@ -18,7 +18,7 @@ export function LandingSpecialFeaturesSection({ className }: LandingSpecialFeatu
         {/* 섹션 인트로: 제목 + 부제 (아래 → 위 슬라이드) */}
         <header
           className={cn(
-            "space-y-4 text-center transition-all duration-700 ease-out",
+            "space-y-4 text-center transition-all duration-1000 ease-out",
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
           )}
         >

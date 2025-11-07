@@ -11,7 +11,7 @@ export function LandingFeaturesSection1({ className }: LandingFeaturesSection1Pr
   const activeFeature = useFeaturePreviewStore((state) => state.activeFeature);
   const { ref, isInView } = useInView({
     threshold: 0.5,
-    once: true,
+    once: false,
   });
 
   return (
@@ -22,7 +22,7 @@ export function LandingFeaturesSection1({ className }: LandingFeaturesSection1Pr
       className={cn(
         "grid gap-18",
         "md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-center",
-        "transition-all duration-800 ease-out",
+        "transition-all duration-1000 ease-out",
         isInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10",
         className,
       )}
