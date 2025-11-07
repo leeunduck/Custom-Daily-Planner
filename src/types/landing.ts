@@ -95,3 +95,10 @@ export interface SpecialFeatureItem {
   description: string;
   iconName: SpecialFeatureIconName;
 }
+
+/* -------------------------------------------------
+   full page 컴포넌트
+   ------------------------------------------------- */
+export interface LandingFullPageWrapperProps {
+  children: React.ReactNode;
+}
