@@ -8,7 +8,7 @@ export function LandingMainSection({ children, className }: LandingMainSectionPr
       className={cn(
         "mx-auto w-full max-w-[128rem] px-6 mt-30",
         "space-y-[25rem]",
-        "md:mt-45 lg:mt-70 md:space-y-[35rem]",
+        "md:mt-45 lg:mt-70 md:space-y-[50rem]",
         className,
       )}
     >

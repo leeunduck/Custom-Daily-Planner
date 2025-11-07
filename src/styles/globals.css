@@ -118,6 +118,12 @@
     color-scheme: light;
   } /* 라이트 고정 */
 
+  html,
+  body {
+    height: 100%;
+    scroll-behavior: smooth;
+  }
+
   html {
     font-size: 62.5%; /* 1rem = 10px */
     font-family: var(--font-sans);
