@@ -42,16 +42,10 @@ function computePlan(props: ButtonProps) {
 
   // 2️⃣ Feature
   if (props.preset === "feature") {
-    const radius = props.radius ?? "2xl";
+    const size = props.size ?? "sm";
 
-    const classes = getButtonClasses("feature", { radius });
-    const native = omitKeys(props, [
-      "preset",
-      "radius",
-      "className",
-      "asChild",
-      "children",
-    ] as const);
+    const classes = getButtonClasses("feature", { size });
+    const native = omitKeys(props, ["preset", "size", "className", "asChild", "children"] as const);
     return { asChild, className, children, classes, native };
   }
 
