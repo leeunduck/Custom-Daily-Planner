@@ -20,7 +20,7 @@ export const FeatureButton = React.forwardRef<HTMLButtonElement, FeatureGroupBut
       icon,
       title,
       description,
-      radius = "2xl",
+      size = "sm",
       iconRadius = "lg",
       className,
       // 안전 가드: 외부에서 type을 바꿔도 기본은 "button"
@@ -39,9 +39,9 @@ export const FeatureButton = React.forwardRef<HTMLButtonElement, FeatureGroupBut
       <Button
         ref={ref}
         preset="feature"
-        radius={radius}
+        size={size}
         type={type ?? "button"}
-        className={cn("h-[6.4rem] w-[29.6rem] justify-start px-[2.0rem]", className)}
+        className={cn("md:h-[6.4rem] md:w-[29.6rem] md:px-[2.0rem]", className)}
         aria-label={ariaLabel}
         {...rest}
       >
@@ -50,7 +50,8 @@ export const FeatureButton = React.forwardRef<HTMLButtonElement, FeatureGroupBut
             <span
               aria-hidden="true"
               className={cn(
-                "inline-flex h-[4.5rem] w-[4.5rem] shrink-0 items-center justify-center",
+                "inline-flex h-[3rem] w-[3rem] shrink-0 items-center justify-center",
+                "md:h-[4.5rem] md:w-[4.5rem]",
                 iconBoxRadius,
                 "bg-[var(--color-white)]",
                 "border border-[var(--color-gray-300)]",
@@ -62,9 +63,13 @@ export const FeatureButton = React.forwardRef<HTMLButtonElement, FeatureGroupBut
           ) : null}
 
           <span className="flex min-w-0 flex-col text-left">
-            <span className="t-16-b text-[var(--color-gray-900)] truncate">{title}</span>
+            <span className={cn("t-12-b text-[var(--color-gray-900)] truncate", "md:t-16-b")}>
+              {title}
+            </span>
             {description ? (
-              <span className="t-14-m text-[var(--color-gray-600)] truncate">{description}</span>
+              <span className={cn("t-10-m text-[var(--color-gray-600)] truncate", "md:t-14-m")}>
+                {description}
+              </span>
             ) : null}
           </span>
         </span>

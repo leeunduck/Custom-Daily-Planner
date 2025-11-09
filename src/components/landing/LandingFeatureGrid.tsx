@@ -15,7 +15,7 @@ export function LandingFeatureGrid({ className }: LandingFeatureGridProps) {
       {FEATURES.map((feature) => (
         <FeatureButton
           key={feature.title}
-          icon={<Icon name={feature.iconName} size={19} />}
+          icon={<Icon name={feature.iconName} className={cn("w-5 h-5", "md:w-8 md:h-8")} />}
           title={feature.title}
           description={feature.description}
           onMouseEnter={() => setActiveFeature(feature)}

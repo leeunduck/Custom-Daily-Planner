@@ -18,17 +18,17 @@ export function LandingSpecialFeaturesSection({ className }: LandingSpecialFeatu
         {/* 섹션 인트로: 제목 + 부제 (아래 → 위 슬라이드) */}
         <header
           className={cn(
-            "space-y-4 text-center transition-all duration-1000 ease-out",
+            "space-y-3 text-center transition-all duration-1000 ease-out",
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
           )}
         >
           <h2
             id="landing-special-features-title"
-            className="t-30-b md:t-40-b text-[var(--color-gray-900)]"
+            className="t-26-b md:t-40-b text-[var(--color-gray-900)]"
           >
             PlanMate의 특별한 기능들
           </h2>
-          <p className="t-14-m md:t-16-m text-[var(--color-gray-600)]">
+          <p className="t-12-m md:t-16-m text-[var(--color-gray-600)]">
             당신의 생산성을 높이는 스마트한 도구들
           </p>
         </header>

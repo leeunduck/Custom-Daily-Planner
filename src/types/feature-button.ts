@@ -1,7 +1,10 @@
 import type * as React from "react";
 
-/** 공통 스케일 */
-export type Radius = "sm" | "md" | "lg" | "xl" | "2xl";
+/** Feature 버튼 사이즈 스케일 (Button preset과 동일) */
+export type FeatureSize = "sm" | "md";
+
+/** 아이콘 박스 라운드 스케일 */
+export type IconRadius = "sm" | "md" | "lg" | "xl" | "2xl";
 
 /** 네이티브 버튼 프롭(불필요/충돌 키 제거) */
 type NativeButtonProps = Omit<
@@ -17,9 +20,6 @@ type NativeButtonProps = Omit<
 /** 내부 조합에서 사용하지 말아야 할 키를 미리 차단(컴파일 타임 오류) */
 type DisallowedPresetKeys = {
   preset?: never;
-  intent?: never;
-  glow?: never;
-  pill?: never;
 };
 
 /** FeatureGroupButton 전용 프롭 (콘텐츠/구성 전담) */
@@ -30,10 +30,10 @@ export interface FeatureGroupButtonProps extends NativeButtonProps, DisallowedPr
   title: string;
   /** 보조 설명(선택) */
   description?: string;
-  /** 바깥 곡률(테마 변수 매핑) */
-  radius?: Radius;
+  /** Feature 버튼 사이즈 (Button preset과 동일) */
+  size?: FeatureSize;
   /** 아이콘 박스 곡률(테마 변수 매핑) */
-  iconRadius?: Radius;
+  iconRadius?: IconRadius;
   /** 유틸 클래스 */
   className?: string;
 }

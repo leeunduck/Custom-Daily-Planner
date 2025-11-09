@@ -4,10 +4,7 @@ export const heroButtonVariants = cva(
   [
     // Layout
     "inline-flex items-center justify-center",
-    "h-[5.4rem] px-[3rem] cursor-pointer",
-
-    // Typography (from globals.css)
-    "t-18-m",
+    "cursor-pointer rounded-full",
 
     // Transitions & a11y
     "transition-[color,background-color,border-color,transform] duration-200",
@@ -21,14 +18,10 @@ export const heroButtonVariants = cva(
   ].join(" "),
   {
     variants: {
-      intent: { primary: "" },
-      glow: { true: "shadow-[0_6px_16px_0_rgba(0,0,0,0.08)]", false: "" },
-      pill: { true: "rounded-full", false: "" },
+      size: { md: "t-18-m px-[3rem] h-[5.4rem]", sm: "t-12-m px-[1.2rem] h-[3.7rem]" },
     },
     defaultVariants: {
-      intent: "primary",
-      glow: false,
-      pill: true,
+      size: "md",
     },
   },
 );
