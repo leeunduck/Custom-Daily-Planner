@@ -33,20 +33,10 @@ function computePlan(props: ButtonProps) {
 
   // 1️⃣ Hero
   if (props.preset === "hero") {
-    const intent = props.intent ?? "primary";
-    const glow = props.glow ?? false;
-    const pill = props.pill ?? true;
+    const size = props.size ?? "sm";
 
-    const classes = getButtonClasses("hero", { intent, glow, pill });
-    const native = omitKeys(props, [
-      "preset",
-      "intent",
-      "glow",
-      "pill",
-      "className",
-      "asChild",
-      "children",
-    ] as const);
+    const classes = getButtonClasses("hero", { size });
+    const native = omitKeys(props, ["preset", "size", "className", "asChild", "children"] as const);
     return { asChild, className, children, classes, native };
   }
 

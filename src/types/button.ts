@@ -3,7 +3,7 @@ import type { VariantProps } from "class-variance-authority";
 import type { ButtonHTMLAttributes } from "react";
 
 export type ButtonPreset = "hero" | "feature" | "auth" | "signup" | "cta" | "back";
-export type ButtonIntent = "primary";
+export type HeroSize = "sm" | "md";
 export type Radius = "sm" | "md" | "lg" | "xl" | "2xl";
 export type AuthColor = "black" | "white";
 export type SignupBg = "basic" | "google" | "kakao";
@@ -17,12 +17,11 @@ export interface BaseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>
 /** hero 전용 */
 export type HeroProps = BaseButtonProps & {
   preset: "hero";
-  intent?: ButtonIntent;
-  glow?: boolean;
-  pill?: boolean;
+  size?: HeroSize;
   // 금지
   radius?: never;
   color?: never;
+  bg?: never;
 };
 
 /** feature 전용 */
@@ -30,9 +29,6 @@ export type FeatureProps = BaseButtonProps & {
   preset: "feature";
   radius?: Radius;
   // 금지
-  intent?: never;
-  glow?: never;
-  pill?: never;
   color?: never;
 };
 
@@ -41,9 +37,6 @@ export type AuthProps = BaseButtonProps & {
   preset: "auth";
   color?: AuthColor;
   // 금지
-  intent?: never;
-  glow?: never;
-  pill?: never;
   radius?: never;
 };
 
@@ -52,9 +45,6 @@ export type SignupProps = BaseButtonProps & {
   preset: "signup";
   bg?: SignupBg;
   // 금지
-  intent?: never;
-  glow?: never;
-  pill?: never;
   radius?: never;
   color?: never;
 };
@@ -64,9 +54,6 @@ export type CtaProps = BaseButtonProps & {
   preset: "cta";
   disabled?: boolean;
   // 금지
-  intent?: never;
-  glow?: never;
-  pill?: never;
   radius?: never;
   color?: never;
   bg?: never;
@@ -77,9 +64,6 @@ export type BackProps = BaseButtonProps &
   VariantProps<typeof backButtonVariants> & {
     preset: "back";
     // 금지
-    intent?: never;
-    glow?: never;
-    pill?: never;
     radius?: never;
     color?: never;
     bg?: never;

@@ -16,7 +16,7 @@ type SignupVariantProps = VariantProps<typeof signupButtonVariants>;
 type CtaVariantProps = VariantProps<typeof ctaButtonVariants>;
 type BackVariantProps = VariantProps<typeof backButtonVariants>;
 
-type HeroOpts = Partial<Pick<HeroVariantProps, "intent" | "glow" | "pill">>;
+type HeroOpts = Partial<Pick<HeroVariantProps, "size">>;
 type FeatureOpts = Partial<Pick<FeatureVariantProps, "radius">>;
 type AuthOpts = Partial<Pick<AuthVariantProps, "color">>;
 type SignupOpts = Partial<Pick<SignupVariantProps, "bg">>;
@@ -38,8 +38,8 @@ export function getButtonClasses(
 ): string {
   switch (preset) {
     case "hero": {
-      const { intent, glow, pill } = opts as HeroOpts;
-      return heroButtonVariants({ intent, glow, pill });
+      const { size } = opts as HeroOpts;
+      return heroButtonVariants({ size });
     }
     case "feature": {
       const { radius } = opts as FeatureOpts;
