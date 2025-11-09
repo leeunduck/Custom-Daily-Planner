@@ -9,6 +9,7 @@ export function LandingHeroCtas() {
       <Link href="/login">
         <Button
           preset="hero"
+          size="sm"
           className={cn("animate-bounce", "md:t-18-m md:px-[3rem] md:h-[5.4rem]")}
         >
           <span className="inline-flex items-center gap-4">
@@ -18,7 +19,7 @@ export function LandingHeroCtas() {
         </Button>
       </Link>
       <Link href="/login">
-        <Button preset="hero" className="md:t-18-m md:px-[3rem] md:h-[5.4rem]">
+        <Button preset="hero" size="sm" className="md:t-18-m md:px-[3rem] md:h-[5.4rem]">
           <span className="inline-flex items-center gap-4">
             <Icon name="laptop" className="h-6 w-6 md:h-9 md:w-9" />
             <span>Mac</span>
@@ -26,7 +27,7 @@ export function LandingHeroCtas() {
         </Button>
       </Link>
       <Link href="/login">
-        <Button preset="hero" className="md:t-18-m md:px-[3rem] md:h-[5.4rem]">
+        <Button preset="hero" size="sm" className="md:t-18-m md:px-[3rem] md:h-[5.4rem]">
           <span className="inline-flex items-center gap-4">
             <Icon name="smartphone" className="h-6 w-6 md:h-9 md:w-9" />
             <span>iOS</span>
