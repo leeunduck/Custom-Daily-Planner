@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 export const specialFeatureCardVariants = cva(
   [
     // === 레이아웃 스타일 ===
-    "inline flex flex-col justify-center gap-5 p-7 text-center",
+    "inline flex flex-col justify-center text-center",
 
     // === 시각적 효과 ===
     "group relative isolate rounded-xl",
@@ -18,14 +18,14 @@ export const specialFeatureCardVariants = cva(
     variants: {
       // === 크기 variants ===
       size: {
-        sm: "w-[30rem] h-[20rem] p-5 gap-4",
+        sm: "max-w-[26rem] h-[16rem] p-4 gap-2",
         md: "w-[35rem] h-[22rem] p-6 gap-4",
         lg: "max-w-[40rem] h-[25rem] p-7 gap-5",
         xl: "w-[45rem] h-[28rem] p-8 gap-6",
       },
     },
     defaultVariants: {
-      size: "lg",
+      size: "sm",
     },
   },
 );
