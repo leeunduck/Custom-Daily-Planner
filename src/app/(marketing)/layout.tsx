@@ -12,14 +12,10 @@ export const metadata = makePageMetadata({
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ko">
-      <body>
-        <LandingWrapper>
-          <LandingHeader />
-          <LandingMainSection className="flex-1">{children}</LandingMainSection>
-          <LandingFooter />
-        </LandingWrapper>
-      </body>
-    </html>
+    <LandingWrapper>
+      <LandingHeader />
+      <LandingMainSection className="flex-1">{children}</LandingMainSection>
+      <LandingFooter />
+    </LandingWrapper>
   );
 }
