@@ -1,3 +1,6 @@
+import { AuthHeader } from "@/components/auth/AuthHeader";
+import { LoginPageTitle } from "@/components/auth/login/LoginPageTitle";
+import { LoginSubtitle } from "@/components/auth/login/LoginSubtitle";
 import { makePageMetadata } from "@/seo/metadata";
 
 export const metadata = {
@@ -12,12 +15,10 @@ export const metadata = {
 export default function LoginPage() {
   return (
     <>
-      <header className="text-center">
-        {/* TODO: 나중에 AppLogo + LoginPageTitle + LoginSubtitle로 교체 */}
-        <p className="t-14-m text-[var(--color-gray-500)]">PlanMate</p>
-        <h1 className="mt-2 t-24-b text-[var(--color-gray-900)]">로그인</h1>
-        <p className="mt-1 t-14-m text-[var(--color-gray-600)]">오늘도 만나서 반가워요!</p>
-      </header>
+      <AuthHeader>
+        <LoginPageTitle />
+        <LoginSubtitle />
+      </AuthHeader>
 
       <main>
         {/* TODO: 나중에 LoginMain + AuthCard + LoginForm 구조로 확장 */}

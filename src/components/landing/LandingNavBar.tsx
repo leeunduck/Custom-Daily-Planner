@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { AppLogo } from "@/shared/AppLogo";
 import Link from "next/link";
 
 export function LandingNavBar() {
@@ -12,16 +12,7 @@ export function LandingNavBar() {
       aria-label="Global navigation"
     >
       {/* 좌측: 로고 (이미지) */}
-      <Link href="/" aria-label="MyPlanMate 홈으로 이동">
-        <Image
-          src="/images/logo.png"
-          alt="MyPlanMate 로고"
-          width={150}
-          height={150}
-          className={cn("object-contain select-none")}
-          draggable={false}
-        />
-      </Link>
+      <AppLogo />
 
       {/* 우측: 언어 토글 + 로그인 */}
       <div className={cn("flex items-center gap-6", "md:gap-12")}>
