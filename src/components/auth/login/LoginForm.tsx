@@ -88,7 +88,12 @@ export function LoginForm() {
 
       {/* 간편 로그인 + 소셜 버튼 */}
       <div className="flex w-full max-w-[36.6rem] flex-col items-center gap-4 pt-2 mx-auto">
-        <span className="t-14-m text-[var(--color-gray-500)]">간편 로그인</span>
+        {/* 구분선 + 텍스트 */}
+        <div className="flex items-center gap-4 w-full">
+          <div className="h-px flex-1 bg-[var(--color-gray-200)]" />
+          <span className="t-14-m text-[var(--color-gray-500)]">간편 로그인</span>
+          <div className="h-px flex-1 bg-[var(--color-gray-200)]" />
+        </div>
 
         <div className="flex w-full flex-col items-center gap-5">
           <Button type="button" preset="signup" bg="kakao" className="w-full">
