@@ -9,7 +9,7 @@ export const metadata = makePageMetadata({
 export default function AuthLayout({ children }: AuthCommonProps) {
   return (
     <div className="flex items-center justify-center min-h-screen bg-background">
-      <div className="flex flex-col gap-20 w-full max-w-[500px]">{children}</div>
+      <div className="flex flex-col  gap-10 w-full max-w-[450px] mx-10">{children}</div>
     </div>
   );
 }

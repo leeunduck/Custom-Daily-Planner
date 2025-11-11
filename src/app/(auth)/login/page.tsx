@@ -1,4 +1,6 @@
 import { AuthHeader } from "@/components/auth/AuthHeader";
+import { AuthMain } from "@/components/auth/AuthMain";
+import { LoginForm } from "@/components/auth/login/LoginForm";
 import { LoginPageTitle } from "@/components/auth/login/LoginPageTitle";
 import { LoginSubtitle } from "@/components/auth/login/LoginSubtitle";
 import { makePageMetadata } from "@/seo/metadata";
@@ -20,14 +22,9 @@ export default function LoginPage() {
         <LoginSubtitle />
       </AuthHeader>
 
-      <main>
-        {/* TODO: 나중에 LoginMain + AuthCard + LoginForm 구조로 확장 */}
-        <div className="rounded-2xl bg-[var(--color-white)] px-6 py-8 shadow-[var(--shadow-md)]">
-          <p className="t-14-m text-[var(--color-gray-600)]">
-            여기에는 로그인 폼이 들어갈 예정입니다.
-          </p>
-        </div>
-      </main>
+      <AuthMain>
+        <LoginForm />
+      </AuthMain>
     </>
   );
 }

@@ -3,9 +3,9 @@ import type { AuthCommonProps } from "@/types/auth";
 
 export function AuthHeader({ children }: AuthCommonProps) {
   return (
-    <header className="flex flex-col items-center text-center gap-2">
+    <header className="flex flex-col items-center text-center gap-3">
       <AppLogo />
-      <div className="space-y-3">{children}</div>
+      <div>{children}</div>
     </header>
   );
 }
