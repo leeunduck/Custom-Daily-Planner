@@ -1,5 +1,6 @@
 "use client";
 
+import { useFadeSlideInOnMount } from "@/hooks/useMotionPresets";
 import { cn } from "@/lib/utils";
 import { Button } from "@/shared/button";
 import { Icon } from "@/shared/Icon";
@@ -44,11 +45,14 @@ export function LoginForm() {
     setPassword(event.target.value);
   };
 
+  const fadeClass = useFadeSlideInOnMount("up");
+
   return (
     <form
       className={cn(
         "flex flex-col gap-10 rounded-2xl border border-[var(--color-gray-200)] bg-[var(--color-white)] px-4 py-6",
         "md:px-6 md:py-8",
+        fadeClass,
       )}
       aria-label="로그인 폼"
       onSubmit={handleSubmit}
