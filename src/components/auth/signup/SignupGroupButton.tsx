@@ -3,9 +3,9 @@
 import { SIGNUP_BTNS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Button } from "@/shared/button";
+import { Icon } from "@/shared/Icon";
 import Image from "next/image";
 import * as React from "react";
-import { Icon } from "../shared/Icon";
 
 interface Props {
   className?: string;

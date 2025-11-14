@@ -1,3 +1,6 @@
+import { AuthHeader } from "@/components/auth/AuthHeader";
+import { SignupPageTitle } from "@/components/auth/signup/SignupPageTitle";
+import { SignupSubtitle } from "@/components/auth/signup/SignupSubTitle";
 import { makePageMetadata } from "@/seo/metadata";
 
 export const metadata = {
@@ -10,5 +13,12 @@ export const metadata = {
 };
 
 export default function SignupPage() {
-  return <div>회원가입 페이지</div>;
+  return (
+    <>
+      <AuthHeader>
+        <SignupPageTitle />
+        <SignupSubtitle />
+      </AuthHeader>
+    </>
+  );
 }
