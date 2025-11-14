@@ -4,7 +4,7 @@ export const signupButtonVariants = cva(
   [
     // Layout (공통)
     "inline-flex items-center justify-center",
-    "max-w-[36.6rem] h-[4.6rem] px-[3rem] rounded-lg cursor-pointer",
+    "max-w-[36.6rem] h-[6.2rem] px-[3rem] rounded-lg cursor-pointer",
 
     // Typography (공통)
     "t-16-m",

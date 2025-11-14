@@ -1,11 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
-/**
- * 로그인 버튼 컴포넌트의 스타일 variant
- * - 어두운 배경색의 직사각형 버튼
- * - 둥근 모서리와 부드러운 그림자 효과
- * - 중앙 정렬된 텍스트
- */
 export const loginButtonVariants = cva(
   [
     // === 기본 레이아웃 ===
@@ -25,15 +19,27 @@ export const loginButtonVariants = cva(
   ].join(" "),
   {
     variants: {
-      color: {
-        black:
-          "bg-[var(--color-gray-900)] text-[var(--color-white)] hover:bg-[var(--color-gray-600)] hover:shadow-md",
-        white:
-          "bg-[var(--color-white)] text-[var(--color-gray-900)] hover:bg-[var(--color-gray-100)] hover:shadow-md",
+      bg: {
+        basic: [
+          "bg-[var(--color-gray-900)]",
+          "text-[var(--color-white)]",
+          "hover:bg-[var(--color-gray-600)]",
+          "border-0",
+        ].join(" "),
+        google: [
+          "bg-[var(--color-white)] text-[var(--color-gray-900)]",
+          "border border-[var(--color-gray-300)]",
+          "hover:bg-[var(--color-gray-100)]",
+        ].join(" "),
+        kakao: [
+          "bg-[var(--color-yellow-100)] text-[var(--color-gray-900)]",
+          "border-0",
+          "hover:bg-[var(--color-yellow-200)]",
+        ].join(" "),
       },
     },
     defaultVariants: {
-      color: "black",
+      bg: "basic",
     },
   },
 );

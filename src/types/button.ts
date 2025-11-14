@@ -19,8 +19,8 @@ export type HeroProps = BaseButtonProps & {
   preset: "hero";
   size?: Size;
   // 금지
-  color?: never;
   bg?: never;
+  disabled?: never;
 };
 
 /** feature 전용 */
@@ -28,16 +28,17 @@ export type FeatureProps = BaseButtonProps & {
   preset: "feature";
   size?: Size;
   // 금지
-  color?: never;
+  bg?: never;
+  disabled?: never;
 };
 
 /** auth 전용 */
 export type AuthProps = BaseButtonProps & {
   preset: "auth";
-  color?: AuthColor;
+  bg?: SignupBg;
   // 금지
-  size?: Size;
-  bg?: never;
+  size?: never;
+  disabled?: never;
 };
 
 /** signup 전용 */
@@ -46,7 +47,7 @@ export type SignupProps = BaseButtonProps & {
   bg?: SignupBg;
   // 금지
   size?: Size;
-  color?: never;
+  disabled?: never;
 };
 
 /** cta 전용 */
@@ -55,7 +56,6 @@ export type CtaProps = BaseButtonProps & {
   disabled?: boolean;
   // 금지
   size?: Size;
-  color?: never;
   bg?: never;
 };
 
@@ -65,8 +65,8 @@ export type BackProps = BaseButtonProps &
     preset: "back";
     // 금지
     size?: Size;
-    color?: never;
     bg?: never;
+    disabled?: never;
   };
 
 /** 전체 버튼 타입 유니온 */

@@ -93,9 +93,9 @@ function computePlan(props: ButtonProps) {
   }
 
   // 6️⃣ Auth (기본)
-  const color = props.color ?? "black";
-  const classes = getButtonClasses("auth", { color });
-  const native = omitKeys(props, ["preset", "color", "className", "asChild", "children"] as const);
+  const bg = props.bg ?? "basic";
+  const classes = getButtonClasses("auth", { bg });
+  const native = omitKeys(props, ["preset", "bg", "className", "asChild", "children"] as const);
   return { asChild, className, children, classes, native };
 }
 

@@ -18,7 +18,7 @@ type BackVariantProps = VariantProps<typeof backButtonVariants>;
 
 type HeroOpts = Partial<Pick<HeroVariantProps, "size">>;
 type FeatureOpts = Partial<Pick<FeatureVariantProps, "size">>;
-type AuthOpts = Partial<Pick<AuthVariantProps, "color">>;
+type AuthOpts = Partial<Pick<AuthVariantProps, "bg">>;
 type SignupOpts = Partial<Pick<SignupVariantProps, "bg">>;
 type CtaOpts = Partial<Pick<CtaVariantProps, "state">>;
 type BackOpts = Partial<Pick<BackVariantProps, "size" | "tone" | "underline">>;
@@ -46,8 +46,8 @@ export function getButtonClasses(
       return featureButtonVariants({ size });
     }
     case "auth": {
-      const { color } = opts as AuthOpts;
-      return loginButtonVariants({ color });
+      const { bg } = opts as AuthOpts;
+      return loginButtonVariants({ bg });
     }
     case "signup": {
       const { bg } = opts as SignupOpts;

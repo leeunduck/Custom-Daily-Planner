@@ -126,7 +126,7 @@ export function LoginForm() {
 
       {/* 로그인 버튼 */}
       <div className="w-full max-w-[36.6rem] mx-auto">
-        <Button type="submit" preset="signup" bg="basic" className="w-full">
+        <Button type="submit" preset="auth" bg="basic" className="w-full">
           로그인
         </Button>
       </div>
@@ -162,11 +162,11 @@ export function LoginForm() {
         </div>
 
         <div className="flex w-full flex-col items-center gap-5">
-          <Button type="button" preset="signup" bg="kakao" className="w-full">
+          <Button type="button" preset="auth" bg="kakao" className="w-full">
             <span>카카오톡으로 로그인</span>
           </Button>
 
-          <Button type="button" preset="signup" bg="google" className="w-full">
+          <Button type="button" preset="auth" bg="google" className="w-full">
             <span>구글로 로그인</span>
           </Button>
         </div>
