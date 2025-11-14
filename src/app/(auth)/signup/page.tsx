@@ -1,4 +1,6 @@
 import { AuthHeader } from "@/components/auth/AuthHeader";
+import { AuthMain } from "@/components/auth/AuthMain";
+import { SignupGroupButton } from "@/components/auth/signup/SignupGroupButton";
 import { SignupPageTitle } from "@/components/auth/signup/SignupPageTitle";
 import { SignupSubtitle } from "@/components/auth/signup/SignupSubTitle";
 import { makePageMetadata } from "@/seo/metadata";
@@ -19,6 +21,10 @@ export default function SignupPage() {
         <SignupPageTitle />
         <SignupSubtitle />
       </AuthHeader>
+
+      <AuthMain>
+        <SignupGroupButton />
+      </AuthMain>
     </>
   );
 }

@@ -28,35 +28,6 @@ export const OG_DEFAULT_IMAGE = "/og/og-default.png";
 export const LOCALE = "ko_KR";
 
 /* -------------------------------------------------
-   🪪 회원가입 버튼 목록 (Signup Buttons)
-   - SignupGroupButton에서 사용
-   - bg: cva variant key와 1:1 매핑
-   ------------------------------------------------- */
-
-export const SIGNUP_BTNS = [
-  {
-    key: "email",
-    bg: "basic" as const,
-    label: "일반 회원가입",
-    icon: { kind: "lucide" as const, name: "user-plus2" as const, size: 28 }, // 28px ≒ w-7 h-7
-  },
-  {
-    key: "google",
-    bg: "google" as const,
-    label: "Google로 가입",
-    icon: { kind: "image" as const, src: "/icons/google.svg", width: 36, height: 36 },
-  },
-  {
-    key: "kakao",
-    bg: "kakao" as const,
-    label: "카카오로 가입",
-    icon: { kind: "image" as const, src: "/icons/kakaotalk.svg", width: 36, height: 36 },
-  },
-] as const;
-
-export type SignupButtonKey = (typeof SIGNUP_BTNS)[number]["key"];
-
-/* -------------------------------------------------
    🧩 Layout - Footer
    - LandingFooter에서 사용
    ------------------------------------------------- */
