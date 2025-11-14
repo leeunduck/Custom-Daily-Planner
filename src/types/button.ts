@@ -27,9 +27,9 @@ export type HeroProps = BaseButtonProps & {
 export type FeatureProps = BaseButtonProps & {
   preset: "feature";
   size?: Size;
+  disabled?: boolean;
   // 금지
   bg?: never;
-  disabled?: never;
 };
 
 /** auth 전용 */
