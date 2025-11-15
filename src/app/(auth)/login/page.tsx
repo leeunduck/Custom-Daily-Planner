@@ -1,8 +1,7 @@
 import { AuthHeader } from "@/components/auth/AuthHeader";
 import { AuthMain } from "@/components/auth/AuthMain";
+import { SubTitle, Title } from "@/components/auth/AuthTitle";
 import { LoginForm } from "@/components/auth/login/LoginForm";
-import { LoginPageTitle } from "@/components/auth/login/LoginPageTitle";
-import { LoginSubtitle } from "@/components/auth/login/LoginSubtitle";
 import { makePageMetadata } from "@/seo/metadata";
 
 export const metadata = {
@@ -18,8 +17,8 @@ export default function LoginPage() {
   return (
     <>
       <AuthHeader>
-        <LoginPageTitle />
-        <LoginSubtitle />
+        <Title>로그인</Title>
+        <SubTitle>오늘도 만나서 반가워요!</SubTitle>
       </AuthHeader>
 
       <AuthMain>
