@@ -22,7 +22,7 @@ export const SignupGroupButton = React.forwardRef<HTMLDivElement, SignupGroupBut
         className={cn("flex w-full max-w-[36.6rem] flex-col gap-6 mx-auto", fadeClass, className)}
       >
         {/* 1) 일반 회원가입 → 이메일 회원가입 폼 페이지로 이동 */}
-        <Link href="/signup/email" className="w-full">
+        <Link href="/signup/name" className="w-full">
           <Button
             type="button"
             preset="signup"
