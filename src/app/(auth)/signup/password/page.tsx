@@ -1,3 +1,7 @@
+import { AuthHeader } from "@/components/auth/AuthHeader";
+import { AuthMain } from "@/components/auth/AuthMain";
+import { SubTitle, Title } from "@/components/auth/AuthTitle";
+import { SignupForm } from "@/components/auth/signup/SignupForm";
 import { makePageMetadata } from "@/seo/metadata";
 
 export const metadata = {
@@ -10,5 +14,25 @@ export const metadata = {
 };
 
 export default function SignupPasswordPage() {
-  return <div>회원가입 - 비밀번호 설정 페이지</div>;
+  return (
+    <>
+      <AuthHeader>
+        <Title>비밀번호</Title>
+        <SubTitle>8자 이상 / 특수문자 포함</SubTitle>
+      </AuthHeader>
+
+      <AuthMain>
+        <SignupForm
+          fieldId="signup-password"
+          fieldName="password"
+          label="비밀번호"
+          type="password"
+          placeholder="8자리이상 & 특수문자"
+          autoComplete="password"
+          nextHref="/signup/terms"
+          prevHref="/signup/email"
+        />
+      </AuthMain>
+    </>
+  );
 }
