@@ -2,30 +2,30 @@
 
 import { LandingFeatureText } from "@/components/landing/LandingFeatureText";
 import { LandingLayoutPreview } from "@/components/landing/LandingLayoutPreview";
-import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
+import { fadeInFromLeft, sectionTransition, viewportOnce35 } from "@/lib/variants/motion.landing";
 import type { LandingFeaturesSection2Props } from "@/types/landing";
+import { motion } from "framer-motion";
 
 export function LandingFeaturesSection2({ className }: LandingFeaturesSection2Props) {
-  const { ref, isInView } = useInView({
-    threshold: 0.5,
-    once: false,
-  });
   return (
-    <section
+    <motion.section
       id="landing-features2"
       aria-labelledby="landing-features2-title"
-      ref={ref}
       className={cn(
         "grid gap-20",
         "md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-center md:gap-35",
         "transition-all duration-1000 ease-out",
-        isInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10",
         className,
       )}
+      variants={fadeInFromLeft}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportOnce35}
+      transition={sectionTransition}
     >
       <LandingFeatureText className="md:order-2" />
       <LandingLayoutPreview className="md:order-1" />
-    </section>
+    </motion.section>
   );
 }
