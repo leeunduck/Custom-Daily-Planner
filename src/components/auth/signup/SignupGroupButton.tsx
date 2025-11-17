@@ -1,25 +1,24 @@
 "use client";
 
-import { useFadeSlideInOnMount } from "@/hooks/useMotionPresets";
 import { cn } from "@/lib/utils";
+import { authFadeSlideUp, authTransition } from "@/lib/variants/motion.auth";
 import { Button } from "@/shared/button";
 import { Icon } from "@/shared/Icon";
+import { SignupGroupButtonProps } from "@/types/auth";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 
-interface SignupGroupButtonProps {
-  className?: string;
-}
-
 export const SignupGroupButton = React.forwardRef<HTMLDivElement, SignupGroupButtonProps>(
-  ({ className }, ref) => {
-    const fadeClass = useFadeSlideInOnMount("up");
-
+  ({ className }) => {
     return (
-      <div
-        ref={ref}
-        className={cn("flex w-full max-w-[36.6rem] flex-col gap-6 mx-auto", fadeClass, className)}
+      <motion.div
+        variants={authFadeSlideUp}
+        initial="hidden"
+        animate="visible"
+        transition={authTransition}
+        className={cn("flex w-full max-w-[36.6rem] flex-col gap-6 mx-auto", className)}
       >
         {/* 1) 일반 회원가입 → 이메일 회원가입 폼 페이지로 이동 */}
         <Link href="/signup/name" className="w-full">
@@ -76,7 +75,7 @@ export const SignupGroupButton = React.forwardRef<HTMLDivElement, SignupGroupBut
             <span>카카오로 가입</span>
           </span>
         </Button>
-      </div>
+      </motion.div>
     );
   },
 );

@@ -1,11 +1,12 @@
 "use client";
 
-import { useFadeSlideInOnMount } from "@/hooks/useMotionPresets";
 import { cn } from "@/lib/utils";
+import { authFadeSlideUp, authTransition } from "@/lib/variants/motion.auth";
 import { Button } from "@/shared/button";
 import { Icon } from "@/shared/Icon";
 import { Input } from "@/shared/input";
 import { useAuthFormStore } from "@/stores/authForm.store";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import type { ChangeEvent, FormEvent } from "react";
 
@@ -45,14 +46,15 @@ export function LoginForm() {
     setPassword(event.target.value);
   };
 
-  const fadeClass = useFadeSlideInOnMount("up");
-
   return (
-    <form
+    <motion.form
+      variants={authFadeSlideUp}
+      initial="hidden"
+      animate="visible"
+      transition={authTransition}
       className={cn(
         "flex flex-col gap-10 rounded-2xl border border-[var(--color-gray-200)] bg-[var(--color-white)] px-4 py-6",
         "md:px-6 md:py-8",
-        fadeClass,
       )}
       aria-label="로그인 폼"
       onSubmit={handleSubmit}
@@ -171,6 +173,6 @@ export function LoginForm() {
           </Button>
         </div>
       </div>
-    </form>
+    </motion.form>
   );
 }
