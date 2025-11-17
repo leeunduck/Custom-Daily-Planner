@@ -1,6 +1,7 @@
 import { AuthHeader } from "@/components/auth/AuthHeader";
-import { SignupPageTitle } from "@/components/auth/signup/SignupPageTitle";
-import { SignupSubtitle } from "@/components/auth/signup/SignupSubTitle";
+import { AuthMain } from "@/components/auth/AuthMain";
+import { SubTitle, Title } from "@/components/auth/AuthTitle";
+import { SignupGroupButton } from "@/components/auth/signup/SignupGroupButton";
 import { makePageMetadata } from "@/seo/metadata";
 
 export const metadata = {
@@ -16,9 +17,13 @@ export default function SignupPage() {
   return (
     <>
       <AuthHeader>
-        <SignupPageTitle />
-        <SignupSubtitle />
+        <Title>회원가입</Title>
+        <SubTitle>원하시는 가입 방식을 선택해주세요.</SubTitle>
       </AuthHeader>
+
+      <AuthMain>
+        <SignupGroupButton />
+      </AuthMain>
     </>
   );
 }

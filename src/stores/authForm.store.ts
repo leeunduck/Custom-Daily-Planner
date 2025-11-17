@@ -1,4 +1,4 @@
-import type { AuthFormState } from "@/types/authForm";
+import type { AuthFormState } from "@/types/auth";
 import { create } from "zustand";
 
 export const useAuthFormStore = create<AuthFormState>((set, get) => ({

@@ -7,6 +7,7 @@ export type Size = "sm" | "md";
 export type Radius = "sm" | "md" | "lg" | "xl" | "2xl";
 export type AuthColor = "black" | "white";
 export type SignupBg = "basic" | "google" | "kakao";
+export type BasicSignupBg = "basic" | "google" | "kakao" | "white";
 
 /** 공통 기본 타입 */
 export interface BaseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -35,7 +36,7 @@ export type FeatureProps = BaseButtonProps & {
 /** auth 전용 */
 export type AuthProps = BaseButtonProps & {
   preset: "auth";
-  bg?: SignupBg;
+  bg?: BasicSignupBg;
   // 금지
   size?: never;
   disabled?: never;

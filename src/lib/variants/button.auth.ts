@@ -36,6 +36,7 @@ export const loginButtonVariants = cva(
           "border-0",
           "hover:bg-[var(--color-yellow-200)]",
         ].join(" "),
+        white: ["bg-withe", "text-black", "hover:bg-[var(--color-gray-100)]"],
       },
     },
     defaultVariants: {
