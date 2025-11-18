@@ -22,24 +22,33 @@ export interface AuthFormState {
   validateLogin: () => boolean;
 }
 
-export interface SignupFormProps {
+export interface SignupGroupButtonProps {
   className?: string;
-  /** 인풋 id / name */
+}
+
+/** 각 스텝 인풋에 공통으로 필요한 최소 정보 */
+export interface SignupFieldBaseProps {
   fieldId: string;
   fieldName: string;
-  /** 라벨 텍스트 (예: 이름, 이메일) */
-  label: string;
-  /** 인풋 타입 */
-  type?: "text" | "email" | "password";
-  /** placeholder */
-  placeholder?: string;
-  /** autoComplete 힌트 */
-  autoComplete?: string;
+}
 
-  /** 임시: 다음 스텝으로 이동할 링크 */
+/** 회원가입 스텝 */
+export type SignupStepKey = "email" | "name" | "password" | "terms";
+
+export interface StepTransitionWrapperProps {
+  stepKey: string;
+  direction: "forward" | "backward";
+  children: React.ReactNode;
+}
+
+// 스텝 이동 방향
+export type StepDirection = "forward" | "backward";
+
+export interface SignupFormProps {
+  className?: string;
+  fieldId: string;
+  fieldName: string;
   nextHref: string;
-
-  /** 임시: 이전 스텝으로 이동할 링크 (있을 때만 버튼 노출) */
   prevHref?: string;
 }
 
