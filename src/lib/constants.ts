@@ -111,3 +111,11 @@ export const SPECIAL_FEATURES: SpecialFeatureItem[] = [
     iconName: "bellRing",
   },
 ];
+
+/* ----------------------------------------------
+   🧭 회원가입 단계 — 순서 정의 (Zustand + Router 공용)
+   ---------------------------------------------- */
+
+import type { SignupStepKey } from "@/types/auth";
+
+export const SIGNUP_STEP_ORDER: SignupStepKey[] = ["email", "name", "password", "terms"];

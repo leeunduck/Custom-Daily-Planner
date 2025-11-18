@@ -25,10 +25,6 @@ export default function SignupTermsPage() {
         <SignupForm
           fieldId="signup-terms"
           fieldName="text"
-          label="약관동의"
-          type="text"
-          placeholder="띠용"
-          autoComplete="password"
           nextHref="/signup/terms"
           prevHref="/signup/password"
         />

@@ -25,10 +25,6 @@ export default function SignupEmailPage() {
         <SignupForm
           fieldId="signup-email"
           fieldName="email"
-          label="이메일"
-          type="email"
-          placeholder="example@email.com"
-          autoComplete="email"
           nextHref="/signup/password"
           prevHref="/signup/name"
         />

@@ -22,14 +22,7 @@ export default function SignupNamePage() {
       </AuthHeader>
 
       <AuthMain>
-        <SignupForm
-          fieldId="signup-name"
-          fieldName="name"
-          label="이름"
-          placeholder="이름을 입력해주세요"
-          autoComplete="name"
-          nextHref="/signup/email"
-        />
+        <SignupForm fieldId="signup-name" fieldName="name" nextHref="/signup/email" />
       </AuthMain>
     </>
   );

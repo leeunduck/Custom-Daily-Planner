@@ -44,12 +44,12 @@ export interface StepTransitionWrapperProps {
 // 스텝 이동 방향
 export type StepDirection = "forward" | "backward";
 
-export interface SignupFormProps {
-  className?: string;
-  fieldId: string;
-  fieldName: string;
-  nextHref: string;
-  prevHref?: string;
+export interface SignupStepState {
+  step: SignupStepKey;
+  direction: StepDirection;
+  goTo: (next: SignupStepKey) => void;
+  goNext: () => void;
+  goPrev: () => void;
 }
 
 export interface SignupStepIndicatorProps {
@@ -58,4 +58,12 @@ export interface SignupStepIndicatorProps {
   /** 전체 스텝 수 (기본 4) */
   totalSteps?: number;
   className?: string;
+}
+
+export interface SignupFormProps {
+  className?: string;
+  fieldId: string;
+  fieldName: string;
+  nextHref: string;
+  prevHref?: string;
 }

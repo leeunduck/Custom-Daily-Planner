@@ -25,10 +25,6 @@ export default function SignupPasswordPage() {
         <SignupForm
           fieldId="signup-password"
           fieldName="password"
-          label="비밀번호"
-          type="password"
-          placeholder="8자리이상 & 특수문자"
-          autoComplete="password"
           nextHref="/signup/terms"
           prevHref="/signup/email"
         />
