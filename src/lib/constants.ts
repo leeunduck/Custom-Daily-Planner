@@ -116,12 +116,12 @@ export const SPECIAL_FEATURES: SpecialFeatureItem[] = [
    🧭 회원가입 단계 — 순서 정의 (Zustand + Router 공용)
    ---------------------------------------------- */
 
-import type { SignupStepFieldMeta, SignupStepKey } from "@/types/auth";
+import type { ForgotPasswordStepKey, SignupStepKey, StepFieldMeta } from "@/types/auth";
 
 export const SIGNUP_STEP_ORDER: SignupStepKey[] = ["email", "name", "password", "terms"];
 
 /** 스텝별 필드 id/name 메타 */
-export const SIGNUP_STEP_FIELD_META: Record<SignupStepKey, SignupStepFieldMeta> = {
+export const SIGNUP_STEP_FIELD_META: Record<SignupStepKey, StepFieldMeta> = {
   email: {
     fieldId: "email",
     fieldName: "email",
@@ -158,5 +158,46 @@ export const SIGNUP_STEP_COPY: Record<SignupStepKey, { title: string; subtitle: 
   terms: {
     title: "약관 동의",
     subtitle: "서비스 이용약관과 개인정보 처리방침에 동의해 주세요.",
+  },
+};
+
+/* ----------------------------------------------
+   ⚙️ 비밀번호 찾기 — 순서 정의 (Zustand + Router 공용)
+   ---------------------------------------------- */
+/** ✅ 비밀번호 재설정 스텝 순서 (3단계) */
+export const FORGOT_PASSWORD_STEP_ORDER: ForgotPasswordStepKey[] = ["email", "verify", "reset"];
+
+/** ✅ 비밀번호 재설정 스텝별 타이틀/서브카피 */
+export const FORGOT_PASSWORD_STEP_COPY: Record<
+  ForgotPasswordStepKey,
+  { title: string; subtitle: string }
+> = {
+  email: {
+    title: "이메일 입력",
+    subtitle: "계정을 찾기 위해 가입하신 이메일을 입력해주세요.",
+  },
+  verify: {
+    title: "이메일 인증",
+    subtitle: "메일로 전송된 인증 코드를 입력해주세요.",
+  },
+  reset: {
+    title: "비밀번호 재설정",
+    subtitle: "새 비밀번호를 설정해 주세요.",
+  },
+};
+
+/** 스텝별 필드 id/name 메타 */
+export const FORGOT_PASSWORD_STEP_FIELD_META: Record<ForgotPasswordStepKey, StepFieldMeta> = {
+  email: {
+    fieldId: "forgot-email",
+    fieldName: "email",
+  },
+  verify: {
+    fieldId: "verify",
+    fieldName: "verificationCode",
+  },
+  reset: {
+    fieldId: "new-password",
+    fieldName: "newPassword",
   },
 };

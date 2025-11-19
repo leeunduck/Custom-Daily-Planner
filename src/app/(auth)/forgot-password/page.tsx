@@ -1,3 +1,6 @@
+import { AuthMain } from "@/components/auth/AuthMain";
+import { ForgotPasswordForm } from "@/components/auth/forgotPassword/ForgotPasswordForm";
+import { ForgotPasswordHeader } from "@/components/auth/forgotPassword/ForgotPasswordHeader";
 import { makePageMetadata } from "@/seo/metadata";
 
 export const metadata = {
@@ -10,5 +13,12 @@ export const metadata = {
 };
 
 export default function ForgotPasswordPage() {
-  return <div>비밀번호 찾기 - 이메일 입력 페이지</div>;
+  return (
+    <>
+      <ForgotPasswordHeader />
+      <AuthMain flow="forgot">
+        <ForgotPasswordForm />
+      </AuthMain>
+    </>
+  );
 }
