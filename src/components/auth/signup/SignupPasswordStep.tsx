@@ -1,9 +1,9 @@
 "use client";
 
 import { Input } from "@/shared/input";
-import type { SignupStepFieldMeta } from "@/types/auth";
+import type { StepFieldMeta } from "@/types/auth";
 
-export function SignupPasswordStep({ fieldId, fieldName }: SignupStepFieldMeta) {
+export function SignupPasswordStep({ fieldId, fieldName }: StepFieldMeta) {
   return (
     <>
       <div className="flex flex-col gap-2">

@@ -4,7 +4,6 @@ import { SIGNUP_STEP_FIELD_META, SIGNUP_STEP_ORDER } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Button } from "@/shared/button";
 import { useSignupStepStore } from "@/stores/signupStepStore";
-import type { SignupFormProps } from "@/types/auth";
 import Link from "next/link";
 import { AuthStepTransition } from "../AuthStepTransition";
 import { StepIndicator } from "../StepIndicator";
@@ -13,7 +12,7 @@ import { SignupNameStep } from "./SignupNameStep";
 import { SignupPasswordStep } from "./SignupPasswordStep";
 import { SignupTermsStep } from "./SignupTermsStep";
 
-export function SignupForm({ className }: SignupFormProps) {
+export function SignupForm() {
   const { step, direction, goNext, goPrev } = useSignupStepStore();
 
   const isEmailStep = step === "email";
@@ -34,7 +33,6 @@ export function SignupForm({ className }: SignupFormProps) {
         className={cn(
           "flex flex-col items-center gap-10 rounded-2xl border border-[var(--color-gray-200)] bg-[var(--color-white)] px-4 py-6",
           "md:px-6 md:py-8",
-          className,
         )}
       >
         <StepIndicator currentStep={currentStepNumber} className="mb-3" />
