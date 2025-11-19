@@ -42,4 +42,11 @@ export const useSignupStepStore = create<SignupStepState>((set, get) => ({
       set({ step: prev, direction: "backward" });
     }
   },
+
+  reset: () => {
+    set({
+      step: "email",
+      direction: "forward",
+    });
+  },
 }));

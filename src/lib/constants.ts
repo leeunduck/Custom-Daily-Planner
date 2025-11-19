@@ -116,6 +116,47 @@ export const SPECIAL_FEATURES: SpecialFeatureItem[] = [
    🧭 회원가입 단계 — 순서 정의 (Zustand + Router 공용)
    ---------------------------------------------- */
 
-import type { SignupStepKey } from "@/types/auth";
+import type { SignupStepFieldMeta, SignupStepKey } from "@/types/auth";
 
 export const SIGNUP_STEP_ORDER: SignupStepKey[] = ["email", "name", "password", "terms"];
+
+/** 스텝별 필드 id/name 메타 */
+export const SIGNUP_STEP_FIELD_META: Record<SignupStepKey, SignupStepFieldMeta> = {
+  email: {
+    fieldId: "email",
+    fieldName: "email",
+  },
+  name: {
+    fieldId: "name",
+    fieldName: "name",
+  },
+  password: {
+    fieldId: "password",
+    fieldName: "password",
+  },
+  terms: {
+    // terms 단계는 실제 input 하나에 묶이는 건 아니지만,
+    // 라벨/aria 연결용으로 기본 값만 잡아둔다.
+    fieldId: "terms",
+    fieldName: "terms",
+  },
+};
+
+export const SIGNUP_STEP_COPY: Record<SignupStepKey, { title: string; subtitle: string }> = {
+  email: {
+    title: "이메일",
+    subtitle: "계정으로 사용할 이메일을 알려주세요.",
+  },
+  name: {
+    title: "이름",
+    subtitle: "플래너에서 사용할 이름을 입력해주세요.",
+  },
+  password: {
+    title: "비밀번호 설정",
+    subtitle: "안전하게 사용할 비밀번호를 만들어 주세요.",
+  },
+  terms: {
+    title: "약관 동의",
+    subtitle: "서비스 이용약관과 개인정보 처리방침에 동의해 주세요.",
+  },
+};

@@ -1,9 +1,9 @@
 "use client";
 
 import { Input } from "@/shared/input";
-import type { SignupFieldBaseProps } from "@/types/auth";
+import type { SignupStepFieldMeta } from "@/types/auth";
 
-export function SignupNameStep({ fieldId, fieldName }: SignupFieldBaseProps) {
+export function SignupNameStep({ fieldId, fieldName }: SignupStepFieldMeta) {
   return (
     <div className="flex flex-col gap-3">
       <label htmlFor={fieldId} className="t-14-m text-[var(--color-gray-700)]">

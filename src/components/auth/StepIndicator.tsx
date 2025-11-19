@@ -1,13 +1,9 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { SignupStepIndicatorProps } from "@/types/auth";
+import type { StepIndicatorProps } from "@/types/auth";
 
-export function SignupStepIndicator({
-  currentStep,
-  totalSteps = 4,
-  className,
-}: SignupStepIndicatorProps) {
+export function StepIndicator({ currentStep, totalSteps = 4, className }: StepIndicatorProps) {
   const steps = Array.from({ length: totalSteps }, (_, index) => index + 1);
 
   return (

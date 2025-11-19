@@ -1,19 +1,19 @@
 "use client";
 
-import { SIGNUP_STEP_ORDER } from "@/lib/constants";
+import { SIGNUP_STEP_FIELD_META, SIGNUP_STEP_ORDER } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Button } from "@/shared/button";
 import { useSignupStepStore } from "@/stores/signupStepStore";
 import type { SignupFormProps } from "@/types/auth";
 import Link from "next/link";
+import { AuthStepTransition } from "../AuthStepTransition";
+import { StepIndicator } from "../StepIndicator";
 import { SignupEmailStep } from "./SignupEmailStep";
 import { SignupNameStep } from "./SignupNameStep";
 import { SignupPasswordStep } from "./SignupPasswordStep";
-import { SignupStepIndicator } from "./SignupStepIndicator";
 import { SignupTermsStep } from "./SignupTermsStep";
-import { StepTransitionWrapper } from "./StepTransitionWrapper";
 
-export function SignupForm({ className, fieldId, fieldName }: SignupFormProps) {
+export function SignupForm({ className }: SignupFormProps) {
   const { step, direction, goNext, goPrev } = useSignupStepStore();
 
   const isEmailStep = step === "email";
@@ -24,8 +24,10 @@ export function SignupForm({ className, fieldId, fieldName }: SignupFormProps) {
   const currentStepIndex = SIGNUP_STEP_ORDER.indexOf(step);
   const currentStepNumber = currentStepIndex + 1;
 
+  const { fieldId, fieldName } = SIGNUP_STEP_FIELD_META[step];
+
   return (
-    <StepTransitionWrapper stepKey={step} direction={direction}>
+    <AuthStepTransition stepKey={step} direction={direction}>
       <form
         noValidate
         aria-label="회원가입 폼"
@@ -35,7 +37,7 @@ export function SignupForm({ className, fieldId, fieldName }: SignupFormProps) {
           className,
         )}
       >
-        <SignupStepIndicator currentStep={currentStepNumber} className="mb-3" />
+        <StepIndicator currentStep={currentStepNumber} className="mb-3" />
 
         {/* 메인 필드 영역 */}
         <div className="mx-auto flex w-full max-w-[36.6rem] flex-col gap-12">
@@ -84,6 +86,6 @@ export function SignupForm({ className, fieldId, fieldName }: SignupFormProps) {
           </Link>
         </p>
       </form>
-    </StepTransitionWrapper>
+    </AuthStepTransition>
   );
 }

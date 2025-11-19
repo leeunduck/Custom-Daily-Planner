@@ -1,14 +1,8 @@
-"use client";
-
 import { authStepSlide, authTransition } from "@/lib/variants/motion.auth";
-import { StepTransitionWrapperProps } from "@/types/auth";
+import type { AuthStepTransitionProps } from "@/types/auth";
 import { AnimatePresence, motion } from "framer-motion";
 
-export function StepTransitionWrapper({
-  stepKey,
-  direction,
-  children,
-}: StepTransitionWrapperProps) {
+export function AuthStepTransition({ stepKey, direction, children }: AuthStepTransitionProps) {
   return (
     <AnimatePresence mode="wait" custom={direction}>
       <motion.div

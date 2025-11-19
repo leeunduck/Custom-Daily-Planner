@@ -5,45 +5,14 @@ import { authFadeSlideUp, authTransition } from "@/lib/variants/motion.auth";
 import { Button } from "@/shared/button";
 import { Icon } from "@/shared/Icon";
 import { Input } from "@/shared/input";
-import { useAuthFormStore } from "@/stores/authForm.store";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
-import type { ChangeEvent, FormEvent } from "react";
+import type { FormEvent } from "react";
 
 export function LoginForm() {
-  const {
-    email,
-    password,
-    emailError,
-    passwordError,
-    isPasswordVisible,
-    setEmail,
-    setPassword,
-    clearEmailError,
-    clearPasswordError,
-    togglePasswordVisible,
-    validateLogin,
-  } = useAuthFormStore();
-
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // 기본 form submit 동작 막기
-
-    const isValid = validateLogin();
-    if (!isValid) {
-      // 에러 상태/값 초기화는 스토어에서 이미 처리
-      return;
-    }
-
-    // TODO: 실제 로그인 요청 로직
-    // ex) await login({ email, password });
-  };
-
-  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
   };
 
   return (
@@ -62,66 +31,42 @@ export function LoginForm() {
     >
       {/* 이메일 필드 */}
       <div className="flex w-full max-w-[36.6rem] flex-col gap-4 mx-auto">
-        <div className="flex items-center justify-between">
-          <label htmlFor="login-email" className="t-14-m text-[var(--color-gray-700)]">
-            이메일
-          </label>
-
-          {emailError && (
-            <span className="t-12-m text-[var(--color-red-500)]">이메일 정보를 확인해 주세요.</span>
-          )}
-        </div>
+        <label htmlFor="login-email" className="t-14-m text-[var(--color-gray-700)]">
+          이메일
+        </label>
         <Input
           id="login-email"
           name="email"
           type="email"
           placeholder="이메일을 입력하세요"
-          status={emailError ? "error" : "default"}
+          status="default"
           autoComplete="email"
           required
-          value={email}
-          onChange={handleEmailChange}
-          onFocus={clearEmailError} // 다시 클릭하면 에러 해제 → 검은 테두리
         />
       </div>
 
       {/* 비밀번호 필드 + 표시 토글 */}
       <div className="flex w-full max-w-[36.6rem] flex-col gap-4 mx-auto">
-        <div className="flex items-center justify-between">
-          <label htmlFor="login-password" className="t-14-m text-[var(--color-gray-700)]">
-            비밀번호
-          </label>
-
-          {passwordError && (
-            <span className="t-12-m text-[var(--color-red-500)]">비밀번호를 확인해 주세요.</span>
-          )}
-        </div>
+        <label htmlFor="login-password" className="t-14-m text-[var(--color-gray-700)]">
+          비밀번호
+        </label>
         <div className="relative w-full">
           <Input
             id="login-password"
             name="password"
-            type={isPasswordVisible ? "text" : "password"}
-            status={passwordError ? "error" : "default"}
+            type="password"
+            status="default"
             autoComplete="current-password"
             required
             className="w-full pr-10"
-            value={password}
-            onChange={handlePasswordChange}
-            onFocus={clearPasswordError} // 다시 클릭하면 에러 해제
           />
-          {/* 비밀번호 표시/숨김 토글 아이콘 */}
+          {/* 아이콘 버튼 (레이아웃만, 로직은 나중에) */}
           <button
             type="button"
             className="absolute right-5 top-1/2 -translate-y-1/2 cursor-pointer"
-            aria-label={isPasswordVisible ? "비밀번호 숨기기" : "비밀번호 표시"}
-            aria-pressed={isPasswordVisible}
-            onClick={togglePasswordVisible}
+            aria-label="비밀번호 표시"
           >
-            <Icon
-              name={isPasswordVisible ? "eyeOff" : "eye"}
-              size={18}
-              className="text-[var(--color-gray-500)]"
-            />
+            <Icon name="eye" size={18} className="text-[var(--color-gray-500)]" />
           </button>
         </div>
       </div>
@@ -156,7 +101,8 @@ export function LoginForm() {
       </div>
 
       {/* 간편 로그인 + 소셜 버튼 */}
-      <div className="flex w-full max-w-[36.6rem] flex-col gap-4 pt-2 mx-auto">
+      <div className="flex w-full max-w-[36.6rem] flex-col items-center gap-4 pt-2 mx-auto">
+        {/* 구분선 + 텍스트 */}
         <div className="flex items-center gap-4 w-full">
           <div className="h-px flex-1 bg-[var(--color-gray-200)]" />
           <span className="t-14-m text-[var(--color-gray-500)]">간편 로그인</span>
