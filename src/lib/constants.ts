@@ -201,3 +201,6 @@ export const FORGOT_PASSWORD_STEP_FIELD_META: Record<ForgotPasswordStepKey, Step
     fieldName: "newPassword",
   },
 };
+
+/** 인증번호 자리 수 */
+export const CODE_LENGTH = 4;
