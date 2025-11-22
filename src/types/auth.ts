@@ -33,7 +33,7 @@ export interface StepFieldMeta {
   fieldName: string;
 }
 
-/** ✅ 비밀번호 토글 상태 (공통 훅에서 사용) */
+/** 비밀번호 토글 상태 (공통 훅에서 사용) */
 export interface PasswordVisibilityState {
   isVisible: boolean;
   inputType: "password" | "text";
@@ -42,10 +42,10 @@ export interface PasswordVisibilityState {
   toggleVisibility: () => void;
 }
 
-/** ✅ Auth 폼 submit 핸들러 타입 (실제 onSubmit에 연결되는 함수) */
+/** Auth 폼 submit 핸들러 타입 (실제 onSubmit에 연결되는 함수) */
 export type AuthFormSubmitHandler = (event: FormEvent<HTMLFormElement>) => void;
 
-/** ✅ Auth 폼 콜백 타입 (폼 로직에서 쓰는 콜백, event는 받지 않음) */
+/** Auth 폼 콜백 타입 (폼 로직에서 쓰는 콜백, event는 받지 않음) */
 export type AuthFormSubmitCallback = () => void;
 
 /** 회원가입 다단계 스텝 키 */
@@ -74,31 +74,33 @@ export interface ForgotPasswordStepState {
   reset: () => void;
 }
 
-/** ✅ 로그인 폼 값 */
+/** 로그인 폼 값 */
 export interface LoginFormValues {
   email: string;
   password: string;
 }
 
-/** ✅ 로그인 폼 Zustand 상태 + 액션 */
+/** 로그인 폼 Zustand 상태 + 액션 */
 export interface LoginFormState extends LoginFormValues {
   setEmail: (value: string) => void;
   setPassword: (value: string) => void;
   reset: () => void;
 }
 
-/** ✅ 회원가입 폼 값 (다단계 전체 합본) */
+/** ✅ (회원가입용) Signup 폼 값 */
 export interface SignupFormValues {
   email: string;
   name: string;
   password: string;
+  agreeToTerms: boolean;
 }
 
-/** ✅ 회원가입 폼 Zustand 상태 + 액션 */
+/** ✅ (회원가입용) Signup 폼 Zustand 상태 + 액션 */
 export interface SignupFormState extends SignupFormValues {
   setEmail: (value: string) => void;
   setName: (value: string) => void;
   setPassword: (value: string) => void;
+  setAgreeToTerms: (value: boolean) => void;
   reset: () => void;
 }
 

@@ -1,10 +1,8 @@
-import type { FormEvent } from "react";
+import type { AuthFormSubmitCallback, AuthFormSubmitHandler } from "@/types/auth";
 
-type AuthFormSubmitHandler = (event: FormEvent<HTMLFormElement>) => void;
-
-export function useAuthFormSubmit(onSubmit: AuthFormSubmitHandler): AuthFormSubmitHandler {
+export function useAuthFormSubmit(onSubmitCallback: AuthFormSubmitCallback): AuthFormSubmitHandler {
   return (event) => {
     event.preventDefault();
-    onSubmit(event);
+    onSubmitCallback();
   };
 }
