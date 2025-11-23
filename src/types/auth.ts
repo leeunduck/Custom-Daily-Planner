@@ -1,52 +1,120 @@
-import type { ReactNode } from "react";
+import type { FormEvent, ReactNode } from "react";
 
+/** 공통 children 용 */
 export interface AuthCommonProps {
   children: ReactNode;
 }
 
-export interface AuthFormState {
-  email: string;
-  password: string;
-  emailError: boolean;
-  passwordError: boolean;
-  isPasswordVisible: boolean;
-
-  setEmail: (value: string) => void;
-  setPassword: (value: string) => void;
-
-  clearEmailError: () => void;
-  clearPasswordError: () => void;
-
-  togglePasswordVisible: () => void;
-
-  validateLogin: () => boolean;
+/** AuthMain 전용 props */
+export interface AuthMainProps extends AuthCommonProps {
+  flow?: "login" | "signup" | "forgot";
 }
 
-export interface SignupFormProps {
-  className?: string;
-  /** 인풋 id / name */
-  fieldId: string;
-  fieldName: string;
-  /** 라벨 텍스트 (예: 이름, 이메일) */
-  label: string;
-  /** 인풋 타입 */
-  type?: "text" | "email" | "password";
-  /** placeholder */
-  placeholder?: string;
-  /** autoComplete 힌트 */
-  autoComplete?: string;
+/** 다단계 애니메이션 방향 (공통) */
+export type StepDirection = "forward" | "backward";
 
-  /** 임시: 다음 스텝으로 이동할 링크 */
-  nextHref: string;
-
-  /** 임시: 이전 스텝으로 이동할 링크 (있을 때만 버튼 노출) */
-  prevHref?: string;
+/** Auth 스텝 전환 래퍼 props */
+export interface AuthStepTransitionProps {
+  stepKey: string;
+  direction: StepDirection;
+  children: ReactNode;
 }
 
-export interface SignupStepIndicatorProps {
-  /** 1부터 시작하는 현재 스텝 번호 */
+/** 인디케이터용 (1부터 시작) */
+export interface StepIndicatorProps {
   currentStep: number;
-  /** 전체 스텝 수 (기본 4) */
   totalSteps?: number;
   className?: string;
+}
+
+/** 스텝별 주요 필드 메타 정보 (공통) */
+export interface StepFieldMeta {
+  fieldId: string;
+  fieldName: string;
+}
+
+/** 비밀번호 토글 상태 (공통 훅에서 사용) */
+export interface PasswordVisibilityState {
+  isVisible: boolean;
+  inputType: "password" | "text";
+  iconName: "eye" | "eyeOff";
+  ariaLabel: string;
+  toggleVisibility: () => void;
+}
+
+/** Auth 폼 submit 핸들러 타입 (실제 onSubmit에 연결되는 함수) */
+export type AuthFormSubmitHandler = (event: FormEvent<HTMLFormElement>) => void;
+
+/** Auth 폼 콜백 타입 (폼 로직에서 쓰는 콜백, event는 받지 않음) */
+export type AuthFormSubmitCallback = () => void;
+
+/** 회원가입 다단계 스텝 키 */
+export type SignupStepKey = "email" | "name" | "password" | "terms";
+
+/** 회원가입 스텝/방향 Zustand용 상태 + 액션 */
+export interface SignupStepState {
+  step: SignupStepKey;
+  direction: StepDirection;
+  goTo: (next: SignupStepKey) => void;
+  goNext: () => void;
+  goPrev: () => void;
+  reset: () => void;
+}
+
+/** 회원가입 다단계 스텝 키 */
+export type ForgotPasswordStepKey = "email" | "verify" | "reset";
+
+/** 비밀번호 찾기 스텝/방향 Zustand용 상태 + 액션 */
+export interface ForgotPasswordStepState {
+  step: ForgotPasswordStepKey;
+  direction: StepDirection;
+  goTo: (next: ForgotPasswordStepKey) => void;
+  goNext: () => void;
+  goPrev: () => void;
+  reset: () => void;
+}
+
+/** 로그인 폼 값 */
+export interface LoginFormValues {
+  email: string;
+  password: string;
+}
+
+/** 로그인 폼 Zustand 상태 + 액션 */
+export interface LoginFormState extends LoginFormValues {
+  setEmail: (value: string) => void;
+  setPassword: (value: string) => void;
+  reset: () => void;
+}
+
+/** (회원가입용) Signup 폼 값 */
+export interface SignupFormValues {
+  email: string;
+  name: string;
+  password: string;
+  agreeToTerms: boolean;
+}
+
+/** (회원가입용) Signup 폼 Zustand 상태 + 액션 */
+export interface SignupFormState extends SignupFormValues {
+  setEmail: (value: string) => void;
+  setName: (value: string) => void;
+  setPassword: (value: string) => void;
+  setAgreeToTerms: (value: boolean) => void;
+  reset: () => void;
+}
+
+/** ✅ 비밀번호 재설정 폼 값 */
+export interface ForgotPasswordFormValues {
+  email: string;
+  code: string;
+  newPassword: string;
+}
+
+/** ✅ 비밀번호 재설정 폼 Zustand 상태 + 액션 */
+export interface ForgotPasswordFormState extends ForgotPasswordFormValues {
+  setEmail: (value: string) => void;
+  setCode: (value: string) => void;
+  setNewPassword: (value: string) => void;
+  reset: () => void;
 }

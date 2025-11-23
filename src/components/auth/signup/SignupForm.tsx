@@ -1,76 +1,54 @@
 "use client";
 
+import { SIGNUP_STEP_FIELD_META, SIGNUP_STEP_ORDER } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { Button } from "@/shared/button";
-import { Input } from "@/shared/input";
-import { SignupFormProps } from "@/types/auth";
+import { useSignupStepStore } from "@/stores/signupStepStore";
+
 import Link from "next/link";
-import { SignupStepIndicator } from "./SignupStepIndicator";
 
-export function SignupForm({
-  className,
-  fieldId,
-  fieldName,
-  label,
-  type = "text",
-  placeholder,
-  autoComplete,
-  nextHref,
-  prevHref,
-}: SignupFormProps) {
+import { AuthStepTransition } from "../AuthStepTransition";
+import { StepIndicator } from "../StepIndicator";
+import { SignupEmailStep } from "./SignupEmailStep";
+import { SignupNameStep } from "./SignupNameStep";
+import { SignupPasswordStep } from "./SignupPasswordStep";
+import { SignupTermsStep } from "./SignupTermsStep";
+
+export function SignupForm() {
+  const { step, direction } = useSignupStepStore();
+
+  const currentStepIndex = SIGNUP_STEP_ORDER.indexOf(step);
+  const currentStepNumber = currentStepIndex + 1;
+
+  const { fieldId, fieldName } = SIGNUP_STEP_FIELD_META[step];
+
   return (
-    <form
-      noValidate
-      aria-label={`${label} 입력 폼`}
-      className={cn(
-        "flex flex-col items-center gap-10 rounded-2xl border border-[var(--color-gray-200)] bg-[var(--color-white)] px-4 py-6",
-        "md:px-6 md:py-8",
-        className,
-      )}
-    >
-      <SignupStepIndicator currentStep={2} className="mb-3" />
-      {/* 단일 필드 */}
-      <div className="flex w-full max-w-[36.6rem] flex-col gap-4 mx-auto">
-        <label htmlFor={fieldId} className="t-14-m text-[var(--color-gray-700)]">
-          {label}
-        </label>
-        <Input
-          id={fieldId}
-          name={fieldName}
-          type={type}
-          placeholder={placeholder}
-          status="default"
-          autoComplete={autoComplete}
-        />
-      </div>
-
-      {/* 다음 / 이전 버튼 (임시: Link로 라우팅) */}
-      <div className="flex w-full max-w-[36.6rem] flex-col gap-4 mx-auto">
-        <Link href={nextHref}>
-          <Button type="button" preset="auth" bg="basic" className="w-full">
-            다음
-          </Button>
-        </Link>
-
-        {prevHref && (
-          <Link href={prevHref}>
-            <Button type="button" preset="auth" bg="white" className="w-full">
-              이전
-            </Button>
-          </Link>
+    <AuthStepTransition stepKey={step} direction={direction}>
+      <section
+        aria-label="회원가입 폼"
+        className={cn(
+          "flex flex-col items-center gap-10 rounded-2xl border border-[var(--color-gray-200)] bg-[var(--color-white)] px-4 py-6",
+          "md:px-6 md:py-8",
         )}
-      </div>
+      >
+        <StepIndicator currentStep={currentStepNumber} className="mb-3" />
 
-      {/* 하단 로그인 링크 */}
-      <p className="t-14-m text-center text-[var(--color-gray-600)]">
-        이미 회원이신가요?{" "}
-        <Link
-          href="/login"
-          className="t-14-m text-[var(--color-gray-900)] underline-offset-2 hover:underline"
-        >
-          로그인하기
-        </Link>
-      </p>
-    </form>
+        <div className="mx-auto flex w-full max-w-[36.6rem] flex-col gap-12">
+          {step === "email" && <SignupEmailStep fieldId={fieldId} fieldName={fieldName} />}
+          {step === "name" && <SignupNameStep fieldId={fieldId} fieldName={fieldName} />}
+          {step === "password" && <SignupPasswordStep fieldId={fieldId} fieldName={fieldName} />}
+          {step === "terms" && <SignupTermsStep fieldId={fieldId} fieldName={fieldName} />}
+        </div>
+
+        <p className="t-14-m text-center text-[var(--color-gray-600)]">
+          이미 회원이신가요?{" "}
+          <Link
+            href="/login"
+            className="t-14-m text-[var(--color-gray-900)] underline-offset-2 hover:underline"
+          >
+            로그인하기
+          </Link>
+        </p>
+      </section>
+    </AuthStepTransition>
   );
 }
