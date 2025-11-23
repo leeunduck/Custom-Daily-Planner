@@ -68,7 +68,7 @@ export type ForgotPasswordStepKey = "email" | "verify" | "reset";
 export interface ForgotPasswordStepState {
   step: ForgotPasswordStepKey;
   direction: StepDirection;
-  goTo: (next: SignupStepKey) => void;
+  goTo: (next: ForgotPasswordStepKey) => void;
   goNext: () => void;
   goPrev: () => void;
   reset: () => void;
@@ -87,7 +87,7 @@ export interface LoginFormState extends LoginFormValues {
   reset: () => void;
 }
 
-/** ✅ (회원가입용) Signup 폼 값 */
+/** (회원가입용) Signup 폼 값 */
 export interface SignupFormValues {
   email: string;
   name: string;
@@ -95,7 +95,7 @@ export interface SignupFormValues {
   agreeToTerms: boolean;
 }
 
-/** ✅ (회원가입용) Signup 폼 Zustand 상태 + 액션 */
+/** (회원가입용) Signup 폼 Zustand 상태 + 액션 */
 export interface SignupFormState extends SignupFormValues {
   setEmail: (value: string) => void;
   setName: (value: string) => void;
@@ -107,7 +107,7 @@ export interface SignupFormState extends SignupFormValues {
 /** ✅ 비밀번호 재설정 폼 값 */
 export interface ForgotPasswordFormValues {
   email: string;
-  code: string; // 4자리 인증번호
+  code: string;
   newPassword: string;
 }
 
