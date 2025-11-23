@@ -90,7 +90,7 @@ export function SignupPasswordStep({ fieldId, fieldName }: StepFieldMeta) {
       {/* 2. 비밀번호 확인 필드 */}
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
-          <label htmlFor="signup-password-confirm" className="t-14-m text-[var(--color-gray-700)]">
+          <label htmlFor={`${fieldId}-confirm`} className="t-14-m text-[var(--color-gray-700)]">
             비밀번호 확인
           </label>
 
@@ -101,8 +101,8 @@ export function SignupPasswordStep({ fieldId, fieldName }: StepFieldMeta) {
 
         <div className="relative w-full">
           <Input
-            id="signup-password-confirm"
-            name="passwordConfirm"
+            id={`${fieldId}-confirm`}
+            name={`${fieldName}-confirm`}
             type={inputType}
             status="default"
             autoComplete="new-password"
