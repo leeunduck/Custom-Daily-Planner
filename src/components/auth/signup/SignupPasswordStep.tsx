@@ -11,9 +11,10 @@ import { Button } from "@/shared/button";
 import { Icon } from "@/shared/Icon";
 import { Input } from "@/shared/input";
 
+import { StepFieldMeta } from "@/types/auth";
 import { useState } from "react";
 
-export function SignupPasswordStep() {
+export function SignupPasswordStep({ fieldId, fieldName }: StepFieldMeta) {
   const { password, setPassword } = useSignupFormStore();
   const { goNext, goPrev } = useSignupStepStore();
 
@@ -48,7 +49,7 @@ export function SignupPasswordStep() {
       {/* 1. 비밀번호 필드 */}
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
-          <label htmlFor="signup-password" className="t-14-m text-[var(--color-gray-700)]">
+          <label htmlFor={fieldId} className="t-14-m text-[var(--color-gray-700)]">
             비밀번호
           </label>
 
@@ -59,8 +60,8 @@ export function SignupPasswordStep() {
 
         <div className="relative w-full">
           <Input
-            id="signup-password"
-            name="password"
+            id={fieldId}
+            name={fieldName}
             type={inputType}
             status="default"
             autoComplete="new-password"

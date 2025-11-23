@@ -4,9 +4,10 @@ import { useAuthFormSubmit } from "@/hooks/useAuthFormSubmit";
 import { Button } from "@/shared/button";
 import { useSignupFormStore } from "@/stores/signupFormStore";
 import { useSignupStepStore } from "@/stores/signupStepStore";
+import { StepFieldMeta } from "@/types/auth";
 import { useState } from "react";
 
-export function SignupTermsStep() {
+export function SignupTermsStep({ fieldId, fieldName }: StepFieldMeta) {
   const { email, name, password, agreeToTerms, setAgreeToTerms, reset } = useSignupFormStore();
   const { goPrev } = useSignupStepStore();
 
@@ -57,8 +58,9 @@ export function SignupTermsStep() {
         <label className="flex items-center justify-between gap-4 t-14-m text-[var(--color-gray-900)]">
           <span className="flex items-center gap-2">
             <input
+              id={fieldId}
               type="checkbox"
-              name="agreeServiceTerms"
+              name={fieldName}
               className="h-6 w-6 border border-[var(--color-gray-300)]"
               checked={serviceChecked}
               onChange={(event) => syncTerms(event.target.checked, privacyChecked)}

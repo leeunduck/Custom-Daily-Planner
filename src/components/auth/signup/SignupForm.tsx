@@ -1,6 +1,6 @@
 "use client";
 
-import { SIGNUP_STEP_ORDER } from "@/lib/constants";
+import { SIGNUP_STEP_FIELD_META, SIGNUP_STEP_ORDER } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { useSignupStepStore } from "@/stores/signupStepStore";
 
@@ -19,6 +19,8 @@ export function SignupForm() {
   const currentStepIndex = SIGNUP_STEP_ORDER.indexOf(step);
   const currentStepNumber = currentStepIndex + 1;
 
+  const { fieldId, fieldName } = SIGNUP_STEP_FIELD_META[step];
+
   return (
     <AuthStepTransition stepKey={step} direction={direction}>
       <section
@@ -31,10 +33,10 @@ export function SignupForm() {
         <StepIndicator currentStep={currentStepNumber} className="mb-3" />
 
         <div className="mx-auto flex w-full max-w-[36.6rem] flex-col gap-12">
-          {step === "email" && <SignupEmailStep />}
-          {step === "name" && <SignupNameStep />}
-          {step === "password" && <SignupPasswordStep />}
-          {step === "terms" && <SignupTermsStep />}
+          {step === "email" && <SignupEmailStep fieldId={fieldId} fieldName={fieldName} />}
+          {step === "name" && <SignupNameStep fieldId={fieldId} fieldName={fieldName} />}
+          {step === "password" && <SignupPasswordStep fieldId={fieldId} fieldName={fieldName} />}
+          {step === "terms" && <SignupTermsStep fieldId={fieldId} fieldName={fieldName} />}
         </div>
 
         <p className="t-14-m text-center text-[var(--color-gray-600)]">

@@ -9,9 +9,10 @@ import { useSignupStepStore } from "@/stores/signupStepStore";
 import { Button } from "@/shared/button";
 import { Input } from "@/shared/input";
 
+import { StepFieldMeta } from "@/types/auth";
 import { useState } from "react";
 
-export function SignupNameStep() {
+export function SignupNameStep({ fieldId, fieldName }: StepFieldMeta) {
   const { name, setName } = useSignupFormStore();
 
   const { goNext, goPrev } = useSignupStepStore();
@@ -35,7 +36,7 @@ export function SignupNameStep() {
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <label htmlFor="signup-name" className="t-14-m text-[var(--color-gray-700)]">
+        <label htmlFor={fieldId} className="t-14-m text-[var(--color-gray-700)]">
           이름
         </label>
 
@@ -43,8 +44,8 @@ export function SignupNameStep() {
       </div>
 
       <Input
-        id="signup-name"
-        name="name"
+        id={fieldId}
+        name={fieldName}
         type="text"
         status="default"
         placeholder="이름을 입력하세요"

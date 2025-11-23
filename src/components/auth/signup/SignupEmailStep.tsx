@@ -9,9 +9,10 @@ import { useSignupStepStore } from "@/stores/signupStepStore";
 import { Button } from "@/shared/button";
 import { Input } from "@/shared/input";
 
+import { StepFieldMeta } from "@/types/auth";
 import { useState } from "react";
 
-export function SignupEmailStep() {
+export function SignupEmailStep({ fieldId, fieldName }: StepFieldMeta) {
   const { email, setEmail } = useSignupFormStore();
 
   const { goNext } = useSignupStepStore();
@@ -36,7 +37,7 @@ export function SignupEmailStep() {
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <label htmlFor="signup-email" className="t-14-m text-[var(--color-gray-700)]">
+        <label htmlFor={fieldId} className="t-14-m text-[var(--color-gray-700)]">
           이메일
         </label>
 
@@ -44,8 +45,8 @@ export function SignupEmailStep() {
       </div>
 
       <Input
-        id="signup-email"
-        name="email"
+        id={fieldId}
+        name={fieldName}
         type="email"
         placeholder="example@gmail.com"
         status="default"
