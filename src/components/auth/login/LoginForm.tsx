@@ -16,42 +16,32 @@ import Link from "next/link";
 import { useState } from "react";
 
 export function LoginForm() {
-  // ✅ 1) 전역 스토어: 이메일/비밀번호 값 + 액션
   const { email, password, setEmail, setPassword, reset } = useLoginFormStore();
 
-  // ✅ 2) 로컬 에러 상태: UI 전용
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  // ✅ 3) 비밀번호 토글 훅
   const { inputType, iconName, ariaLabel, toggleVisibility } = usePasswordVisibility(false);
 
-  // ✅ 4) 공통 submit 훅으로 preventDefault 처리
   const handleSubmit = useAuthFormSubmit(() => {
     let hasError = false;
 
-    // 이메일 검증
     if (!isValidEmail(email)) {
       setEmailError("올바른 이메일을 입력해주세요.");
       hasError = true;
     }
 
-    // 비밀번호 검증 (8자리 이상 + 특수문자)
     if (!isValidPassword(password)) {
       setPasswordError("8자리 이상, 특수문자를 포함해야 합니다.");
       hasError = true;
     }
 
     if (hasError) {
-      return; // ❌ 에러가 하나라도 있으면 제출 중단
+      return;
     }
-
-    // ✅ 5) 검증 통과 시: 로그인 데이터 콘솔 출력
-    //    (나중에 이 자리에서 Supabase Auth 요청으로 교체)
 
     console.log("🟢 Login submit:", { email, password });
 
-    // ✅ 6) 성공 후 인풋 값 초기화
     reset();
   });
 
@@ -88,12 +78,10 @@ export function LoginForm() {
           placeholder="example@gmail.com"
           autoComplete="email"
           required
-          value={email} // ✅ 전역 스토어의 email과 연결
-          onChange={(event) => setEmail(event.target.value)} // ✅ setEmail으로 업데이트
-          onFocus={() => setEmailError("")} // ✅ 포커스 시 에러 해제
-          className={cn(
-            emailError && "border-[1.5px] border-[var(--color-danger-600)]", // ✅ 에러 시 테두리 강조
-          )}
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          onFocus={() => setEmailError("")}
+          className={cn(emailError && "border-[1.5px] border-[var(--color-danger-600)]")}
         />
       </div>
 
@@ -104,7 +92,7 @@ export function LoginForm() {
             비밀번호
           </label>
 
-          {/* ✅ 비밀번호 에러 문구 */}
+          {/* 비밀번호 에러 문구 */}
           {passwordError && (
             <span className="t-12-m text-[var(--color-danger-600)]">{passwordError}</span>
           )}
@@ -114,24 +102,24 @@ export function LoginForm() {
           <Input
             id="login-password"
             name="password"
-            type={inputType} // ✅ "password" / "text"를 훅이 알아서 관리
+            type={inputType}
             status="default"
             autoComplete="current-password"
             required
             placeholder="비밀번호를 입력하세요"
-            value={password} // ✅ 전역 스토어의 password와 연결
+            value={password}
             onChange={(event) => setPassword(event.target.value)}
-            onFocus={() => setPasswordError("")} // ✅ 포커스 시 에러 해제
+            onFocus={() => setPasswordError("")}
             className={cn(
               "w-full pr-10",
               passwordError && "border-[1.5px] border-[var(--color-danger-600)]", // ✅ 에러 테두리
             )}
           />
 
-          {/* ✅ 비밀번호 보기/숨기기 토글 버튼 */}
+          {/* 비밀번호 보기/숨기기 토글 버튼 */}
           <button
             type="button"
-            onClick={toggleVisibility} // ✅ 클릭 시 isVisible 토글
+            onClick={toggleVisibility}
             className="absolute right-5 top-1/2 -translate-y-1/2 cursor-pointer"
             aria-label={ariaLabel}
           >

@@ -104,14 +104,14 @@ export interface SignupFormState extends SignupFormValues {
   reset: () => void;
 }
 
-/** ✅ 비밀번호 재설정 폼 값 */
+/** 비밀번호 재설정 폼 값 */
 export interface ForgotPasswordFormValues {
   email: string;
   code: string;
   newPassword: string;
 }
 
-/** ✅ 비밀번호 재설정 폼 Zustand 상태 + 액션 */
+/** 비밀번호 재설정 폼 Zustand 상태 + 액션 */
 export interface ForgotPasswordFormState extends ForgotPasswordFormValues {
   setEmail: (value: string) => void;
   setCode: (value: string) => void;
