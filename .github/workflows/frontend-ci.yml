@@ -71,11 +71,11 @@ jobs:
     needs: lint
     timeout-minutes: 15
 
-    # ✅ NEXT_PUBLIC_* 는 Variables(평문), service role은 Secret
+    # ✅ 전부 secrets로 통일 (너는 지금 Secrets에 넣어놨으니까 이게 정답)
     env:
-      NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
-      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-      NEXT_PUBLIC_API_TIMEOUT: ${{ vars.NEXT_PUBLIC_API_TIMEOUT }}
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+      NEXT_PUBLIC_API_TIMEOUT: ${{ secrets.NEXT_PUBLIC_API_TIMEOUT }}
       SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
 
     steps:
@@ -116,10 +116,11 @@ jobs:
     needs: test
     timeout-minutes: 15
 
+    # ✅ build도 동일하게 secrets 주입
     env:
-      NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
-      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-      NEXT_PUBLIC_API_TIMEOUT: ${{ vars.NEXT_PUBLIC_API_TIMEOUT }}
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+      NEXT_PUBLIC_API_TIMEOUT: ${{ secrets.NEXT_PUBLIC_API_TIMEOUT }}
       SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
 
     steps:
@@ -154,9 +155,3 @@ jobs:
 
       - name: Build
         run: pnpm run build
-        # ✅ 혹시 job env가 꼬일 때 대비(안전빵)로 step env도 같이 주입
-        env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-          NEXT_PUBLIC_API_TIMEOUT: ${{ vars.NEXT_PUBLIC_API_TIMEOUT }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
