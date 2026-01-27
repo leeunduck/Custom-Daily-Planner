@@ -13,22 +13,18 @@ import { ForgotPasswordResetStep } from "./ForgotPasswordResetStep";
 import { ForgotPasswordVerifyStep } from "./ForgotPasswordVerifyStep";
 
 export function ForgotPasswordForm() {
-  // ✅ 1) 현재 스텝 이름 + 전환 방향 가져오기
   const { step, direction } = useForgotPasswordStepStore();
 
   const isEmailStep = step === "email";
   const isVerifyStep = step === "verify";
   const isResetStep = step === "reset";
 
-  // ✅ 2) 현재 스텝이 몇 번째인지 계산 (1부터 시작)
   const currentStepIndex = FORGOT_PASSWORD_STEP_ORDER.indexOf(step);
   const currentStepNumber = currentStepIndex + 1;
 
-  // ✅ 3) 스텝별 필드 메타 (id / name)
   const { fieldId, fieldName } = FORGOT_PASSWORD_STEP_FIELD_META[step];
 
   return (
-    // 스텝이 바뀌면 슬라이드 전환
     <AuthStepTransition stepKey={step} direction={direction}>
       <section
         aria-label="비밀번호 재설정 폼"

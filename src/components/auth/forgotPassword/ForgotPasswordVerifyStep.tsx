@@ -15,23 +15,17 @@ import { Input } from "@/shared/input";
 import type { StepFieldMeta } from "@/types/auth";
 
 export function ForgotPasswordVerifyStep({ fieldId, fieldName }: StepFieldMeta) {
-  // ✅ 1) 전역 스토어에서 code setter 가져오기
   const { setCode } = useForgotPasswordFormStore();
 
-  // ✅ 2) 스텝 이동 액션
   const { goNext, goPrev } = useForgotPasswordStepStore();
 
-  // ✅ 3) OTP 훅: 4자리 코드 입력 UX 관리
   const { values, inputRefs, handleChange, handleKeyDown, codeValue } = useOtpCode(CODE_LENGTH);
 
-  // ✅ 4) 코드 에러 메시지 (로컬 상태)
   const [codeError, setCodeError] = useState("");
 
-  // ✅ 5) submit 핸들러 (공통 훅 사용)
   const handleSubmit = useAuthFormSubmit(() => {
     let hasError = false;
 
-    // 숫자 4자리 검증
     if (!isValidCode(codeValue)) {
       setCodeError("4자리 숫자 인증번호를 정확히 입력해주세요.");
       hasError = true;
@@ -39,13 +33,10 @@ export function ForgotPasswordVerifyStep({ fieldId, fieldName }: StepFieldMeta) 
 
     if (hasError) return;
 
-    // 전역 스토어에 최종 코드 저장
     setCode(codeValue);
 
-    // 디버깅용 로그
     console.log("✅ Forgot Password Verify Step:", { code: codeValue });
 
-    // 다음 스텝(비밀번호 재설정)으로 이동
     goNext();
   });
 

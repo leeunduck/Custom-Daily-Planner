@@ -15,31 +15,24 @@ import { Input } from "@/shared/input";
 import type { StepFieldMeta } from "@/types/auth";
 
 export function ForgotPasswordResetStep({ fieldId, fieldName }: StepFieldMeta) {
-  // ✅ 1) 전역 스토어에서 새 비밀번호 값 + setter 가져오기
   const { email, code, newPassword, setNewPassword, reset } = useForgotPasswordFormStore();
 
-  // ✅ 2) 스텝 이동 액션
   const { goPrev } = useForgotPasswordStepStore();
 
-  // ✅ 3) 로컬 상태: 에러 + 비밀번호 확인 값
   const [passwordError, setPasswordError] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [passwordConfirmError, setPasswordConfirmError] = useState("");
 
-  // ✅ 4) 비밀번호 보기/숨기기 토글 훅
   const { inputType, iconName, ariaLabel, toggleVisibility } = usePasswordVisibility(false);
 
-  // ✅ 5) submit 핸들러 (공통 훅 사용)
   const handleSubmit = useAuthFormSubmit(() => {
     let hasError = false;
 
-    // 1) 비밀번호 규칙 검증 (길이 + 특수문자)
     if (!isValidPassword(newPassword)) {
       setPasswordError("8자리 이상, 특수문자를 포함해야 합니다.");
       hasError = true;
     }
 
-    // 2) 비밀번호 확인 일치 여부 검증
     if (newPassword !== passwordConfirm) {
       setPasswordConfirmError("비밀번호가 일치하지 않습니다.");
       hasError = true;
@@ -47,13 +40,10 @@ export function ForgotPasswordResetStep({ fieldId, fieldName }: StepFieldMeta) {
 
     if (hasError) return;
 
-    // 최종 payload 생성 (이메일 + 코드 + 새 비밀번호)
     const forgotPayload = { email, code, newPassword };
 
-    // 디버깅용 출력 (나중에 Supabase 비밀번호 재설정 API로 교체)
     console.log("🔑 Forgot Password Reset Step:", forgotPayload);
 
-    // 전체 입력값 초기화
     reset();
   });
 

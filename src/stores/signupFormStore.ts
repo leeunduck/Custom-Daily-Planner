@@ -8,6 +8,7 @@ const initialSignupValues: SignupFormValues = {
   name: "",
   password: "",
   agreeToTerms: false,
+  accessToken: "",
 };
 
 export const useSignupFormStore = create<SignupFormState>((set) => ({
@@ -31,6 +32,11 @@ export const useSignupFormStore = create<SignupFormState>((set) => ({
   setAgreeToTerms: (value: boolean) =>
     set(() => ({
       agreeToTerms: value,
+    })),
+
+  setAccessToken: (value: string) =>
+    set(() => ({
+      accessToken: value,
     })),
 
   reset: () =>

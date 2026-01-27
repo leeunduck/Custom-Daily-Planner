@@ -1,20 +1,26 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+import { supabaseAuth } from "@/api/client";
 import { useAuthFormSubmit } from "@/hooks/useAuthFormSubmit";
 import { Button } from "@/shared/button";
 import { useSignupFormStore } from "@/stores/signupFormStore";
 import { useSignupStepStore } from "@/stores/signupStepStore";
-import { StepFieldMeta } from "@/types/auth";
-import { useState } from "react";
+import type { StepFieldMeta } from "@/types/auth";
 
 export function SignupTermsStep({ fieldId, fieldName }: StepFieldMeta) {
-  const { email, name, password, agreeToTerms, setAgreeToTerms, reset } = useSignupFormStore();
+  const router = useRouter();
+
+  const { email, password, agreeToTerms, setAgreeToTerms, reset } = useSignupFormStore();
   const { goPrev } = useSignupStepStore();
 
   const [serviceChecked, setServiceChecked] = useState(false);
   const [privacyChecked, setPrivacyChecked] = useState(false);
 
   const [termsError, setTermsError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const syncTerms = (nextService: boolean, nextPrivacy: boolean) => {
     setServiceChecked(nextService);
@@ -28,22 +34,35 @@ export function SignupTermsStep({ fieldId, fieldName }: StepFieldMeta) {
     }
   };
 
-  const handleSubmit = useAuthFormSubmit(() => {
+  const handleSubmit = useAuthFormSubmit(async () => {
     if (!agreeToTerms) {
       setTermsError("필수 약관에 모두 동의해야 합니다.");
       return;
     }
 
-    const signupPayload = {
-      email,
-      name,
-      password,
-      agreeToTerms,
-    };
+    if (isSubmitting) return;
 
-    console.log("🎉 Signup completed:", signupPayload);
+    try {
+      setIsSubmitting(true);
+      setTermsError("");
 
-    reset();
+      const { error } = await supabaseAuth.auth.signInWithPassword({
+        email: email.trim().toLowerCase(),
+        password,
+      });
+
+      if (error) {
+        setTermsError("회원가입 완료 처리 중 오류가 발생했습니다.");
+        return;
+      }
+
+      reset();
+      router.replace("/");
+    } catch {
+      setTermsError("회원가입 완료 처리 중 오류가 발생했습니다.");
+    } finally {
+      setIsSubmitting(false);
+    }
   });
 
   return (
@@ -101,8 +120,9 @@ export function SignupTermsStep({ fieldId, fieldName }: StepFieldMeta) {
       {/* 버튼: 회원가입 완료 / 이전 (세로 정렬) */}
       <div className="mt-2 flex flex-col gap-3">
         <Button type="submit" preset="auth" bg="basic" className="w-full">
-          회원가입 완료
+          {isSubmitting ? "처리 중" : "회원가입 완료"}
         </Button>
+
         <Button type="button" preset="auth" bg="white" className="w-full" onClick={goPrev}>
           이전
         </Button>
