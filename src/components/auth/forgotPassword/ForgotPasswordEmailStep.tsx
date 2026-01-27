@@ -13,32 +13,24 @@ import { Input } from "@/shared/input";
 import type { StepFieldMeta } from "@/types/auth";
 
 export function ForgotPasswordEmailStep({ fieldId, fieldName }: StepFieldMeta) {
-  // ✅ 1) 전역 스토어에서 이메일 값 + setter 가져오기
   const { email, setEmail } = useForgotPasswordFormStore();
 
-  // ✅ 2) 다음 스텝으로 이동하는 액션
   const { goNext } = useForgotPasswordStepStore();
 
-  // ✅ 3) 이메일 에러 메시지 (UI 전용 로컬 상태)
   const [emailError, setEmailError] = useState("");
 
-  // ✅ 4) 공통 submit 훅으로 form 기본 동작 막기 + 콜백 실행
   const handleSubmit = useAuthFormSubmit(() => {
     let hasError = false;
 
-    // 이메일 형식 검증
     if (!isValidEmail(email)) {
       setEmailError("올바른 이메일을 입력해주세요.");
       hasError = true;
     }
 
-    // 하나라도 실패하면 이 스텝에 머무르기
     if (hasError) return;
 
-    // 디버깅용 로그 (나중에 실제 API 요청으로 대체)
     console.log("📨 Forgot Password Email Step:", { email });
 
-    // 검증 통과 시 다음 스텝으로 이동
     goNext();
   });
 
@@ -63,11 +55,8 @@ export function ForgotPasswordEmailStep({ fieldId, fieldName }: StepFieldMeta) {
         status="default"
         autoComplete="email"
         required
-        // 전역 스토어 값과 연결
         value={email}
-        // 입력 시 전역 스토어 업데이트
         onChange={(e) => setEmail(e.target.value)}
-        // 포커스 되면 에러 메시지 초기화
         onFocus={() => setEmailError("")}
         className={cn(emailError && "border-[1.5px] border-[var(--color-danger-600)]")}
       />

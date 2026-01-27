@@ -39,7 +39,6 @@ export type AuthProps = BaseButtonProps & {
   bg?: BasicSignupBg;
   // 금지
   size?: never;
-  disabled?: never;
 };
 
 /** signup 전용 */

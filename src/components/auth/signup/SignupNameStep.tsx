@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import { useAuthFormSubmit } from "@/hooks/useAuthFormSubmit";
 import { cn } from "@/lib/utils";
 import { isValidName } from "@/lib/validators";
@@ -9,17 +11,20 @@ import { useSignupStepStore } from "@/stores/signupStepStore";
 import { Button } from "@/shared/button";
 import { Input } from "@/shared/input";
 
-import { StepFieldMeta } from "@/types/auth";
-import { useState } from "react";
+import type { StepFieldMeta } from "@/types/auth";
+
+type UpdateNameResponse = { ok: true; message: string } | { ok: false; message: string };
 
 export function SignupNameStep({ fieldId, fieldName }: StepFieldMeta) {
-  const { name, setName } = useSignupFormStore();
-
+  const { email, name, setName } = useSignupFormStore();
   const { goNext, goPrev } = useSignupStepStore();
 
   const [nameError, setNameError] = useState("");
 
-  const handleSubmit = useAuthFormSubmit(() => {
+  const [serverMsg, setServerMsg] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSubmit = useAuthFormSubmit(async () => {
     let hasError = false;
 
     if (!isValidName(name)) {
@@ -29,9 +34,37 @@ export function SignupNameStep({ fieldId, fieldName }: StepFieldMeta) {
 
     if (hasError) return;
 
-    console.log("👤 Signup Name Step:", { name });
-    goNext();
+    if (isSaving) return;
+
+    try {
+      setIsSaving(true);
+      setServerMsg("");
+
+      const res = await fetch("/api/update-name", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          name: name.trim(),
+        }),
+      });
+
+      const data = (await res.json()) as UpdateNameResponse;
+
+      if (!res.ok || !data.ok) {
+        setServerMsg(data?.message || "이름 저장에 실패했습니다.");
+        return;
+      }
+
+      goNext();
+    } catch {
+      setServerMsg("이름 저장에 실패했습니다.");
+    } finally {
+      setIsSaving(false);
+    }
   });
+
+  const rightMsg = nameError || serverMsg;
 
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
@@ -40,7 +73,16 @@ export function SignupNameStep({ fieldId, fieldName }: StepFieldMeta) {
           이름
         </label>
 
-        {nameError && <span className="t-12-m text-[var(--color-danger-600)]">{nameError}</span>}
+        {rightMsg && (
+          <span
+            className={cn(
+              "t-12-m",
+              nameError ? "text-[var(--color-danger-600)]" : "text-[var(--color-gray-600)]",
+            )}
+          >
+            {rightMsg}
+          </span>
+        )}
       </div>
 
       <Input
@@ -51,8 +93,14 @@ export function SignupNameStep({ fieldId, fieldName }: StepFieldMeta) {
         placeholder="이름을 입력하세요"
         required
         value={name}
-        onChange={(e) => setName(e.target.value)}
-        onFocus={() => setNameError("")}
+        onChange={(e) => {
+          setName(e.target.value);
+          setServerMsg("");
+        }}
+        onFocus={() => {
+          setNameError("");
+          setServerMsg("");
+        }}
         className={cn(nameError && "border-[1.5px] border-[var(--color-danger-600)]")}
       />
 

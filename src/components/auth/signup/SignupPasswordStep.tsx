@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import { useAuthFormSubmit } from "@/hooks/useAuthFormSubmit";
 import { usePasswordVisibility } from "@/hooks/usePasswordVisibility";
 import { cn } from "@/lib/utils";
@@ -11,22 +13,63 @@ import { Button } from "@/shared/button";
 import { Icon } from "@/shared/Icon";
 import { Input } from "@/shared/input";
 
-import { StepFieldMeta } from "@/types/auth";
-import { useState } from "react";
+import type { StepFieldMeta } from "@/types/auth";
+
+type SetPasswordResponse = { ok: true; message: string } | { ok: false; message: string };
 
 export function SignupPasswordStep({ fieldId, fieldName }: StepFieldMeta) {
-  const { password, setPassword } = useSignupFormStore();
+  const { email, accessToken, password, setPassword, setAccessToken } = useSignupFormStore();
   const { goNext, goPrev } = useSignupStepStore();
 
   const [passwordError, setPasswordError] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [passwordConfirmError, setPasswordConfirmError] = useState("");
 
+  // ✅ 서버 메시지 + 로딩(버튼 `disabled`는 걸지 않고 로직으로만 방지)
+  const [serverMsg, setServerMsg] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+
   const { inputType, iconName, ariaLabel, toggleVisibility } = usePasswordVisibility(false);
 
-  const handleSubmit = useAuthFormSubmit(() => {
+  const setPasswordOnServer = async (): Promise<boolean> => {
+    if (isSaving) return false;
+
+    try {
+      setIsSaving(true);
+      setServerMsg("");
+
+      const res = await fetch("/api/set-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken ?? ""}`,
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = (await res.json()) as SetPasswordResponse;
+
+      if (!res.ok || !data.ok) {
+        setServerMsg(data?.message || "비밀번호 저장에 실패했습니다.");
+        return false;
+      }
+
+      // ✅ 토큰은 비밀번호 설정에만 쓰고 제거해도 됨(선택)
+      setAccessToken("");
+
+      return true;
+    } catch {
+      setServerMsg("비밀번호 저장에 실패했습니다.");
+      return false;
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleSubmit = useAuthFormSubmit(async () => {
     let hasError = false;
 
+    // ✅ 기존 로컬 검증 로직 유지
     if (!isValidPassword(password)) {
       setPasswordError("8자리 이상, 특수문자를 포함해야 합니다.");
       hasError = true;
@@ -39,7 +82,9 @@ export function SignupPasswordStep({ fieldId, fieldName }: StepFieldMeta) {
 
     if (hasError) return;
 
-    console.log("🔐 Signup Password Step:", { password });
+    // ✅ 서버 저장 성공 시에만 다음 단계
+    const ok = await setPasswordOnServer();
+    if (!ok) return;
 
     goNext();
   });
@@ -68,7 +113,10 @@ export function SignupPasswordStep({ fieldId, fieldName }: StepFieldMeta) {
             required
             placeholder="비밀번호를 입력하세요"
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            onChange={(event) => {
+              setPassword(event.target.value);
+              setServerMsg("");
+            }}
             onFocus={() => setPasswordError("")}
             className={cn(
               "w-full pr-10",
@@ -109,7 +157,10 @@ export function SignupPasswordStep({ fieldId, fieldName }: StepFieldMeta) {
             required
             placeholder="비밀번호를 다시 한 번 입력하세요"
             value={passwordConfirm}
-            onChange={(event) => setPasswordConfirm(event.target.value)}
+            onChange={(event) => {
+              setPasswordConfirm(event.target.value);
+              setServerMsg("");
+            }}
             onFocus={() => setPasswordConfirmError("")}
             className={cn(
               "w-full pr-10",
@@ -126,6 +177,8 @@ export function SignupPasswordStep({ fieldId, fieldName }: StepFieldMeta) {
             <Icon name={iconName} size={18} className="text-[var(--color-gray-500)]" />
           </button>
         </div>
+
+        {serverMsg && <p className="t-12-m text-[var(--color-danger-600)]">{serverMsg}</p>}
       </div>
 
       {/* 3. 버튼 (세로 정렬) */}
