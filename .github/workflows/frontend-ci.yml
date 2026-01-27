@@ -136,7 +136,6 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # ✅ (선택) env 누락이면 여기서 바로 죽게 해서 원인 빨리 찾기
       - name: Check env exists
         run: |
           test -n "$NEXT_PUBLIC_SUPABASE_URL" || (echo "NEXT_PUBLIC_SUPABASE_URL missing" && exit 1)
