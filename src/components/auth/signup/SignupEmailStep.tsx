@@ -18,7 +18,7 @@ import type {
 import { useCallback, useEffect, useState } from "react";
 
 export function SignupEmailStep({ fieldId, fieldName }: StepFieldMeta) {
-  const { email, setEmail } = useSignupFormStore();
+  const { email, setEmail, setAccessToken } = useSignupFormStore();
   const { goNext } = useSignupStepStore();
 
   const [emailError, setEmailError] = useState("");
@@ -143,6 +143,9 @@ export function SignupEmailStep({ fieldId, fieldName }: StepFieldMeta) {
 
       setOtpMsg(data.message);
       setIsVerified(data.verified);
+      if (data.verified === true && data.accessToken) {
+        setAccessToken(data.accessToken);
+      }
     } catch {
       setOtpMsg("인증번호 확인 중 오류가 발생했습니다.");
       setIsVerified(false);

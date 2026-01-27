@@ -75,6 +75,7 @@ export interface SignupFormValues {
   name: string;
   password: string;
   agreeToTerms: boolean;
+  accessToken: string;
 }
 
 /** (회원가입용) Signup 폼 Zustand 상태 + 액션 */
@@ -83,6 +84,7 @@ export interface SignupFormState extends SignupFormValues {
   setName: (value: string) => void;
   setPassword: (value: string) => void;
   setAgreeToTerms: (value: boolean) => void;
+  setAccessToken: (value: string) => void;
   reset: () => void;
 }
 
@@ -119,6 +121,7 @@ export interface VerifyOtpResponse {
   ok: boolean;
   verified: boolean;
   message: string;
+  accessToken?: string;
 }
 
 /* =========================================================

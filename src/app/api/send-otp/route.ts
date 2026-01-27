@@ -19,7 +19,7 @@ export async function POST(req: Request) {
   const { error } = await supabase.auth.signInWithOtp({
     email,
     options: {
-      shouldCreateUser: false, // ⚙️ 자동 회원 생성 방지
+      shouldCreateUser: true,
     },
   });
 

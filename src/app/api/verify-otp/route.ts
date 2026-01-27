@@ -20,7 +20,7 @@ export async function POST(req: Request) {
 
   const supabase = createClient(url, anon, { auth: { persistSession: false } });
 
-  const { error } = await supabase.auth.verifyOtp({
+  const { data, error } = await supabase.auth.verifyOtp({
     email,
     token,
     type: "email",
@@ -34,5 +34,20 @@ export async function POST(req: Request) {
     });
   }
 
-  return NextResponse.json({ ok: true, verified: true, message: "이메일 인증이 완료되었습니다." });
+  const accessToken = data.session?.access_token;
+
+  if (!accessToken) {
+    return NextResponse.json({
+      ok: true,
+      verified: true,
+      message: "이메일 인증은 완료됐지만 세션 토큰을 가져오지 못했습니다.",
+    });
+  }
+
+  return NextResponse.json({
+    ok: true,
+    verified: true,
+    message: "이메일 인증이 완료되었습니다.",
+    accessToken,
+  });
 }
